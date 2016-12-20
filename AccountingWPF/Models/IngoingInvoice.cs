@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace AccountingWPF.Models
 {
-    class IngoingInvoice : Invoice
+    public class IngoingInvoice : Invoice
     {
-        String supplierInfo;
+		public string SupplierInfo { get; set; }
 
         public override string getInfo()
         {
-            return supplierInfo;
+            return SupplierInfo;
         }
     }
 }

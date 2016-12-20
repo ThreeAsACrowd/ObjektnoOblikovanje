@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 
 namespace AccountingWPF.Models
 {
-    abstract class Invoice
+    public abstract class Invoice
     {
-        int id;
-        int userId;
-        DateTime dateTime;
-        String invoiceClassNumber;
-        String amount=0;
+		public int Id { get; private set; }
 
-        public abstract String getInfo();
+        public int FK_UserId { get; set; }
+
+        public DateTime Date { get; set; }
+
+		public string InvoiceClassNumber { get; set; }
+
+		public string Amount { get; set; }
+
+        public abstract string getInfo();
 
     }
 }

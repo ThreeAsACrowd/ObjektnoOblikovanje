@@ -6,19 +6,8 @@ using System.Threading.Tasks;
 
 namespace AccountingWPF.Models
 {
-    class Receipt
+    public class Receipt:MonateryFlow
     {
-
-        int id;
-        int vatId;
-        int userId;
-        DateTime dateTime;
-        String journalEntryNum;
-        String amountCash;
-        String amountTransferAccount;
-        String ammountNonCashBenefit;
-        String total;
-
 
     }
 }

@@ -8,8 +8,9 @@ namespace AccountingWPF.Models
 {
     abstract class VAT
     {
-        String name;
-        String percentage;
+		public int Id { get; private set; }
+		public string Name { get; set; }
+		public string Percentage { get; set; }
 
     }
 }
