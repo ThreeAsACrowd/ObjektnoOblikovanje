@@ -1,0 +1,11 @@
+Matea: Primitke i izdatke, kostur dokumentacije
+Matej: Raèuni i Repozitoriji (napraviti crud metodu koja æe dohvaæati sve postojeæe godine)
+Juraj: Login, MainWindow, Generiranje izvješæa
+
+Dokumentacija
+uvod
+requirements - use caseovi
+opis objektnog
+opis implementacije perzistencije
+opis desktop aplikacije
+opis web aplikacije
