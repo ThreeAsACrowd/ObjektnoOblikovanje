@@ -58,6 +58,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseLib\UserManager.cs" />
+    <Compile Include="BindingModels\LoginBindingModel.cs" />
     <Compile Include="Factories\Class1.cs" />
     <Compile Include="Models\MonateryFlow.cs" />
     <Compile Include="Models\User.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="Models\VAT.cs" />
     <Compile Include="Respositories\Class1.cs" />
     <Compile Include="ViewModels\Class1.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Views\Class1.cs" />
     <Compile Include="Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
