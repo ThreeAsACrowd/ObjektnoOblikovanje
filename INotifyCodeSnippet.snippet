@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<CodeSnippets  
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">  
+    <CodeSnippet Format="1.0.0">  
+		 <Header>  
+		    <Title>INotifyOnPropertyChanged</Title>  
+		    <Author>Juraj</Author>  
+		    <Description>Adds everything I need for INotifiyOnPropertyChanged for MVVM WPF</Description> 
+		    <Shortcut>inotify</Shortcut>
+		</Header>  
+        <Snippet>  
+			<Code Language="csharp">  
+			        <![CDATA[#region INotifyPropertyChanged Members
+			
+			        public event PropertyChangedEventHandler PropertyChanged;
+			
+			        private void OnPropertyChanged(string propertyName) {
+			            PropertyChangedEventHandler handler = PropertyChanged;
+			
+			            if (handler != null) {
+			                handler(this, new PropertyChangedEventArgs(propertyName));
+			            }
+			        }
+			
+			        #endregion]]>
+			</Code>  
+        </Snippet>  
+    </CodeSnippet>  
+</CodeSnippets> 

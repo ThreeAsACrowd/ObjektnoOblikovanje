@@ -9,7 +9,7 @@ namespace AccountingWPF.Models
     public class OutgoingInvoice : Invoice
     {
 
-		public string CustomerInfo { get; set; }
+        public virtual string CustomerInfo { get; set; }
 
 
         public override string getInfo()

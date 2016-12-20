@@ -1,30 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace AccountingWPF.Models
 {
     public class User
     {
+        public User()
+        {
 
-		public int Id { get; private set; }
+        }
 
-		[Required(ErrorMessage = "Username is mandatory")]
-		public string Username { get; set; }
+        public virtual int Id { get; protected set; }
 
-        [Required(ErrorMessage = "Password is mandatory")]
-        public string Password { get; set; }
+        //[Required(ErrorMessage = "Username is mandatory")]
+        public virtual string Username { get; set; }
 
-        public string Email { get; set; }
+        //  [Required(ErrorMessage = "Password is mandatory")]
+        public virtual string Password { get; set; }
 
-        public string Address { get; set; }
+        public virtual string Email { get; set; }
 
-        public string AssociationName { get; set; }
+        public virtual string Address { get; set; }
 
-        public string OIB { get; set; }
+        public virtual string AssociationName { get; set; }
+
+        public virtual string OIB { get; set; }
 
 
     }
