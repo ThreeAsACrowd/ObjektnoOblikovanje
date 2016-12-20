@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace AccountingWPF.Models
 {
-	class Class1
-	{
-	}
+    abstract class VAT
+    {
+        String name;
+        String percentage;
+
+    }
 }
