@@ -58,7 +58,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Factories\Class1.cs" />
-    <Compile Include="Models\Class1.cs" />
+    <Compile Include="Models\AbstractUser.cs" />
+    <Compile Include="Models\Expenditure.cs" />
+    <Compile Include="Models\IngoingInvoice.cs" />
+    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\OutgoingInvoice.cs" />
+    <Compile Include="Models\Receipt.cs" />
+    <Compile Include="Models\VAT.cs" />
     <Compile Include="Respositories\Class1.cs" />
     <Compile Include="ViewModels\Class1.cs" />
     <Compile Include="Views\Class1.cs" />
