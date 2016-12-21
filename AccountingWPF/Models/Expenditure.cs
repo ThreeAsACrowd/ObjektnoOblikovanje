@@ -9,7 +9,7 @@ namespace AccountingWPF.Models
 {
     public class Expenditure : MonateryFlow, INotifyPropertyChanged
     {
-        protected virtual string article22 { get; set; }
+        private  string article22 { get; set; }
         public virtual string Article22 {
             get {
                 return article22;

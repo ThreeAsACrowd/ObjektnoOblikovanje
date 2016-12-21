@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AccountingWPF.Respositories
 {
-	class Class1
-	{
-	}
+    class InvoiceRepository
+    {
+    }
 }

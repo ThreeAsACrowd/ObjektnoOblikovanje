@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using AccountingWPF.BindingModels;
 using AccountingWPF.Models;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -19,7 +20,7 @@ namespace AccountingWPF.Respositories
         public static ISession OpenSession()
         {
             //TODO nastimat svoju putanju
-   
+
 
             string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\mvukosav\Documents\Visual Studio 2015\Projects\ObjektnoOblikovanje\Database\Database.mdf;Integrated Security=True";
 
@@ -45,7 +46,7 @@ namespace AccountingWPF.Respositories
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
-                   
+
                     session.Save(user);
                     transaction.Commit();
                 }
@@ -55,7 +56,7 @@ namespace AccountingWPF.Respositories
             }
         }
 
-        public static User getUserById(int id)
+        public static User GetUserById(int id)
         {
             using (ISession session = OpenSession())
             {
@@ -69,6 +70,26 @@ namespace AccountingWPF.Respositories
                 else
                 {
                     Console.WriteLine("User with id: " + id + "  exists!");
+                }
+
+                return user;
+            }
+        }
+
+        public static User GetUserByCredentials(UserCredentials userCredentials)
+        {
+            using (ISession session = OpenSession())
+            {
+
+                IQuery query = session.CreateQuery("from User where username=" + userCredentials.Username + " AND password=" + userCredentials.Password);
+                User user = query.List<User>()[0];
+                if (user == null)
+                {
+                    Console.WriteLine("User " + user + " does not exists!");
+                }
+                else
+                {
+                    Console.WriteLine("User " + user + " exists!");
                 }
 
                 return user;
