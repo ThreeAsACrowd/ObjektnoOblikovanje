@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AccountingWPF.ViewModels
+namespace AccountingWPF.Factories
 {
-	class Class1
-	{
-	}
+    class _
+    {
+    }
 }

@@ -84,8 +84,14 @@
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\OutgoingInvoice.cs" />
     <Compile Include="Models\Receipt.cs" />
+    <Compile Include="Models\UserCredentials.cs" />
     <Compile Include="Models\VAT.cs" />
-    <Compile Include="Respositories\Class1.cs" />
+    <Compile Include="Respositories\MonetaryFlow\ExpenditureRepository.cs" />
+    <Compile Include="Respositories\Invoice\IngoingInvoiceRepository.cs" />
+    <Compile Include="Respositories\Invoice\InvoiceCRUD.cs" />
+    <Compile Include="Respositories\Invoice\OutgoingInvoiceRepository.cs" />
+    <Compile Include="Respositories\MonetaryFlow\MonetaryFlowCRUD.cs" />
+    <Compile Include="Respositories\MonetaryFlow\ReceiptRepository.cs" />
     <Compile Include="Respositories\UserRepository.cs" />
     <Compile Include="ViewModels\Class1.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
