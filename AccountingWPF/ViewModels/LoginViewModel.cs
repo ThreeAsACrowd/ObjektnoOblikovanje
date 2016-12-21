@@ -7,6 +7,7 @@ using AccountingWPF.BindingModels;
 using System.Windows;
 using AccountingWPF.Models;
 using AccountingWPF.Respositories;
+using AccountingWPF.Views;
 
 namespace AccountingWPF.ViewModels
 {
@@ -14,13 +15,20 @@ namespace AccountingWPF.ViewModels
     {
         public LoginBindingModel LoginBM { get; set; }
 
+		public Window ChildWindow { get; set; }
+
         public LoginViewModel()
         {
             LoginBM = new LoginBindingModel();
         }
 
+		public void Login()
+		{
+			ChildWindow = new Home();
+			ChildWindow.ShowDialog();
+		}
 
-        public void Login()
+        public void TestLogin()
         {
             //MessageBox.Show("You tried to log in");
 
