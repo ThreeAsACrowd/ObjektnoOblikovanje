@@ -25,7 +25,8 @@ namespace AccountingWPF.Respositories
         {
             //TODO nastimat svoju putanju
             //  string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\mvukosav\Documents\Visual Studio 2015\Projects\ObjektnoOblikovanje\Database\Database.mdf;Integrated Security=True";
-            string conn = @"Data Source=C:\Users\mvukosav\Documents\Visual Studio 2015\Projects\ObjektnoOblikovanje\Database\accountingDB.db";
+            //string conn = @"Data Source=C:\Users\mvukosav\Documents\Visual Studio 2015\Projects\ObjektnoOblikovanje\Database\accountingDB.db";
+			string conn = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\Database\accountingDB.db";
             if (sessionFactory == null)
             {
                 sessionFactory = Fluently.Configure()
