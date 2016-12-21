@@ -8,10 +8,7 @@ using System.Windows;
 using AccountingWPF.Models;
 using AccountingWPF.Respositories;
 using AccountingWPF.Views;
-<<<<<<< HEAD
 using AccountingWPF.BaseLib;
-=======
->>>>>>> b711e53a2be0593f9aa0a5735b81c4ab295b9728
 
 namespace AccountingWPF.ViewModels
 {
@@ -19,41 +16,61 @@ namespace AccountingWPF.ViewModels
     {
         public LoginBindingModel LoginBM { get; set; }
 
-<<<<<<< HEAD
         public Window ChildWindow { get; set; }
-=======
-		public Window ChildWindow { get; set; }
->>>>>>> b711e53a2be0593f9aa0a5735b81c4ab295b9728
 
         public LoginViewModel()
         {
             LoginBM = new LoginBindingModel();
         }
 
-<<<<<<< HEAD
-        public void Login()
-=======
-		public void Login()
-		{
-			ChildWindow = new Home();
-			ChildWindow.ShowDialog();
-		}
-
-        public void TestLogin()
->>>>>>> b711e53a2be0593f9aa0a5735b81c4ab295b9728
+        public bool Login()
         {
-            //mock login
-            UserManager.LogIn(UserRepository.getMockUser());
+            string username = LoginBM.Username;
+            string password = LoginBM.Password;
+            if (username == null || username.Length == 0)
+            {
+                MessageBox.Show("Username must not be empty");
+            }
+            else if (password == null || password.Length == 0)
+            {
+                MessageBox.Show("Password must not be empty");
+            }
+            else
+            {
+                UserRepository.CreateNewUser(UserRepository.getMockUser());
+
+                UserCredentials userCredentials = new UserCredentials(username, password);
+                //mock login
+                User user = UserRepository.GetUserByCredentials(userCredentials);
+                if (user != null)
+                {
+                    UserManager.LogIn(user);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Di ceees");
+                }
+
+            }
+            return false;
+
+        }
+
+        public void OpenHome()
+        {
             ChildWindow = new Home();
             ChildWindow.ShowDialog();
+
+            LoginBM.Username = "";
+            LoginBM.Password = "";
         }
 
         public void TestLogin()
         {
             //MessageBox.Show("You tried to log in");
-            UserRepository userRepository = new UserRepository();
-            string response = UserRepository.CreateNewUser(UserRepository.getMockUser());
-            MessageBox.Show(response);
+            //UserRepository userRepository = new UserRepository();
+            //MessageBox.Show();
         }
 
     }

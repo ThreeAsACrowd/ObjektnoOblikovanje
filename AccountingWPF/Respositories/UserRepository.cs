@@ -1,39 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using AccountingWPF.BindingModels;
 using AccountingWPF.Models;
+using AccountingWPF.Models.nHibernateModels;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
+using NHibernate.Criterion;
 using NHibernate.Tool.hbm2ddl;
 
 namespace AccountingWPF.Respositories
 {
     class UserRepository
     {
-
+        static ISessionFactory sessionFactory;
         public static ISession OpenSession()
         {
             //TODO nastimat svoju putanju
-
-
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\mvukosav\Documents\Visual Studio 2015\Projects\ObjektnoOblikovanje\Database\Database.mdf;Integrated Security=True";
-
-
-            ISessionFactory sessionFactory = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2012
-                .ConnectionString(connectionString)
-                .ShowSql())
-                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<User>())
-                .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(false, false))
-                .BuildSessionFactory();
-
+            //  string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\mvukosav\Documents\Visual Studio 2015\Projects\ObjektnoOblikovanje\Database\Database.mdf;Integrated Security=True";
+            string conn = @"Data Source=C:\Users\mvukosav\Documents\Visual Studio 2015\Projects\ObjektnoOblikovanje\Database\accountingDB.db";
+            if (sessionFactory == null)
+            {
+                sessionFactory = Fluently.Configure()
+                   .Database(SQLiteConfiguration.Standard.ShowSql().UsingFile("accountingDB.db"))
+                   //.Database(MySQLConfiguration.Standard.ConnectionString(c => c.FromConnectionStringWithKey(conn)))
+                   //.Database(MsSqlConfiguration.MsSql2012
+                   //.ConnectionString(conn)
+                   //.ShowSql())
+                   .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                   // .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(false, false))
+                   .ExposeConfiguration(BuildSchema)
+                   .BuildSessionFactory();
+            }
             return sessionFactory.OpenSession();
+        }
+
+        private static void BuildSchema(Configuration config)
+        {
+            // delete the existing db on each run
+            // if (File.Exists("accountingDB.db"))
+            //    File.Delete("accountingDB.db");
+
+            // this NHibernate tool takes a configuration (with mapping info in)
+            // and exports a database schema from it
+            if (File.Exists("accountingDB.db"))
+            {
+                new SchemaExport(config)
+                  .Create(false, true);
+            }
         }
 
         public static User getMockUser()
@@ -53,19 +74,18 @@ namespace AccountingWPF.Respositories
         /// Create user
         /// </summary>
         /// <param name="user"></param>
-        public static string CreateNewUser(User user)
+        public static void CreateNewUser(User user)
         {
             using (var session = OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
 
-                    session.Save(user);
+                    session.SaveOrUpdate(user);
                     transaction.Commit();
+                    MessageBox.Show("Created user: " + user.Username);
                 }
-                return "user created";
 
-                Console.WriteLine("Created user: " + user.Username);
             }
         }
 
@@ -93,18 +113,18 @@ namespace AccountingWPF.Respositories
         {
             using (ISession session = OpenSession())
             {
+                var users = session.CreateCriteria<User>()
+                  .Add(Restrictions.Eq("Username", userCredentials.Username))
+                                    .Add(Restrictions.Eq("Password", userCredentials.Password))
+                                    .List<User>();
 
-                IQuery query = session.CreateQuery("from User where username=" + userCredentials.Username + " AND password=" + userCredentials.Password);
-                User user = query.List<User>()[0];
-                if (user == null)
+                if (users.Count() == 0)
                 {
-                    Console.WriteLine("User " + user + " does not exists!");
+                    MessageBox.Show("User does not exists!");
+                    return null;
                 }
-                else
-                {
-                    Console.WriteLine("User " + user + " exists!");
-                }
-
+                User user = users[0];
+                MessageBox.Show("User " + user.Username + " exists!");
                 return user;
             }
         }

@@ -99,15 +99,8 @@
     <Compile Include="Respositories\MonetaryFlow\MonateryFlowCRUD.cs" />
     <Compile Include="Respositories\MonetaryFlow\ReceiptRepository.cs" />
     <Compile Include="Respositories\UserRepository.cs" />
-<<<<<<< HEAD
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-=======
-    <Compile Include="ViewModels\Class1.cs" />
-    <Compile Include="ViewModels\HomeViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="Views\Class1.cs" />
->>>>>>> b711e53a2be0593f9aa0a5735b81c4ab295b9728
     <Compile Include="Views\ExpenditureMainWindow.xaml.cs">
       <DependentUpon>ExpenditureMainWindow.xaml</DependentUpon>
     </Compile>

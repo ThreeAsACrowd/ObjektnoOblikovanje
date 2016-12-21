@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AccountingWPF.Models;
 using AccountingWPF.ViewModels;
 
 namespace AccountingWPF.Views
@@ -20,21 +21,30 @@ namespace AccountingWPF.Views
     /// </summary>
     public partial class Login : Window
     {
-		public LoginViewModel LoginVM { get; set; }
+        public LoginViewModel LoginVM { get; set; }
 
         public Login()
         {
             InitializeComponent();
 
-			LoginVM = new LoginViewModel();
-			this.DataContext = LoginVM.LoginBM;
+            LoginVM = new LoginViewModel();
+            this.DataContext = LoginVM.LoginBM;
         }
 
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			this.Hide();
-			LoginVM.Login();
-			this.Show();
-		}
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //.Hide();
+            bool isLoginValid=LoginVM.Login();
+            //LoginVM.TestLogin
+
+            if (isLoginValid)
+            {
+                this.Hide();
+                LoginVM.OpenHome();
+                this.Show();
+            }
+           
+
+        }
     }
 }
