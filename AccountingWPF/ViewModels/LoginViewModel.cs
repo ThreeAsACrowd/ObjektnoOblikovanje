@@ -8,6 +8,7 @@ using System.Windows;
 using AccountingWPF.Models;
 using AccountingWPF.Respositories;
 using AccountingWPF.Views;
+using AccountingWPF.BaseLib;
 
 namespace AccountingWPF.ViewModels
 {
@@ -15,33 +16,26 @@ namespace AccountingWPF.ViewModels
     {
         public LoginBindingModel LoginBM { get; set; }
 
-		public Window ChildWindow { get; set; }
+        public Window ChildWindow { get; set; }
 
         public LoginViewModel()
         {
             LoginBM = new LoginBindingModel();
         }
 
-		public void Login()
-		{
-			ChildWindow = new Home();
-			ChildWindow.ShowDialog();
-		}
+        public void Login()
+        {
+            //mock login
+            UserManager.LogIn(UserRepository.getMockUser());
+            ChildWindow = new Home();
+            ChildWindow.ShowDialog();
+        }
 
         public void TestLogin()
         {
             //MessageBox.Show("You tried to log in");
-
-            User user = new User();
-            user.Username = "marko";
-            user.Password = "pass";
-            user.OIB = "123141";
-            user.Address = "adresa";
-            user.Email = "mojemail@email.com";
-            user.AssociationName = "udruga";
-
             UserRepository userRepository = new UserRepository();
-            string response = UserRepository.CreateNewUser(user);
+            string response = UserRepository.CreateNewUser(UserRepository.getMockUser());
             MessageBox.Show(response);
         }
 

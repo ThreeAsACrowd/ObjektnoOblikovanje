@@ -68,7 +68,7 @@
     </Compile>
     <Compile Include="BaseLib\UserManager.cs" />
     <Compile Include="BindingModels\LoginBindingModel.cs" />
-    <Compile Include="Factories\Class1.cs" />
+    <Compile Include="Factories\.gitkeep.cs" />
     <Compile Include="Helpers\IdentityPartExtensions.cs" />
     <Compile Include="Models\MonateryFlow.cs" />
     <Compile Include="Models\nHibernateModels\ExpenditureMap.cs" />
@@ -90,13 +90,11 @@
     <Compile Include="Respositories\Invoice\IngoingInvoiceRepository.cs" />
     <Compile Include="Respositories\Invoice\InvoiceCRUD.cs" />
     <Compile Include="Respositories\Invoice\OutgoingInvoiceRepository.cs" />
-    <Compile Include="Respositories\MonetaryFlow\MonetaryFlowCRUD.cs" />
+    <Compile Include="Respositories\MonetaryFlow\MonateryFlowCRUD.cs" />
     <Compile Include="Respositories\MonetaryFlow\ReceiptRepository.cs" />
     <Compile Include="Respositories\UserRepository.cs" />
-    <Compile Include="ViewModels\Class1.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="Views\Class1.cs" />
     <Compile Include="Views\ExpenditureMainWindow.xaml.cs">
       <DependentUpon>ExpenditureMainWindow.xaml</DependentUpon>
     </Compile>

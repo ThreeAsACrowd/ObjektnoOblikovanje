@@ -36,6 +36,19 @@ namespace AccountingWPF.Respositories
             return sessionFactory.OpenSession();
         }
 
+        public static User getMockUser()
+        {
+            User user = new User();
+            user.Username = "marko";
+            user.Password = "pass";
+            user.OIB = "123141";
+            user.Address = "Unska 3";
+            user.Email = "mojemail@email.com";
+            user.AssociationName = "udruga";
+
+            return user;
+        }
+
         /// <summary>
         /// Create user
         /// </summary>
