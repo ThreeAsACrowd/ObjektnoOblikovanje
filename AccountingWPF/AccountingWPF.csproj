@@ -95,6 +95,7 @@
     <Compile Include="Models\Receipt.cs" />
     <Compile Include="Models\UserCredentials.cs" />
     <Compile Include="Models\VAT.cs" />
+    <Compile Include="Notification\PropertyChangedNotification.cs" />
     <Compile Include="Respositories\VATRepository.cs" />
     <Compile Include="Respositories\MonetaryFlow\ExpenditureRepository.cs" />
     <Compile Include="Respositories\Invoice\IngoingInvoiceRepository.cs" />

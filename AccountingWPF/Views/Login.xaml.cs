@@ -37,6 +37,7 @@ namespace AccountingWPF.Views
             bool isLoginValid=LoginVM.Login();
             //LoginVM.TestLogin
 
+			//ovo treba ići u VM
             if (isLoginValid)
             {
                 this.Hide();

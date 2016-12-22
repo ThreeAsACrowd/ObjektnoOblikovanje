@@ -5,59 +5,44 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using AccountingWPF.Notification;
+
 
 
 namespace AccountingWPF.BindingModels
 {
-	public class LoginBindingModel:INotifyPropertyChanged
+	public class LoginBindingModel:PropertyChangedNotification
 	{
-		private string username;
-		[Required]
+
+		[Required(ErrorMessage="Username must not be empty")]
 		public string Username 
 		{
 			get
 			{
-				return username;
+				return GetValue(() => Username);
 			}
 
 			set
 			{
-				username = value;
-				OnPropertyChanged("Username");
+				SetValue(() => Username, value);
 			}
 		}
 
-		private string password;
-		[Required]
+
+		[Required(ErrorMessage="Password must not be empty")]
 		public string Password
 		{
 			get
 			{
-				return password;
+				return GetValue(() => Password);
 			}
 			set
 			{
-				password = value;
-				OnPropertyChanged("Password");
+				SetValue(() => Password, value);
 			}
 		}
 
 
-		#region INotifyPropertyChanged Members
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		private void OnPropertyChanged(string propertyName)
-		{
-			PropertyChangedEventHandler handler = PropertyChanged;
-
-			if (handler != null)
-			{
-				handler(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-
-		#endregion
 	}
 
 }
