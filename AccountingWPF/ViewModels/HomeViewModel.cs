@@ -43,13 +43,13 @@ namespace AccountingWPF.ViewModels
 
 		public void generateYearlyReport()
 		{
-            ChildWindow = new AnnualReport();
+            ChildWindow = new AnnualReportWindow();
             ChildWindow.ShowDialog();
 		}
 
 		public void generateMonetaryFlowReport()
 		{
-            ChildWindow = new IncomesExpensesReport();
+            ChildWindow = new IncomesExpensesReportWindow();
             ChildWindow.ShowDialog();
 		}
 

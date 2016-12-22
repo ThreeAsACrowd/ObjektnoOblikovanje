@@ -17,9 +17,9 @@ namespace AccountingWPF.Views
     /// <summary>
     /// Interaction logic for AnnualReport.xaml
     /// </summary>
-    public partial class AnnualReport : Window
+    public partial class AnnualReportWindow : Window
     {
-        public AnnualReport()
+        public AnnualReportWindow()
         {
             InitializeComponent();
         }

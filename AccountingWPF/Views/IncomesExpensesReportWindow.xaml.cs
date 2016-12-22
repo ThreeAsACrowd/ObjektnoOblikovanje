@@ -17,9 +17,9 @@ namespace AccountingWPF.Views
     /// <summary>
     /// Interaction logic for IncomesExpensesReport.xaml
     /// </summary>
-    public partial class IncomesExpensesReport : Window
+    public partial class IncomesExpensesReportWindow : Window
     {
-        public IncomesExpensesReport()
+        public IncomesExpensesReportWindow()
         {
             InitializeComponent();
         }
