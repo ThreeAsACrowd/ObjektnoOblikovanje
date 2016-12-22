@@ -62,6 +62,7 @@ namespace AccountingWPF.Factories
             receipts.FK_VAT = getVat().Id;
             receipts.JournalEntryNum = "1";
             receipts.Total = "30";
+            receipts.Vat = getVat();
             receipts.FK_UserId = getUser().Id;
             return receipts;
         }
@@ -76,6 +77,7 @@ namespace AccountingWPF.Factories
             expenditure.FK_VAT = getVat().Id;
             expenditure.JournalEntryNum = "1";
             expenditure.Total = "30";
+            expenditure.Vat = getVat();
             expenditure.FK_UserId = getUser().Id;
             return expenditure;
         }
