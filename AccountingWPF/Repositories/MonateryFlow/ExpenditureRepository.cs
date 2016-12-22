@@ -8,22 +8,17 @@ using AccountingWPF.Models;
 
 namespace AccountingWPF.Repositories
 {
-    public class ReceiptRepository : MonetaryFlowCRUD
+    class ExpenditureRepository : MonateryFlowCRUD
     {
 
         public void Create(MonateryFlow monetaryFlow)
         {
-            Console.WriteLine("Create receipt");
+            throw new NotImplementedException();
         }
 
         public void Delete(int id)
         {
-            Console.WriteLine("Delete receipt");
-        }
-
-        public void Update(MonateryFlow monetaryFlow)
-        {
-            Console.WriteLine("Update receipt");
+            throw new NotImplementedException();
         }
 
         public MonateryFlow GetById(int id)
@@ -31,9 +26,14 @@ namespace AccountingWPF.Repositories
             throw new NotImplementedException();
         }
 
-        public IList<Receipt> getByUserId(int userId)
+        public void Update(MonateryFlow monetaryFlow)
         {
-            return Mock.getReceiptsByUserId(userId);
+            throw new NotImplementedException();
+        }
+
+        public IList<Expenditure> getByUserId(int userId)
+        {
+            return Mock.getExpendituresByUserId(userId);
         }
     }
 }

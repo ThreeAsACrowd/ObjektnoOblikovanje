@@ -26,39 +26,44 @@ namespace AccountingWPF.ViewModels
 
         public bool Login()
         {
-            ExpenditureRepository repo = new ExpenditureRepository();
-            IList<Expenditure> ex = (IList<Expenditure>)repo.getByUserId(1);
-
-            string username = LoginBM.Username;
-            string password = LoginBM.Password;
-
-            if (String.IsNullOrEmpty(username))
+            if (false)
             {
-                MessageBox.Show("Username must not be empty");
-            }
-            else if (String.IsNullOrEmpty(password))
-            {
-                MessageBox.Show("Password must not be empty");
+                TestLogin();
+                return false;
             }
             else
             {
-                UserRepository.CreateNewUser(Mock.getUser());
+                string username = LoginBM.Username;
+                string password = LoginBM.Password;
 
-                UserCredentials userCredentials = new UserCredentials(username, password);
-                //mock login
-                User user = UserRepository.GetUserByCredentials(userCredentials);
-                if (user != null)
+                if (String.IsNullOrEmpty(username))
                 {
-                    UserManager.LogIn(user);
-                    return true;
+                    MessageBox.Show("Username must not be empty");
+                }
+                else if (String.IsNullOrEmpty(password))
+                {
+                    MessageBox.Show("Password must not be empty");
                 }
                 else
                 {
-                    MessageBox.Show("Di ceees");
-                }
+                    UserRepository.CreateNewUser(Mock.getUser());
 
+                    UserCredentials userCredentials = new UserCredentials(username, password);
+                    //mock login
+                    User user = UserRepository.GetUserByCredentials(userCredentials);
+                    if (user != null)
+                    {
+                        UserManager.LogIn(user);
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Di ceees");
+                    }
+
+                }
+                return false;
             }
-            return false;
 
         }
 
@@ -73,9 +78,17 @@ namespace AccountingWPF.ViewModels
 
         public void TestLogin()
         {
-            //MessageBox.Show("You tried to log in");
-            //UserRepository userRepository = new UserRepository();
-            //MessageBox.Show();
+            UserCredentials cred = new UserCredentials(Mock.getUser().Username, Mock.getUser().Password);
+            User mock = Mock.getUser();
+            //UserRepository.abstractCreateUser(Mock.getUser());
+            //UserRepository.absractGetUserByCredentials(cred);
+
+
+            UserRepository.CreateNewUser(mock);
+            User user = UserRepository.GetUserByCredentials(cred);
+            User user2 = UserRepository.GetUserById(mock.Id);
+
+             MessageBox.Show(user.Username);
         }
 
     }

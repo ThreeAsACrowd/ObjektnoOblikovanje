@@ -9,6 +9,8 @@ using System.Windows;
 using AccountingWPF.BindingModels;
 using AccountingWPF.Models;
 using AccountingWPF.Models.nHibernateModels;
+using AccountingWPF.nHibernateDb;
+using AccountingWPF.Repositories;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
@@ -18,15 +20,56 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace AccountingWPF.Repositories
 {
-    class UserRepository
+    public class UserRepository
     {
+        /*
+        public static void abstractCreateUser(User user)
+        {
+            ISession mySession = Database.OpenSession();
+            using (RepositoryBase repository = new RepositoryBase())
+            {
+                try
+                {
+                    repository.Save(user);
+                    repository.CommitTransaction();
+
+                }
+                catch
+                {
+                    repository.RollbackTransaction();
+                }
+            }
+        }
+
+        public static User absractGetUserByCredentials(UserCredentials userCredentials)
+        {
+            using (ISession session = OpenSession())
+            {
+                var users = session.CreateCriteria<User>()
+                  .Add(Restrictions.Eq("Username", userCredentials.Username))
+                                    .Add(Restrictions.Eq("Password", userCredentials.Password))
+                                    .List<User>();
+
+                if (users.Count() == 0)
+                {
+                    MessageBox.Show("User does not exists!");
+                    return null;
+                }
+                User user = users[0];
+                // MessageBox.Show("User " + user.Username + " exists!");
+                return user;
+            }
+        }*/
+
+
+
         static ISessionFactory sessionFactory;
         public static ISession OpenSession()
         {
             //TODO nastimat svoju putanju
             //  string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\mvukosav\Documents\Visual Studio 2015\Projects\ObjektnoOblikovanje\Database\Database.mdf;Integrated Security=True";
             //string conn = @"Data Source=C:\Users\mvukosav\Documents\Visual Studio 2015\Projects\ObjektnoOblikovanje\Database\accountingDB.db";
-			string conn = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\Database\accountingDB.db";
+            //string conn = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\Database\accountingDB.db";
             if (sessionFactory == null)
             {
                 sessionFactory = Fluently.Configure()
@@ -73,7 +116,7 @@ namespace AccountingWPF.Repositories
 
                     session.SaveOrUpdate(user);
                     transaction.Commit();
-                    //  MessageBox.Show("Created user: " + user.Username);
+                    //MessageBox.Show("Created user: " + user.Username);
                 }
 
             }
@@ -84,17 +127,17 @@ namespace AccountingWPF.Repositories
             using (ISession session = OpenSession())
             {
 
-                IQuery query = session.CreateQuery("from User where userId=" + id);
-                User user = query.List<User>()[0];
-                if (user == null)
-                {
-                    Console.WriteLine("User with id: " + id + " does not exists!");
-                }
-                else
-                {
-                    //Console.WriteLine("User with id: " + id + "  exists!");
-                }
+                var users = session.CreateCriteria<User>()
+                 .Add(Restrictions.Eq("Id", id))
+                                   .List<User>();
 
+                if (users.Count() == 0)
+                {
+                    MessageBox.Show("User does not exists!");
+                    return null;
+                }
+                User user = users[0];
+                //Console.WriteLine("User with id: " + id + "  exists!");
                 return user;
             }
         }
@@ -114,7 +157,7 @@ namespace AccountingWPF.Repositories
                     return null;
                 }
                 User user = users[0];
-               // MessageBox.Show("User " + user.Username + " exists!");
+                // MessageBox.Show("User " + user.Username + " exists!");
                 return user;
             }
         }
