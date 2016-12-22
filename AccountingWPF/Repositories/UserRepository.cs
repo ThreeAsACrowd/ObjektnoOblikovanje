@@ -60,7 +60,7 @@ namespace AccountingWPF.Repositories
 
                 if (users.Count() == 0)
                 {
-                    MessageBox.Show("User does not exists!");
+                  //  MessageBox.Show("User does not exists!");
                     return null;
                 }
                 User user = users[0];

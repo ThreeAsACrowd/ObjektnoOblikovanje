@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AccountingWPF.Models;
+using AccountingWPF.Repositories;
 
 namespace AccountingWPF.Factories
 {
@@ -142,15 +143,8 @@ namespace AccountingWPF.Factories
 
         public static User getUser()
         {
-            User user = new User();
-            user.Username = "marko";
-            user.Password = "pass";
-            user.OIB = "123141";
-            user.Address = "Unska 3";
-            user.Email = "mojemail@email.com";
-            user.AssociationName = "udruga";
-
-            return user;
+            UserRepository userRepo = new UserRepository();
+            return userRepo.GetById(1);
         }
 
 

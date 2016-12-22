@@ -26,7 +26,7 @@ namespace AccountingWPF.ViewModels
 
         public bool Login()
         {
-            if (true)
+            if (false)
             {
                 TestLogin();
                 return false;
@@ -48,10 +48,8 @@ namespace AccountingWPF.ViewModels
                 {
 
                     UserRepository userRepository = new UserRepository();
-                    // UserRepository.CreateNewUser(Mock.getUser());
-
                     UserCredentials userCredentials = new UserCredentials(username, password);
-                    //mock login
+
                     User user = userRepository.GetUserByCredentials(userCredentials);
                     if (user != null)
                     {
@@ -60,7 +58,7 @@ namespace AccountingWPF.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Di ceees");
+                        MessageBox.Show("User does not exists");
                     }
 
                 }
@@ -81,7 +79,7 @@ namespace AccountingWPF.ViewModels
         public void TestLogin()
         {
 
-            populateDatabase();
+            //populateDatabase();
             //       UserCredentials cred = new UserCredentials(Mock.getUser().Username, Mock.getUser().Password);
             //         User mock = Mock.getUser();
 
@@ -90,18 +88,35 @@ namespace AccountingWPF.ViewModels
         public void populateDatabase()
         {
 
-            User mock = Mock.getUser();
+            User mock = new User();
+            mock.Username = "marko";
+            mock.Password = "pass";
+            mock.OIB = "123141";
+            mock.Address = "Unska 3";
+            mock.Email = "mojemail@email.com";
+            mock.AssociationName = "udruga";
+
+
+            UserRepository userRepository = new UserRepository();
+            userRepository.Create(mock);
+
+            mock.Id = 1;
 
             ExpenditureRepository expenditureRepo = new ExpenditureRepository();
-            //IList<Expenditure>  e = createExcedituresInDatabase(expenditureRepo, mock.Id);
+            IList<Expenditure> e = createExcedituresInDatabase(expenditureRepo, mock.Id);
 
             ReceiptRepository receiptsRepo = new ReceiptRepository();
-            //IList<Receipt> r=createReceiptsInDatabase(receiptsRepo, mock.Id);
+            IList<Receipt> r = createReceiptsInDatabase(receiptsRepo, mock.Id);
 
 
             VATRepository vatRepo = new VATRepository();
             IList<VAT> v = createVatsInDatabase(vatRepo);
 
+            IngoingInvoiceRepository ingoingInvoiceRepo = new IngoingInvoiceRepository();
+            IList<IngoingInvoice> ingoingInvoices = createIngointInvoiceInDatabase(ingoingInvoiceRepo, mock.Id);
+
+            OutgoingInvoiceRepository outgoingInvoiceRepo = new OutgoingInvoiceRepository();
+            IList<OutgoingInvoice> outgoingInvoices = createOutgointInvoiceInDatabase(outgoingInvoiceRepo, mock.Id);
         }
 
         public IList<Expenditure> createExcedituresInDatabase(ExpenditureRepository expenditureRepo, int id)
@@ -135,6 +150,28 @@ namespace AccountingWPF.ViewModels
             }
 
             return vatRepo.getAll();
+        }
+
+        public IList<IngoingInvoice> createIngointInvoiceInDatabase(IngoingInvoiceRepository ingoingInvoiceRepo, int id)
+        {
+            IList<IngoingInvoice> ingoingInvoices = Mock.getIngoingInvoicesByUserId(id);
+            foreach (IngoingInvoice i in ingoingInvoices)
+            {
+                ingoingInvoiceRepo.Create(i);
+            }
+
+            return ingoingInvoiceRepo.getByUserId(id);
+        }
+
+        public IList<OutgoingInvoice> createOutgointInvoiceInDatabase(OutgoingInvoiceRepository outgoingInvoiceRepo, int id)
+        {
+            IList<OutgoingInvoice> outgoingInvoices = Mock.getOutgoingInvoicesByUserId(id);
+            foreach (OutgoingInvoice i in outgoingInvoices)
+            {
+                outgoingInvoiceRepo.Create(i);
+            }
+
+            return outgoingInvoiceRepo.getByUserId(id);
         }
 
     }
