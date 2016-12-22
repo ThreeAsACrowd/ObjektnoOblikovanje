@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AccountingWPF.Models
 {
-    abstract class VAT
+    public abstract class VAT
     {
-		public int Id { get; private set; }
-		public abstract string Name { get; set; }
-		public abstract string Percentage { get; set; }
+        public int Id { get; private set; }
+        public abstract string Name { get; set; }
+        public abstract string Percentage { get; set; }
 
     }
 }

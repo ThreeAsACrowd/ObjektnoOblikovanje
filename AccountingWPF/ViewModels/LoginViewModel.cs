@@ -9,6 +9,7 @@ using AccountingWPF.Models;
 using AccountingWPF.Respositories;
 using AccountingWPF.Views;
 using AccountingWPF.BaseLib;
+using AccountingWPF.Factories;
 
 namespace AccountingWPF.ViewModels
 {
@@ -37,7 +38,7 @@ namespace AccountingWPF.ViewModels
             }
             else
             {
-                UserRepository.CreateNewUser(UserRepository.getMockUser());
+                UserRepository.CreateNewUser(Mock.getUser());
 
                 UserCredentials userCredentials = new UserCredentials(username, password);
                 //mock login

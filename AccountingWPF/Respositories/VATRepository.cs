@@ -8,5 +8,12 @@ namespace AccountingWPF.Models
 {
     class VATRepository
     {
+
+
+        public static IList<VAT> getAllVATs()
+        {
+            return Factories.Mock.getAllVATs();
+        }
+
     }
 }

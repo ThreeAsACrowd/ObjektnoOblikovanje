@@ -57,7 +57,7 @@ namespace AccountingWPF.Respositories
             }
         }
 
-   
+
 
         /// <summary>
         /// Create user
@@ -72,7 +72,7 @@ namespace AccountingWPF.Respositories
 
                     session.SaveOrUpdate(user);
                     transaction.Commit();
-                    MessageBox.Show("Created user: " + user.Username);
+                    //  MessageBox.Show("Created user: " + user.Username);
                 }
 
             }
@@ -91,7 +91,7 @@ namespace AccountingWPF.Respositories
                 }
                 else
                 {
-                    Console.WriteLine("User with id: " + id + "  exists!");
+                    //Console.WriteLine("User with id: " + id + "  exists!");
                 }
 
                 return user;
