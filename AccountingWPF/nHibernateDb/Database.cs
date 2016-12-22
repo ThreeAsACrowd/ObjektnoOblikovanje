@@ -13,7 +13,7 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace AccountingWPF.nHibernateDb
 {
-    public static class Database
+    public static class SessionManager
     {
         private static ISessionFactory sessionFactory;
         private static ISessionFactory SessionFactory {
@@ -44,5 +44,8 @@ namespace AccountingWPF.nHibernateDb
         {
             return SessionFactory.OpenSession();
         }
+
+
+     
     }
 }

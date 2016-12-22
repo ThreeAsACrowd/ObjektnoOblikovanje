@@ -18,7 +18,7 @@ namespace AccountingWPF.Repositories
         protected ITransaction _transaction = null;
         public RepositoryBase()
         {
-            _session = Database.OpenSession();
+            _session = SessionManager.OpenSession();
         }
         public RepositoryBase(ISession session)
         {

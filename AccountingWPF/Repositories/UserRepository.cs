@@ -27,7 +27,7 @@ namespace AccountingWPF.Repositories
         /// Create user
         /// </summary>
         /// <param name="user"></param>
-        public static void Create(User user)
+        public void Create(User user)
         {
             using (var session = SessionManager.OpenSession())
             {
@@ -41,7 +41,7 @@ namespace AccountingWPF.Repositories
             }
         }
 
-        public static User GetById(int id)
+        public User GetById(int id)
         {
             using (ISession session = SessionManager.OpenSession())
             {
@@ -49,7 +49,7 @@ namespace AccountingWPF.Repositories
             }
         }
 
-        public static User GetUserByCredentials(UserCredentials userCredentials)
+        public User GetUserByCredentials(UserCredentials userCredentials)
         {
             using (ISession session = SessionManager.OpenSession())
             {
@@ -69,7 +69,7 @@ namespace AccountingWPF.Repositories
             }
         }
 
-        public static void UpdateUser(User user)
+        public void UpdateUser(User user)
         {
             using (ISession session = SessionManager.OpenSession())
             {
@@ -77,7 +77,7 @@ namespace AccountingWPF.Repositories
             }
         }
 
-        public static void DeleteUser(User user)
+        public void DeleteUser(User user)
         {
             using (ISession session = SessionManager.OpenSession())
             {
