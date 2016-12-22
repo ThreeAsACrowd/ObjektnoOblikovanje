@@ -27,11 +27,12 @@ namespace AccountingWPF.ViewModels
         {
             string username = LoginBM.Username;
             string password = LoginBM.Password;
-            if (username == null || username.Length == 0)
+
+            if (String.IsNullOrEmpty(username))
             {
                 MessageBox.Show("Username must not be empty");
             }
-            else if (password == null || password.Length == 0)
+            else if (String.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Password must not be empty");
             }
