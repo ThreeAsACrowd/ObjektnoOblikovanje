@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace AccountingWPF.Models
 {
 
-    public abstract class VAT:PropertyChangedNotification
-    {
+	public abstract class VAT : PropertyChangedNotification
+	{
 		public int Id
 		{
 			get
@@ -45,5 +45,5 @@ namespace AccountingWPF.Models
 				SetValue(() => Percentage, value);
 			}
 		}
-
+	}
 }
