@@ -58,6 +58,7 @@ namespace AccountingWPF.Factories
             Receipt receipts = new Receipt();
             receipts.AmountCash = i.ToString();
             receipts.AmountNonCashBenefit = "10";
+            receipts.AmountTransferAccount = "121";
             receipts.Date = DateTime.Now;
             receipts.FK_VAT = getVat().Id;
             receipts.JournalEntryNum = "1";
@@ -72,6 +73,7 @@ namespace AccountingWPF.Factories
             Expenditure expenditure = new Expenditure();
             expenditure.AmountCash = i.ToString();
             expenditure.AmountNonCashBenefit = "10";
+            expenditure.AmountTransferAccount = "321";
             expenditure.Article22 = "" + i;
             expenditure.Date = DateTime.Now;
             expenditure.FK_VAT = getVat().Id;
