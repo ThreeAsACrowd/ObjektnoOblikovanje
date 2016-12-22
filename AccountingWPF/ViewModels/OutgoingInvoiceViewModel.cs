@@ -17,7 +17,7 @@ namespace AccountingWPF.ViewModels
         public OutgoingInvoiceViewModel()
         {
             OutgoingInvoicesRepo = new OutgoingInvoiceRepository();
-            //outgoing_invoices = OutgoingInvoicesRepo.getByUserId();
+            outgoing_invoices = OutgoingInvoicesRepo.getByUserId(UserManager.CurrentUser.Id);
             //TODO!
         }
     }
