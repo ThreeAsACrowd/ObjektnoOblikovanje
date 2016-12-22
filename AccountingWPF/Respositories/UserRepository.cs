@@ -114,7 +114,7 @@ namespace AccountingWPF.Respositories
                     return null;
                 }
                 User user = users[0];
-                MessageBox.Show("User " + user.Username + " exists!");
+               // MessageBox.Show("User " + user.Username + " exists!");
                 return user;
             }
         }
