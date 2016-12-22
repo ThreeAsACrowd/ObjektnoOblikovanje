@@ -12,14 +12,14 @@ namespace AccountingWPF.Models.nHibernateModels
 
         public MonateryFlowMap()
         {
-            Id(x => x.Id).Column("Id").GeneratedBy.Increment();
+            Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Date);
             Map(x => x.AmountCash);
             Map(x => x.AmountNonCashBenefit);
             Map(x => x.AmountTransferAccount);
             //pogledat kako rjesit foreign keyeve
-            Map(x => x.FK_UserId);
-            Map(x => x.FK_VAT);
+            Map(x => x.FK_UserId).Not.Nullable();
+            Map(x => x.FK_VAT).Not.Nullable();
             Map(x => x.JournalEntryNum);
             Map(x => x.Total);
 

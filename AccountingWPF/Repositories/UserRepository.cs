@@ -61,47 +61,7 @@ namespace AccountingWPF.Repositories
             }
         }*/
 
-
-
-        static ISessionFactory sessionFactory;
-        public static ISession OpenSession()
-        {
-            //TODO nastimat svoju putanju
-            //  string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\mvukosav\Documents\Visual Studio 2015\Projects\ObjektnoOblikovanje\Database\Database.mdf;Integrated Security=True";
-            //string conn = @"Data Source=C:\Users\mvukosav\Documents\Visual Studio 2015\Projects\ObjektnoOblikovanje\Database\accountingDB.db";
-            //string conn = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\Database\accountingDB.db";
-            if (sessionFactory == null)
-            {
-                sessionFactory = Fluently.Configure()
-                   .Database(SQLiteConfiguration.Standard.ShowSql().UsingFile("accountingDB.db"))
-                   //.Database(MySQLConfiguration.Standard.ConnectionString(c => c.FromConnectionStringWithKey(conn)))
-                   //.Database(MsSqlConfiguration.MsSql2012
-                   //.ConnectionString(conn)
-                   //.ShowSql())
-                   .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                   // .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(false, false))
-                   .ExposeConfiguration(BuildSchema)
-                   .BuildSessionFactory();
-            }
-            return sessionFactory.OpenSession();
-        }
-
-        private static void BuildSchema(Configuration config)
-        {
-            // delete the existing db on each run
-            // if (File.Exists("accountingDB.db"))
-            //    File.Delete("accountingDB.db");
-
-            // this NHibernate tool takes a configuration (with mapping info in)
-            // and exports a database schema from it
-            if (File.Exists("accountingDB.db"))
-            {
-                new SchemaExport(config)
-                  .Create(false, true);
-            }
-        }
-
-
+        
 
         /// <summary>
         /// Create user
@@ -109,7 +69,7 @@ namespace AccountingWPF.Repositories
         /// <param name="user"></param>
         public static void CreateNewUser(User user)
         {
-            using (var session = OpenSession())
+            using (var session = Database.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -124,7 +84,7 @@ namespace AccountingWPF.Repositories
 
         public static User GetUserById(int id)
         {
-            using (ISession session = OpenSession())
+            using (ISession session = Database.OpenSession())
             {
 
                 var users = session.CreateCriteria<User>()
@@ -144,7 +104,7 @@ namespace AccountingWPF.Repositories
 
         public static User GetUserByCredentials(UserCredentials userCredentials)
         {
-            using (ISession session = OpenSession())
+            using (ISession session = Database.OpenSession())
             {
                 var users = session.CreateCriteria<User>()
                   .Add(Restrictions.Eq("Username", userCredentials.Username))
@@ -164,7 +124,7 @@ namespace AccountingWPF.Repositories
 
         public static User UpdateUser(User user)
         {
-            using (ISession session = OpenSession())
+            using (ISession session = Database.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -187,10 +147,6 @@ namespace AccountingWPF.Repositories
                 }
             }
         }
-
-
-
-
 
     }
 }

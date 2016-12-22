@@ -9,7 +9,6 @@ namespace AccountingWPF.Models.nHibernateModels
 {
     public class ReceiptMap : SubclassMap<Receipt>
     {
-
      
     }
 }

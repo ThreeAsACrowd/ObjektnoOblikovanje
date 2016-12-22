@@ -9,12 +9,12 @@ namespace AccountingWPF.Models.nHibernateModels
         public InvoicesMap()
         {
 
-            Id(x => x.Id).Column("Id").GeneratedBy.Increment();
+            Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Date);
             Map(x => x.Amount);
             Map(x => x.InvoiceClassNumber);
-            Map(x => x.FK_UserId);
-
+            Map(x => x.FK_UserId).Not.Nullable();
+ 
             UseUnionSubclassForInheritanceMapping();
         }
 

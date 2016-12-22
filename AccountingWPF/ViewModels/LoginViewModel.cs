@@ -26,7 +26,7 @@ namespace AccountingWPF.ViewModels
 
         public bool Login()
         {
-            if (false)
+            if (true)
             {
                 TestLogin();
                 return false;
@@ -46,7 +46,7 @@ namespace AccountingWPF.ViewModels
                 }
                 else
                 {
-                    UserRepository.CreateNewUser(Mock.getUser());
+                   // UserRepository.CreateNewUser(Mock.getUser());
 
                     UserCredentials userCredentials = new UserCredentials(username, password);
                     //mock login
@@ -84,9 +84,9 @@ namespace AccountingWPF.ViewModels
             //UserRepository.absractGetUserByCredentials(cred);
 
 
-            UserRepository.CreateNewUser(mock);
+          //  UserRepository.CreateNewUser(mock);
             User user = UserRepository.GetUserByCredentials(cred);
-            User user2 = UserRepository.GetUserById(mock.Id);
+            //User user2 = UserRepository.GetUserById(mock.Id);
 
              MessageBox.Show(user.Username);
         }
