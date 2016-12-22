@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AccountingWPF.Factories;
 using AccountingWPF.Models;
 
-namespace AccountingWPF.Respositories
+namespace AccountingWPF.Repositories
 {
     class ExpenditureRepository : MonetaryFlowCRUD
     {

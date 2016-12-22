@@ -16,7 +16,7 @@ using NHibernate.Cfg;
 using NHibernate.Criterion;
 using NHibernate.Tool.hbm2ddl;
 
-namespace AccountingWPF.Respositories
+namespace AccountingWPF.Repositories
 {
     class UserRepository
     {

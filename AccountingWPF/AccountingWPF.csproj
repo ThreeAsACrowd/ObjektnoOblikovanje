@@ -94,21 +94,31 @@
     <Compile Include="Models\UserCredentials.cs" />
     <Compile Include="Models\VAT.cs" />
     <Compile Include="Notification\PropertyChangedNotification.cs" />
-    <Compile Include="Respositories\VATRepository.cs" />
-    <Compile Include="Respositories\MonetaryFlow\ExpenditureRepository.cs" />
-    <Compile Include="Respositories\Invoice\IngoingInvoiceRepository.cs" />
-    <Compile Include="Respositories\Invoice\InvoiceCRUD.cs" />
-    <Compile Include="Respositories\Invoice\OutgoingInvoiceRepository.cs" />
-    <Compile Include="Respositories\MonetaryFlow\MonateryFlowCRUD.cs" />
-    <Compile Include="Respositories\MonetaryFlow\ReceiptRepository.cs" />
-    <Compile Include="Respositories\UserRepository.cs" />
+    <Compile Include="Repositories\Invoice\IngoingInvoiceRepository.cs" />
+    <Compile Include="Repositories\Invoice\InvoiceCRUD.cs" />
+    <Compile Include="Repositories\Invoice\OutgoingInvoiceRepository.cs" />
+    <Compile Include="Repositories\MonetaryFlow\ExpenditureRepository.cs" />
+    <Compile Include="Repositories\MonetaryFlow\MonateryFlowCRUD.cs" />
+    <Compile Include="Repositories\MonetaryFlow\ReceiptRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\VATRepository.cs" />
+    <Compile Include="ViewModels\ExpenditureViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\IngoingInvoiceViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\OutgoingInvoiceViewModel.cs" />
+    <Compile Include="ViewModels\ReceiptViewModel.cs" />
+    <Compile Include="Views\AnnualReportWindow.xaml.cs">
+      <DependentUpon>AnnualReportWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ExpenditureMainWindow.xaml.cs">
       <DependentUpon>ExpenditureMainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IncomesExpensesReportWindow.xaml.cs">
+      <DependentUpon>IncomesExpensesReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IngoingInvoiceMainWindow.xaml.cs">
       <DependentUpon>IngoingInvoiceMainWindow.xaml</DependentUpon>
@@ -121,6 +131,9 @@
     </Compile>
     <Compile Include="Views\ReceiptMainWindow.xaml.cs">
       <DependentUpon>ReceiptMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserAccountWindow.xaml.cs">
+      <DependentUpon>UserAccountWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -152,11 +165,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\AnnualReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ExpenditureMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IncomesExpensesReportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -173,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ReceiptMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserAccountWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

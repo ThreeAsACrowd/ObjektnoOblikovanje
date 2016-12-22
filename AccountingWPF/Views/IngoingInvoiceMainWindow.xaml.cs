@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AccountingWPF.ViewModels;
+
+using AccountingWPF.Models;
 
 namespace AccountingWPF.Views
 {
@@ -19,9 +22,14 @@ namespace AccountingWPF.Views
 	/// </summary>
 	public partial class IngoingInvoiceMainWindow : Window
 	{
+        IngoingInvoiceViewModel ingoingInvoiceVM { get; set; }
+
 		public IngoingInvoiceMainWindow()
 		{
 			InitializeComponent();
+
+            ingoingInvoiceVM = new IngoingInvoiceViewModel();
+            //TODO!
 		}
 	}
 }

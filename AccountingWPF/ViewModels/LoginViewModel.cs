@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AccountingWPF.BindingModels;
 using System.Windows;
 using AccountingWPF.Models;
-using AccountingWPF.Respositories;
+using AccountingWPF.Repositories;
 using AccountingWPF.Views;
 using AccountingWPF.BaseLib;
 using AccountingWPF.Factories;
