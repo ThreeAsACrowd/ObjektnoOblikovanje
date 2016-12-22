@@ -77,8 +77,6 @@
     <Compile Include="Factories\.gitkeep.cs" />
     <Compile Include="Factories\Mock.cs" />
     <Compile Include="Helpers\IdentityPartExtensions.cs" />
-    <Compile Include="Models\DrinkVAT.cs" />
-    <Compile Include="Models\FoodVAT.cs" />
     <Compile Include="Models\MonateryFlow.cs" />
     <Compile Include="Models\nHibernateModels\ExpenditureMap.cs" />
     <Compile Include="Models\nHibernateModels\IngoingInvoiceMap.cs" />

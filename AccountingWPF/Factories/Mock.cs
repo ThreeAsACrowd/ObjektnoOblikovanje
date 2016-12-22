@@ -14,8 +14,12 @@ namespace AccountingWPF.Factories
 
         public static IList<VAT> getAllVATs()
         {
-            FoodVAT foodVat = new FoodVAT();
-            DrinkVAT drinkVat = new DrinkVAT();
+            VAT foodVat = new VAT();
+            foodVat.Name = "Food vat";
+            foodVat.Percentage = "18";
+            VAT drinkVat = new VAT();
+            drinkVat.Name = "Drink vat";
+            drinkVat.Percentage = "11";
             List<VAT> vats = new List<VAT>();
             vats.Add(foodVat);
             vats.Add(drinkVat);
@@ -51,13 +55,16 @@ namespace AccountingWPF.Factories
 
         static VAT getVatById(int vatId)
         {
-            return new DrinkVAT();
+            return getVat();
         }
-
         static VAT getVat()
         {
-            return new DrinkVAT();
+            VAT vv = new VAT();
+            vv.Name = "Racunalna oprema vat";
+            vv.Percentage = "9";
+            return vv;
         }
+
 
         public static User getUser()
         {
