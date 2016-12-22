@@ -3,37 +3,73 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using AccountingWPF.Factories;
 using AccountingWPF.Models;
+using AccountingWPF.nHibernateDb;
+using NHibernate;
+using NHibernate.Criterion;
+using NHibernate.Linq;
 
 namespace AccountingWPF.Repositories
 {
     class ExpenditureRepository : MonateryFlowCRUD
     {
 
-        public void Create(MonateryFlow monetaryFlow)
+        public void Create(MonateryFlow monateryFlow)
         {
-            throw new NotImplementedException();
+            using (var session = SessionManager.OpenSession())
+            {
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    session.SaveOrUpdate(monateryFlow);
+                    transaction.Commit();
+                }
+            }
         }
+
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+
+            using (ISession session = SessionManager.OpenSession())
+            {
+
+                Expenditure expenditure = session.Get<Expenditure>(id);
+                if (expenditure == null)
+                {
+                    MessageBox.Show("Expenditure for given id does not exists");
+                    return;
+                }
+                session.Delete(expenditure);
+            }
+
         }
 
         public MonateryFlow GetById(int id)
         {
-            throw new NotImplementedException();
+            using (ISession session = SessionManager.OpenSession())
+            {
+                return session.Get<Expenditure>(id);
+            }
         }
 
-        public void Update(MonateryFlow monetaryFlow)
+        public void Update(MonateryFlow monateryFlow)
         {
-            throw new NotImplementedException();
+            using (ISession session = SessionManager.OpenSession())
+            {
+                session.Update(monateryFlow);
+            }
         }
 
         public IList<Expenditure> getByUserId(int userId)
         {
-            return Mock.getExpendituresByUserId(userId);
+            using (ISession session = SessionManager.OpenSession())
+            {
+                return session.Query<Expenditure>()
+                     .Where(x => x.FK_UserId == userId)
+                     .ToList();
+            }
         }
     }
 }
