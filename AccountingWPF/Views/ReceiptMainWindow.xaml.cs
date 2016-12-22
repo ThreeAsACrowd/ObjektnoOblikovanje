@@ -27,7 +27,7 @@ namespace AccountingWPF.Views
 			InitializeComponent();
 
             receiptsVM = new ReceiptViewModel();
-            this.dataGrid1.ItemsSource = receiptsVM.receipts;
+            this.dataGridReceipts.ItemsSource = receiptsVM.receipts;
 		}
 
 	}

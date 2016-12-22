@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AccountingWPF.Models;
 
-namespace AccountingWPF.Respositories
+namespace AccountingWPF.Repositories
 {
     class IngoingInvoiceRepository : InvoiceCRUD
     {

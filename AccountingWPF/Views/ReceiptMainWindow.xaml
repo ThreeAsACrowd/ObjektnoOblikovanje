@@ -18,7 +18,7 @@
         </Grid.Resources>
         <DataGrid AutoGenerateColumns="False"
                   Margin="10,53,14,71" 
-                  Name="dataGrid1" 
+                  Name="dataGridReceipts" 
                   AlternatingRowBackground="AliceBlue"  
                   HeadersVisibility="All" CanUserAddRows="True"
                   ScrollViewer.CanContentScroll="True" 

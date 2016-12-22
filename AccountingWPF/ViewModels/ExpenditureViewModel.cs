@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AccountingWPF.Models;
-using AccountingWPF.Respositories;
+using AccountingWPF.Repositories;
 using AccountingWPF.BaseLib;
 
 namespace AccountingWPF.ViewModels
