@@ -40,6 +40,52 @@ namespace AccountingWPF.Factories
             return expenditures;
         }
 
+        public static IList<IngoingInvoice> getIngoingInvoicesByUserId(int id)
+        {
+            IList<IngoingInvoice> ingoingInvoices = new List<IngoingInvoice>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                ingoingInvoices.Add(getIngoingInvoice(i));
+            }
+
+            return ingoingInvoices;
+        }
+
+        private static IngoingInvoice getIngoingInvoice(int i)
+        {
+            IngoingInvoice ingoingInvoice = new IngoingInvoice();
+            ingoingInvoice.InvoiceClassNumber = "12";
+            ingoingInvoice.Amount = "" + i;
+            ingoingInvoice.Date = DateTime.Now;
+            ingoingInvoice.SupplierInfo = "supplier";
+            ingoingInvoice.FK_UserId = getUser().Id;
+            return ingoingInvoice;
+        }
+
+        public static IList<OutgoingInvoice> getOutgoingInvoicesByUserId(int id)
+        {
+            IList<OutgoingInvoice> outgoingInvoices = new List<OutgoingInvoice>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                outgoingInvoices.Add(getOutgoingInvoice(i));
+            }
+
+            return outgoingInvoices;
+        }
+
+        private static OutgoingInvoice getOutgoingInvoice(int i)
+        {
+            OutgoingInvoice outgoingInvoice = new OutgoingInvoice();
+            outgoingInvoice.InvoiceClassNumber = "12";
+            outgoingInvoice.Amount = "" + i;
+            outgoingInvoice.Date = DateTime.Now;
+            outgoingInvoice.CustomerInfo = "customer";
+            outgoingInvoice.FK_UserId = getUser().Id;
+            return outgoingInvoice;
+        }
+
 
         public static IList<Receipt> getReceiptsByUserId(int userId)
         {
@@ -109,6 +155,8 @@ namespace AccountingWPF.Factories
 
             return user;
         }
+
+
 
     }
 }
