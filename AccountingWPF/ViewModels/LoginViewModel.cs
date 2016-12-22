@@ -26,6 +26,9 @@ namespace AccountingWPF.ViewModels
 
         public bool Login()
         {
+            ExpenditureRepository repo = new ExpenditureRepository();
+            IList<Expenditure> ex = (IList<Expenditure>)repo.getByUserId(1);
+
             string username = LoginBM.Username;
             string password = LoginBM.Password;
             if (username == null || username.Length == 0)

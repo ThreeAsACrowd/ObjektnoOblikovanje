@@ -31,9 +31,9 @@ namespace AccountingWPF.Respositories
             throw new NotImplementedException();
         }
 
-        public IList<MonateryFlow> getByUserId(int userId)
+        public IList<Expenditure> getByUserId(int userId)
         {
-            return (IList<MonateryFlow>)Mock.getExpendituresByUserId(userId);
+            return Mock.getExpendituresByUserId(userId);
         }
     }
 }
