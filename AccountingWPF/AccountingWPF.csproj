@@ -94,16 +94,18 @@
     <Compile Include="Models\UserCredentials.cs" />
     <Compile Include="Models\VAT.cs" />
     <Compile Include="Notification\PropertyChangedNotification.cs" />
-    <Compile Include="Respositories\VATRepository.cs" />
-    <Compile Include="Respositories\MonetaryFlow\ExpenditureRepository.cs" />
-    <Compile Include="Respositories\Invoice\IngoingInvoiceRepository.cs" />
-    <Compile Include="Respositories\Invoice\InvoiceCRUD.cs" />
-    <Compile Include="Respositories\Invoice\OutgoingInvoiceRepository.cs" />
-    <Compile Include="Respositories\MonetaryFlow\MonateryFlowCRUD.cs" />
-    <Compile Include="Respositories\MonetaryFlow\ReceiptRepository.cs" />
-    <Compile Include="Respositories\UserRepository.cs" />
+    <Compile Include="Repositories\Invoice\IngoingInvoiceRepository.cs" />
+    <Compile Include="Repositories\Invoice\InvoiceCRUD.cs" />
+    <Compile Include="Repositories\Invoice\OutgoingInvoiceRepository.cs" />
+    <Compile Include="Repositories\MonetaryFlow\ExpenditureRepository.cs" />
+    <Compile Include="Repositories\MonetaryFlow\MonateryFlowCRUD.cs" />
+    <Compile Include="Repositories\MonetaryFlow\ReceiptRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\VATRepository.cs" />
+    <Compile Include="ViewModels\ExpenditureViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ReceiptViewModel.cs" />
     <Compile Include="Views\ExpenditureMainWindow.xaml.cs">
       <DependentUpon>ExpenditureMainWindow.xaml</DependentUpon>
     </Compile>
