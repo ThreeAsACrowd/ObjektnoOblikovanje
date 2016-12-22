@@ -13,7 +13,7 @@ using NHibernate.Linq;
 
 namespace AccountingWPF.Repositories
 {
-    class ExpenditureRepository : MonateryFlowCRUD
+    public class ExpenditureRepository : MonateryFlowCRUD
     {
 
         public void Create(MonateryFlow monateryFlow)

@@ -14,18 +14,28 @@ namespace AccountingWPF.Factories
             IList<VAT> vats = new List<VAT>();
             for (int i = 0; i < 5; i++)
             {
-                vats.Add(getVat(i, "vat" + i, 10 + i + ""));
+                vats.Add(getVat("vat" + i, 10 + i));
             }
             return vats;
         }
 
-        private static VAT getVat(int id, String name, String percentage)
+        private static VAT getVat(String name, int percentage)
         {
             VAT vat = new VAT();
-            vat.Id = id;
             vat.Name = name;
             vat.Percentage = percentage;
             return vat;
+        }
+        static VAT getVatById(int vatId)
+        {
+            return getVat();
+        }
+        static VAT getVat()
+        {
+            VAT vv = new VAT();
+            vv.Name = "Racunalna oprema vat";
+            vv.Percentage = 9;
+            return vv;
         }
 
         public static IList<Expenditure> getExpendituresByUserId(int userId)
@@ -129,19 +139,6 @@ namespace AccountingWPF.Factories
             expenditure.FK_UserId = getUser().Id;
             return expenditure;
         }
-
-        static VAT getVatById(int vatId)
-        {
-            return getVat();
-        }
-        static VAT getVat()
-        {
-            VAT vv = new VAT();
-            vv.Name = "Racunalna oprema vat";
-            vv.Percentage = "9";
-            return vv;
-        }
-
 
         public static User getUser()
         {

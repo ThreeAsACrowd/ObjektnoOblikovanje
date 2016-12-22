@@ -80,42 +80,61 @@ namespace AccountingWPF.ViewModels
 
         public void TestLogin()
         {
-            UserCredentials cred = new UserCredentials(Mock.getUser().Username, Mock.getUser().Password);
-            User mock = Mock.getUser();
-            //UserRepository.abstractCreateUser(Mock.getUser());
-            //UserRepository.absractGetUserByCredentials(cred);
-            ExpenditureRepository exRepo = new ExpenditureRepository();
 
-            UserRepository userRepository = new UserRepository();
+            populateDatabase();
+            //       UserCredentials cred = new UserCredentials(Mock.getUser().Username, Mock.getUser().Password);
+            //         User mock = Mock.getUser();
 
-            //  UserRepository.CreateNewUser(mock);
-            User user = userRepository.GetUserByCredentials(cred);
-            //User user2 = UserRepository.GetUserById(mock.Id);
-            //MessageBox.Show(user.Username);
         }
 
         public void populateDatabase()
         {
-            ExpenditureRepository expenditureRepo = new ExpenditureRepository();
-            ReceiptRepository receiptsRepo = new ReceiptRepository();
 
             User mock = Mock.getUser();
-            IList<Expenditure> expenditures = Mock.getExpendituresByUserId(mock.Id);
+
+            ExpenditureRepository expenditureRepo = new ExpenditureRepository();
+            //IList<Expenditure>  e = createExcedituresInDatabase(expenditureRepo, mock.Id);
+
+            ReceiptRepository receiptsRepo = new ReceiptRepository();
+            //IList<Receipt> r=createReceiptsInDatabase(receiptsRepo, mock.Id);
+
+
+            VATRepository vatRepo = new VATRepository();
+            IList<VAT> v = createVatsInDatabase(vatRepo);
+
+        }
+
+        public IList<Expenditure> createExcedituresInDatabase(ExpenditureRepository expenditureRepo, int id)
+        {
+            IList<Expenditure> expenditures = Mock.getExpendituresByUserId(id);
             foreach (Expenditure e in expenditures)
             {
                 expenditureRepo.Create(e);
             }
 
-            IList<Expenditure> expenditurelist = expenditureRepo.getByUserId(mock.Id);
+            return expenditureRepo.getByUserId(id);
+        }
 
-
-            IList<Receipt> receipts = Mock.getReceiptsByUserId(mock.Id);
+        public IList<Receipt> createReceiptsInDatabase(ReceiptRepository receiptsRepo, int id)
+        {
+            IList<Receipt> receipts = Mock.getReceiptsByUserId(id);
             foreach (Receipt r in receipts)
             {
                 receiptsRepo.Create(r);
             }
 
-            IList<Receipt> receiptsList = receiptsRepo.getByUserId(mock.Id);
+            return receiptsRepo.getByUserId(id);
+        }
+
+        public IList<VAT> createVatsInDatabase(VATRepository vatRepo)
+        {
+            IList<VAT> vats = Mock.getAllVATs();
+            foreach (VAT v in vats)
+            {
+                vatRepo.Create(v);
+            }
+
+            return vatRepo.getAll();
         }
 
     }
