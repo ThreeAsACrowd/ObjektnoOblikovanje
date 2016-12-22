@@ -1,40 +1,28 @@
-﻿using System;
+﻿using AccountingWPF.Notification;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AccountingWPF.Models
 {
-    public class Expenditure : MonateryFlow, INotifyPropertyChanged
+	public class Expenditure : MonateryFlow
     {
-        private  string article22 { get; set; }
+		[Required]
         public virtual string Article22 {
-            get {
-                return article22;
+            get 
+			{
+				return GetValue(() => Article22); ;
             }
 
-            set {
-                article22 = value;
-                OnPropertyChanged("Article22");
-            }
-        }
-
-        #region INotifyPropertyChanged Members
-
-        public virtual event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
+            set 
+			{
+				SetValue(() => Article22, value);
             }
         }
 
-        #endregion
     }
 }

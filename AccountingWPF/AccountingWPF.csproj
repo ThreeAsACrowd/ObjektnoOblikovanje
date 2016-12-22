@@ -75,7 +75,10 @@
     <Compile Include="BaseLib\UserManager.cs" />
     <Compile Include="BindingModels\LoginBindingModel.cs" />
     <Compile Include="Factories\.gitkeep.cs" />
+    <Compile Include="Factories\Mock.cs" />
     <Compile Include="Helpers\IdentityPartExtensions.cs" />
+    <Compile Include="Models\DrinkVAT.cs" />
+    <Compile Include="Models\FoodVAT.cs" />
     <Compile Include="Models\MonateryFlow.cs" />
     <Compile Include="Models\nHibernateModels\ExpenditureMap.cs" />
     <Compile Include="Models\nHibernateModels\IngoingInvoiceMap.cs" />
@@ -92,6 +95,8 @@
     <Compile Include="Models\Receipt.cs" />
     <Compile Include="Models\UserCredentials.cs" />
     <Compile Include="Models\VAT.cs" />
+    <Compile Include="Notification\PropertyChangedNotification.cs" />
+    <Compile Include="Respositories\VATRepository.cs" />
     <Compile Include="Respositories\MonetaryFlow\ExpenditureRepository.cs" />
     <Compile Include="Respositories\Invoice\IngoingInvoiceRepository.cs" />
     <Compile Include="Respositories\Invoice\InvoiceCRUD.cs" />

@@ -58,18 +58,7 @@ namespace AccountingWPF.Respositories
             }
         }
 
-        public static User getMockUser()
-        {
-            User user = new User();
-            user.Username = "marko";
-            user.Password = "pass";
-            user.OIB = "123141";
-            user.Address = "Unska 3";
-            user.Email = "mojemail@email.com";
-            user.AssociationName = "udruga";
 
-            return user;
-        }
 
         /// <summary>
         /// Create user
@@ -84,7 +73,7 @@ namespace AccountingWPF.Respositories
 
                     session.SaveOrUpdate(user);
                     transaction.Commit();
-                    MessageBox.Show("Created user: " + user.Username);
+                    //  MessageBox.Show("Created user: " + user.Username);
                 }
 
             }
@@ -103,7 +92,7 @@ namespace AccountingWPF.Respositories
                 }
                 else
                 {
-                    Console.WriteLine("User with id: " + id + "  exists!");
+                    //Console.WriteLine("User with id: " + id + "  exists!");
                 }
 
                 return user;
@@ -125,7 +114,7 @@ namespace AccountingWPF.Respositories
                     return null;
                 }
                 User user = users[0];
-                MessageBox.Show("User " + user.Username + " exists!");
+               // MessageBox.Show("User " + user.Username + " exists!");
                 return user;
             }
         }
