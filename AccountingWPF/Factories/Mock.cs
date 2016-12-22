@@ -9,21 +9,23 @@ namespace AccountingWPF.Factories
 {
     public static class Mock
     {
-
-
-
         public static IList<VAT> getAllVATs()
         {
-            VAT foodVat = new VAT();
-            foodVat.Name = "Food vat";
-            foodVat.Percentage = "18";
-            VAT drinkVat = new VAT();
-            drinkVat.Name = "Drink vat";
-            drinkVat.Percentage = "11";
-            List<VAT> vats = new List<VAT>();
-            vats.Add(foodVat);
-            vats.Add(drinkVat);
+            IList<VAT> vats = new List<VAT>();
+            for (int i = 0; i < 5; i++)
+            {
+                vats.Add(getVat(i, "vat" + i, 10 + i + ""));
+            }
             return vats;
+        }
+
+        private static VAT getVat(int id, String name, String percentage)
+        {
+            VAT vat = new VAT();
+            vat.Id = id;
+            vat.Name = name;
+            vat.Percentage = percentage;
+            return vat;
         }
 
         public static IList<Expenditure> getExpendituresByUserId(int userId)
@@ -39,10 +41,35 @@ namespace AccountingWPF.Factories
         }
 
 
+        public static IList<Receipt> getReceiptsByUserId(int userId)
+        {
+            IList<Receipt> receipts = new List<Receipt>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                receipts.Add(getReceipts(i));
+            }
+
+            return receipts;
+        }
+
+        private static Receipt getReceipts(int i)
+        {
+            Receipt receipts = new Receipt();
+            receipts.AmountCash = i.ToString();
+            receipts.AmountNonCashBenefit = "10";
+            receipts.Date = DateTime.Now;
+            receipts.FK_VAT = getVat().Id;
+            receipts.JournalEntryNum = "1";
+            receipts.Total = "30";
+            receipts.FK_UserId = getUser().Id;
+            return receipts;
+        }
+
         private static Expenditure getExpenditure(int i)
         {
             Expenditure expenditure = new Expenditure();
-            expenditure.AmountCash = "12";
+            expenditure.AmountCash = i.ToString();
             expenditure.AmountNonCashBenefit = "10";
             expenditure.Article22 = "" + i;
             expenditure.Date = DateTime.Now;

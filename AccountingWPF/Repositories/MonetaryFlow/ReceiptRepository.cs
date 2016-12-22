@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AccountingWPF.Factories;
 using AccountingWPF.Models;
 
 namespace AccountingWPF.Respositories
@@ -28,6 +29,11 @@ namespace AccountingWPF.Respositories
         public MonateryFlow GetById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public IList<Receipt> getByUserId(int userId)
+        {
+            return Mock.getReceiptsByUserId(userId);
         }
     }
 }
