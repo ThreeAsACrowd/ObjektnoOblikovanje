@@ -20,7 +20,7 @@ namespace AccountingWPF.ViewModels
         {
             expenditureRepo = new ExpenditureRepository<Expenditure>();
 
-            expenditures = (IList<Expenditure>)expenditureRepo.getByUserId(UserManager.CurrentUser.Id);
+            expenditures = expenditureRepo.getByUserId(UserManager.CurrentUser.Id);
 
 
         }

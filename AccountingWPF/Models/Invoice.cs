@@ -28,6 +28,15 @@ namespace AccountingWPF.Models
             }
         }
 
+        public virtual User User {
+            get {
+                return GetValue(() => User);
+            }
+            set {
+                SetValue(() => User, value);
+            }
+        }
+
         public virtual DateTime Date {
             get {
                 return GetValue(() => Date);
@@ -46,7 +55,7 @@ namespace AccountingWPF.Models
             }
         }
 
-		[RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
+        [RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
         public virtual string Amount {
             get {
                 return GetValue(() => Amount);

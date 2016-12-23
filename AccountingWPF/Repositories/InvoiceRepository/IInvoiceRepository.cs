@@ -9,7 +9,7 @@ using AccountingWPF.Repositories.InvoiceRepository;
 
 namespace AccountingWPF.Repositories
 {
-    public interface InvoiceCRUD
+    public interface IInvoiceRepository<Invoice>
     {
 
         void Create(Invoice invoice);
@@ -18,6 +18,8 @@ namespace AccountingWPF.Repositories
         void Update(Invoice invoice);
 
         Invoice GetById(int id);
+
+        IList<Invoice> getByUserId(int userId);
 
     }
 }

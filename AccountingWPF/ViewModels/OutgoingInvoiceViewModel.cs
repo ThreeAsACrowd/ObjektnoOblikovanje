@@ -12,11 +12,11 @@ namespace AccountingWPF.ViewModels
     public class OutgoingInvoiceViewModel
     {
         public IList<OutgoingInvoice> outgoing_invoices { get; set; }
-        private OutgoingInvoiceRepository OutgoingInvoicesRepo { get; set; }
+        private IInvoiceRepository<OutgoingInvoice> OutgoingInvoicesRepo { get; set; }
 
         public OutgoingInvoiceViewModel()
         {
-            OutgoingInvoicesRepo = new OutgoingInvoiceRepository();
+            OutgoingInvoicesRepo = new OutgoingInvoiceRepository<OutgoingInvoice>();
             outgoing_invoices = OutgoingInvoicesRepo.getByUserId(UserManager.CurrentUser.Id);
             //TODO!
         }

@@ -11,6 +11,7 @@ using AccountingWPF.Repositories;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
+using AccountingWPF.Models;
 
 namespace AccountingWPF.Repositories
 {
@@ -19,10 +20,12 @@ namespace AccountingWPF.Repositories
 
         public void Create(MonateryFlow monateryFlow)
         {
+           
             using (var session = SessionManager.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
+                 
                     session.SaveOrUpdate(monateryFlow);
                     transaction.Commit();
                 }
@@ -37,11 +40,13 @@ namespace AccountingWPF.Repositories
             {
 
                 Expenditure expenditure = session.Get<Expenditure>(id);
+
                 if (expenditure == null)
                 {
                     MessageBox.Show("Expenditure for given id does not exists");
                     return;
                 }
+
                 session.Delete(expenditure);
             }
 
@@ -51,6 +56,21 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
+                Expenditure expenditure = session.Get<Expenditure>(id);
+
+
+                if (expenditure == null)
+                {
+                    return default(MonateryFlow);
+                }
+
+
+                VAT vat = session.Get<VAT>(expenditure.FK_VAT);
+                User user = session.Get<User>(expenditure.FK_UserId);
+
+                expenditure.Vat = vat;
+                expenditure.User = user;
+
                 return session.Get<MonateryFlow>(id);
             }
         }
@@ -68,7 +88,7 @@ namespace AccountingWPF.Repositories
             using (ISession session = SessionManager.OpenSession())
             {
                 return (IList<MonateryFlow>)session.Query<Expenditure>()
-                     .Where(x => x.FK_UserId == userId)
+                     .Where(x => x.User.Id == userId)
                      .ToList();
             }
         }

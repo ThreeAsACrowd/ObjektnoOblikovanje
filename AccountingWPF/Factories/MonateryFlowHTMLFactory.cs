@@ -9,52 +9,52 @@ using AccountingWPF.Models;
 
 namespace AccountingWPF.Factories
 {
-	public class MonateryFlowHTMLFactory:MonateryFlowReportFactory
-	{
-		public MonateryFlowHTMLFactory(int userId, int year)
-		{
-			ReportYear = year;
-			UserId = userId;
+    public class MonateryFlowHTMLFactory : MonateryFlowReportFactory
+    {
+        public MonateryFlowHTMLFactory(int userId, int year)
+        {
+            ReportYear = year;
+            UserId = userId;
 
-			expenditureRepository = new ExpenditureRepository<Expenditure>();
-			receiptRepository = new ReceiptRepository<Receipt>();
+            expenditureRepository = new ExpenditureRepository<Expenditure>();
+            receiptRepository = new ReceiptRepository<Receipt>();
 
-			monateryFlow = new List<MonateryFlow>();
-		}
+            monateryFlow = new List<MonateryFlow>();
+        }
 
-		public override string Create()
-		{
-			//year filtrations to be moved to repositories?
-			monateryFlow.AddRange(expenditureRepository.getByUserId(UserManager.CurrentUser.Id).Where(x => x.Date.Year == ReportYear).ToList());
-			monateryFlow.AddRange(receiptRepository.getByUserId(UserManager.CurrentUser.Id).Where(x => x.Date.Year == ReportYear).ToList());
+        public override string Create()
+        {
+            //year filtrations to be moved to repositories?
+            monateryFlow.AddRange(expenditureRepository.getByUserId(UserManager.CurrentUser.Id).Where(x => x.Date.Year == ReportYear).ToList());
+            monateryFlow.AddRange(receiptRepository.getByUserId(UserManager.CurrentUser.Id).Where(x => x.Date.Year == ReportYear).ToList());
 
-			monateryFlow = monateryFlow.OrderByDescending(x=>x.Date).ToList();
+            monateryFlow = monateryFlow.OrderByDescending(x => x.Date).ToList();
 
-			string fileText = "<html><table border=\"1\">";
-			fileText += "<tr><th rowspan = \"2\">Redni broj</th><th rowspan = \"2\">Broj temeljnice</th><th rowspan = \"2\">Datum</th><th colspan = \"5\" rowspan = \"1\">Primici</th><th colspan = \"6\" rowspan = \"1\">Izdaci</th></tr>";
-			fileText += "<tr><th>U gotovini</th><th>U naravi</th><th>Na žiro-račun</th><th>PDV</th><th>Ukupno</th><th>U gotovini</th><th>U naravi</th><th>Na žiro-račun</th><th>Članak 22</th><th>PDV</th><th>Ukupno</th></tr>";
+            string fileText = "<html><table border=\"1\">";
+            fileText += "<tr><th rowspan = \"2\">Redni broj</th><th rowspan = \"2\">Broj temeljnice</th><th rowspan = \"2\">Datum</th><th colspan = \"5\" rowspan = \"1\">Primici</th><th colspan = \"6\" rowspan = \"1\">Izdaci</th></tr>";
+            fileText += "<tr><th>U gotovini</th><th>U naravi</th><th>Na žiro-račun</th><th>PDV</th><th>Ukupno</th><th>U gotovini</th><th>U naravi</th><th>Na žiro-račun</th><th>Članak 22</th><th>PDV</th><th>Ukupno</th></tr>";
 
-			int itemNumber = 0;
+            int itemNumber = 0;
 
-			foreach (MonateryFlow item in monateryFlow)
-			{
-				fileText += string.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td>", (++itemNumber).ToString(), item.JournalEntryNum, item.Date.ToShortDateString());
+            foreach (MonateryFlow item in monateryFlow)
+            {
+                fileText += string.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td>", (++itemNumber).ToString(), item.JournalEntryNum, item.Date.ToShortDateString());
 
-				if (item is Receipt)
-				{
-					fileText += string.Format("<td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>", item.AmountCash, item.AmountNonCashBenefit, item.AmountTransferAccount, item.Vat.Percentage.ToString(), item.Total);
-				}
+                if (item is Receipt)
+                {
+                    fileText += string.Format("<td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>", item.AmountCash, item.AmountNonCashBenefit, item.AmountTransferAccount, item.Vat.Percentage.ToString(), item.Total);
+                }
 
-				if (item is Expenditure)
-				{
-					fileText += string.Format("<td></td><td></td><td></td><td></td><td></td><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td></tr>", item.AmountCash, item.AmountNonCashBenefit, item.AmountTransferAccount, ((Expenditure)item).Article22, item.Vat.Percentage.ToString(), item.Total);
-				}				
-			}
+                if (item is Expenditure)
+                {
+                    fileText += string.Format("<td></td><td></td><td></td><td></td><td></td><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td></tr>", item.AmountCash, item.AmountNonCashBenefit, item.AmountTransferAccount, ((Expenditure)item).Article22, item.Vat.Percentage.ToString(), item.Total);
+                }
+            }
 
-			fileText += "</table></html>";
+            fileText += "</table></html>";
 
 
-			return fileText;
-		}
-	}
+            return fileText;
+        }
+    }
 }

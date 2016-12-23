@@ -28,17 +28,6 @@ namespace AccountingWPF.Factories
             vat.Percentage = percentage;
             return vat;
         }
-        static VAT getVatById(int vatId)
-        {
-            return getVat();
-        }
-        static VAT getVat()
-        {
-            VAT vv = new VAT();
-            vv.Name = "Racunalna oprema vat";
-            vv.Percentage = 9;
-            return vv;
-        }
 
         public static IList<Expenditure> getExpendituresByUserId(int userId)
         {
@@ -71,7 +60,7 @@ namespace AccountingWPF.Factories
             ingoingInvoice.Amount = "" + i;
             ingoingInvoice.Date = DateTime.Now;
             ingoingInvoice.SupplierInfo = "supplier";
-            ingoingInvoice.FK_UserId = getUser().Id;
+            ingoingInvoice.FK_UserId = getUserFromDb().Id;
             return ingoingInvoice;
         }
 
@@ -94,7 +83,7 @@ namespace AccountingWPF.Factories
             outgoingInvoice.Amount = "" + i;
             outgoingInvoice.Date = DateTime.Now;
             outgoingInvoice.CustomerInfo = "customer";
-            outgoingInvoice.FK_UserId = getUser().Id;
+            outgoingInvoice.FK_UserId = getUserFromDb().Id;
             return outgoingInvoice;
         }
 
@@ -113,36 +102,47 @@ namespace AccountingWPF.Factories
 
         private static Receipt getReceipts(int i)
         {
+            VATRepository vatRepo = new VATRepository();
+            IList<VAT> vats = vatRepo.getAll();
+
+            User u = getUserFromDb();
+
             Receipt receipts = new Receipt();
             receipts.AmountCash = i.ToString();
             receipts.AmountNonCashBenefit = "10";
             receipts.AmountTransferAccount = "121";
             receipts.Date = DateTime.Now;
-            receipts.FK_VAT = getVat().Id;
+            receipts.FK_VAT = vats[0].Id;
             receipts.JournalEntryNum = "1";
             receipts.Total = "30";
-            receipts.Vat = getVat();
-            receipts.FK_UserId = getUser().Id;
+            receipts.Vat = vats[0];
+            receipts.FK_UserId = u.Id;
+            receipts.User = u;
             return receipts;
         }
 
         private static Expenditure getExpenditure(int i)
         {
+            VATRepository vatRepo = new VATRepository();
+            IList<VAT> vats = vatRepo.getAll();
+            User u = getUserFromDb();
+
             Expenditure expenditure = new Expenditure();
             expenditure.AmountCash = i.ToString();
             expenditure.AmountNonCashBenefit = "10";
             expenditure.AmountTransferAccount = "321";
             expenditure.Article22 = "" + i;
             expenditure.Date = DateTime.Now;
-            expenditure.FK_VAT = getVat().Id;
+            expenditure.FK_VAT = vats[1].Id;
             expenditure.JournalEntryNum = "1";
             expenditure.Total = "30";
-            expenditure.Vat = getVat();
-            expenditure.FK_UserId = getUser().Id;
+            expenditure.Vat = vats[1];
+            expenditure.FK_UserId = u.Id;
+            expenditure.User = u;
             return expenditure;
         }
 
-        public static User getUser()
+        public static User getUserFromDb()
         {
             IUserRepository userRepo = new UserRepository();
             return userRepo.GetById(1);

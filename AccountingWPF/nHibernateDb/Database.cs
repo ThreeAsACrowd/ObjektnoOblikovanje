@@ -46,6 +46,6 @@ namespace AccountingWPF.nHibernateDb
         }
 
 
-     
+
     }
 }

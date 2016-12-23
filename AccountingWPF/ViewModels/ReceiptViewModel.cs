@@ -19,7 +19,7 @@ namespace AccountingWPF.ViewModels
         public ReceiptViewModel()
         {
             receiptRepo = new ReceiptRepository<Receipt>();
-            receipts = (IList<Receipt>)receiptRepo.getByUserId(UserManager.CurrentUser.Id);
+            receipts = receiptRepo.getByUserId(UserManager.CurrentUser.Id);
         }
 
     }

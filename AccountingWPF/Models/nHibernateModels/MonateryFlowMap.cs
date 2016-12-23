@@ -17,9 +17,10 @@ namespace AccountingWPF.Models.nHibernateModels
             Map(x => x.AmountCash);
             Map(x => x.AmountNonCashBenefit);
             Map(x => x.AmountTransferAccount);
-            //pogledat kako rjesit foreign keyeve
-            Map(x => x.FK_UserId).Not.Nullable();
-            Map(x => x.FK_VAT).Not.Nullable();
+            References(c => c.Vat).Column("FK_VAT").Not.LazyLoad();
+            References(c => c.User).Column("FK_UserId").Not.LazyLoad();
+            Map(x => x.FK_UserId).Formula("[FK_UserId]");
+            Map(x => x.FK_VAT).Formula("[FK_VAT]");
             Map(x => x.JournalEntryNum);
             Map(x => x.Total);
 

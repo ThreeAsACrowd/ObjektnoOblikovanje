@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AccountingWPF.Models
 {
-    public class Receipt:MonateryFlow
+    public class Receipt : MonateryFlow
     {
 
     }

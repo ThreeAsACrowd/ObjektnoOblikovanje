@@ -12,7 +12,7 @@ using NHibernate.Linq;
 
 namespace AccountingWPF.Repositories
 {
-    public class OutgoingInvoiceRepository : InvoiceCRUD
+    public class OutgoingInvoiceRepository<Invoice> : IInvoiceRepository<Invoice>
     {
         public void Create(Invoice invoice)
         {
@@ -57,12 +57,11 @@ namespace AccountingWPF.Repositories
             }
         }
 
-        public IList<OutgoingInvoice> getByUserId(int userId)
+        public IList<Invoice> getByUserId(int userId)
         {
-
             using (ISession session = SessionManager.OpenSession())
             {
-                return session.Query<OutgoingInvoice>()
+                return (IList<Invoice>)session.Query<OutgoingInvoice>()
                      .Where(x => x.FK_UserId == userId)
                      .ToList();
             }
