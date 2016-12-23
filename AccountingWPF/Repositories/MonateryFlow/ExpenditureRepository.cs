@@ -103,5 +103,18 @@ namespace AccountingWPF.Repositories
                      .ToList();
             }
         }
+
+        public IList<int> getAvailableYearsByUserId(int userId)
+        {
+            using (ISession session = SessionManager.OpenSession())
+            {
+
+                return session.Query<Expenditure>()
+                            .Where(x => x.User.Id == userId)
+                            .Select(x => x.Date.Year)
+                            .Distinct()
+                            .ToList();
+            }
+        }
     }
 }

@@ -91,9 +91,12 @@ namespace AccountingWPF.ViewModels
 
             // IList<Expenditure> e = expenditureRepo.getByUserId(1);
 
-            IList<Expenditure> eByYear = expenditureRepo.getUserMonateryFlowByYear(1, 2016);
-            IList<Expenditure> rByYear = expenditureRepo.getUserMonateryFlowByYear(1, 2016);
-            IList<Expenditure> rByNoYear = expenditureRepo.getUserMonateryFlowByYear(1, 2015);
+            // IList<Expenditure> eByYear = expenditureRepo.getUserMonateryFlowByYear(1, 2016);
+            // IList<Expenditure> rByYear = expenditureRepo.getUserMonateryFlowByYear(1, 2016);
+            // IList<Expenditure> rByNoYear = expenditureRepo.getUserMonateryFlowByYear(1, 2015);
+
+            IList<int> eYears = expenditureRepo.getAvailableYearsByUserId(1);
+            IList<int> rYears = receiptsRepo.getAvailableYearsByUserId(1);
 
 
         }
