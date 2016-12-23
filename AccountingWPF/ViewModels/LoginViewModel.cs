@@ -110,7 +110,7 @@ namespace AccountingWPF.ViewModels
             IList<Receipt> r = createReceiptsInDatabase(receiptsRepo, mock.Id);
 
 
-            VATRepository vatRepo = new VATRepository();
+            IVatRepository vatRepo = new VATRepository();
             IList<VAT> v = createVatsInDatabase(vatRepo);
 
             IngoingInvoiceRepository ingoingInvoiceRepo = new IngoingInvoiceRepository();
@@ -142,7 +142,7 @@ namespace AccountingWPF.ViewModels
             return receiptsRepo.getByUserId(id);
         }
 
-        public IList<VAT> createVatsInDatabase(VATRepository vatRepo)
+        public IList<VAT> createVatsInDatabase(IVatRepository vatRepo)
         {
             IList<VAT> vats = Mock.getAllVATs();
             foreach (VAT v in vats)

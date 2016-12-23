@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using AccountingWPF.nHibernateDb;
+using AccountingWPF.Repositories;
 using NHibernate;
 using NHibernate.Linq;
 
 namespace AccountingWPF.Models
 {
-    public class VATRepository
+    public class VATRepository : IVatRepository
     {
 
         public void Create(VAT vat)
