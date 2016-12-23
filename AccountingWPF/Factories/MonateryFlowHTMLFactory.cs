@@ -24,9 +24,8 @@ namespace AccountingWPF.Factories
 
         public override string Create()
         {
-            //year filtrations to be moved to repositories?
-            monateryFlow.AddRange(expenditureRepository.getByUserId(UserManager.CurrentUser.Id).Where(x => x.Date.Year == ReportYear).ToList());
-            monateryFlow.AddRange(receiptRepository.getByUserId(UserManager.CurrentUser.Id).Where(x => x.Date.Year == ReportYear).ToList());
+            monateryFlow.AddRange(expenditureRepository.getUserMonateryFlowByYear(UserManager.CurrentUser.Id, ReportYear));
+            monateryFlow.AddRange(receiptRepository.getUserMonateryFlowByYear(UserManager.CurrentUser.Id, ReportYear));
 
             monateryFlow = monateryFlow.OrderByDescending(x => x.Date).ToList();
 
