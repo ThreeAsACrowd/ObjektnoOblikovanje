@@ -10,6 +10,7 @@ using AccountingWPF.Repositories;
 using AccountingWPF.Views;
 using AccountingWPF.BaseLib;
 using AccountingWPF.Factories;
+using AccountingWPF.Repositories.Invoice;
 
 namespace AccountingWPF.ViewModels
 {
@@ -47,7 +48,7 @@ namespace AccountingWPF.ViewModels
                 else
                 {
 
-                    UserRepository userRepository = new UserRepository();
+                    IUserRepository userRepository = new IUserRepository();
                     UserCredentials userCredentials = new UserCredentials(username, password);
 
                     User user = userRepository.GetUserByCredentials(userCredentials);
@@ -97,7 +98,7 @@ namespace AccountingWPF.ViewModels
             mock.AssociationName = "udruga";
 
 
-            UserRepository userRepository = new UserRepository();
+            IUserRepository userRepository = new IUserRepository();
             userRepository.Create(mock);
 
             mock.Id = 1;

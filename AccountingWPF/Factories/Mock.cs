@@ -143,7 +143,7 @@ namespace AccountingWPF.Factories
 
         public static User getUser()
         {
-            UserRepository userRepo = new UserRepository();
+            IUserRepository userRepo = new IUserRepository();
             return userRepo.GetById(1);
         }
 
