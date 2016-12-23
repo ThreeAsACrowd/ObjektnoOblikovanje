@@ -72,7 +72,7 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return (IList<MonateryFlow>)session.Query<Expenditure>()
+                return (IList<MonateryFlow>)session.Query<Receipt>()
                      .Where(x => x.User.Id == userId)
                      .Where(x => x.Date.Year == year)
                      .ToList();
