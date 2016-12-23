@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AccountingWPF.Models;
 
-namespace AccountingWPF.Repositories.Invoice
+namespace AccountingWPF.Repositories.InvoiceRepository
 {
     public interface IUserRepository
     {

@@ -11,7 +11,7 @@ using AccountingWPF.Models;
 using AccountingWPF.Models.nHibernateModels;
 using AccountingWPF.nHibernateDb;
 using AccountingWPF.Repositories;
-using AccountingWPF.Repositories.Invoice;
+using AccountingWPF.Repositories.InvoiceRepository;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AccountingWPF;
 using AccountingWPF.Models;
+using AccountingWPF.Repositories.InvoiceRepository;
 
 namespace AccountingWPF.Repositories
 {
-    interface InvoiceCRUD
+    public interface InvoiceCRUD
     {
 
         void Create(Invoice invoice);

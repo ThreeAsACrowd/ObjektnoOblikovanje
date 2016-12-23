@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AccountingWPF.Models;
 using AccountingWPF.Repositories;
+using AccountingWPF.Repositories.InvoiceRepository;
 
 namespace AccountingWPF.Factories
 {
@@ -143,7 +144,7 @@ namespace AccountingWPF.Factories
 
         public static User getUser()
         {
-            IUserRepository userRepo = new IUserRepository();
+            IUserRepository userRepo = new UserRepository();
             return userRepo.GetById(1);
         }
 

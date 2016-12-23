@@ -10,7 +10,7 @@ using AccountingWPF.Repositories;
 using AccountingWPF.Views;
 using AccountingWPF.BaseLib;
 using AccountingWPF.Factories;
-using AccountingWPF.Repositories.Invoice;
+using AccountingWPF.Repositories.InvoiceRepository;
 
 namespace AccountingWPF.ViewModels
 {
@@ -48,7 +48,7 @@ namespace AccountingWPF.ViewModels
                 else
                 {
 
-                    IUserRepository userRepository = new IUserRepository();
+                    IUserRepository userRepository = new UserRepository();
                     UserCredentials userCredentials = new UserCredentials(username, password);
 
                     User user = userRepository.GetUserByCredentials(userCredentials);
@@ -98,15 +98,15 @@ namespace AccountingWPF.ViewModels
             mock.AssociationName = "udruga";
 
 
-            IUserRepository userRepository = new IUserRepository();
+            IUserRepository userRepository = new UserRepository();
             userRepository.Create(mock);
 
             mock.Id = 1;
 
-            ExpenditureRepository expenditureRepo = new ExpenditureRepository();
+            MonateryFlowCRUD<Expenditure> expenditureRepo = new ExpenditureRepository<Expenditure>();
             IList<Expenditure> e = createExcedituresInDatabase(expenditureRepo, mock.Id);
 
-            ReceiptRepository receiptsRepo = new ReceiptRepository();
+            MonateryFlowCRUD<Receipt> receiptsRepo = new ReceiptRepository<Receipt>();
             IList<Receipt> r = createReceiptsInDatabase(receiptsRepo, mock.Id);
 
 
@@ -120,7 +120,7 @@ namespace AccountingWPF.ViewModels
             IList<OutgoingInvoice> outgoingInvoices = createOutgointInvoiceInDatabase(outgoingInvoiceRepo, mock.Id);
         }
 
-        public IList<Expenditure> createExcedituresInDatabase(ExpenditureRepository expenditureRepo, int id)
+        public IList<Expenditure> createExcedituresInDatabase(MonateryFlowCRUD<Expenditure> expenditureRepo, int id)
         {
             IList<Expenditure> expenditures = Mock.getExpendituresByUserId(id);
             foreach (Expenditure e in expenditures)
@@ -131,7 +131,7 @@ namespace AccountingWPF.ViewModels
             return expenditureRepo.getByUserId(id);
         }
 
-        public IList<Receipt> createReceiptsInDatabase(ReceiptRepository receiptsRepo, int id)
+        public IList<Receipt> createReceiptsInDatabase(MonateryFlowCRUD<Receipt> receiptsRepo, int id)
         {
             IList<Receipt> receipts = Mock.getReceiptsByUserId(id);
             foreach (Receipt r in receipts)

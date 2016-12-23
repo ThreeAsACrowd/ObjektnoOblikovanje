@@ -7,13 +7,14 @@ using System.Windows;
 using AccountingWPF.Factories;
 using AccountingWPF.Models;
 using AccountingWPF.nHibernateDb;
+using AccountingWPF.Repositories;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
 
 namespace AccountingWPF.Repositories
 {
-    public class ExpenditureRepository : MonateryFlowCRUD
+    public class ExpenditureRepository<MonateryFlow> : MonateryFlowCRUD<MonateryFlow>
     {
 
         public void Create(MonateryFlow monateryFlow)
@@ -50,7 +51,7 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return session.Get<Expenditure>(id);
+                return session.Get<MonateryFlow>(id);
             }
         }
 
@@ -62,14 +63,16 @@ namespace AccountingWPF.Repositories
             }
         }
 
-        public IList<Expenditure> getByUserId(int userId)
+        public IList<MonateryFlow> getByUserId(int userId)
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return session.Query<Expenditure>()
+                return (IList<MonateryFlow>)session.Query<Expenditure>()
                      .Where(x => x.FK_UserId == userId)
                      .ToList();
             }
         }
+
+
     }
 }
