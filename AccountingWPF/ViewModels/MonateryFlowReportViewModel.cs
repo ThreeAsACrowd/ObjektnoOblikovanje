@@ -5,20 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using AccountingWPF.Repositories;
 using AccountingWPF.Factories;
+using AccountingWPF.Models;
 using AccountingWPF.BaseLib;
+
 
 namespace AccountingWPF.ViewModels
 {
-	public class MonateryFlowReportViewModel
-	{
+    public class MonateryFlowReportViewModel
+    {
+
 
 		public List<int> ActiveYears { get; set; }
 		public int SelectedYear { get; set; }
 
-		private ExpenditureRepository expenditureRepository { get; set; }
-		private ReceiptRepository receiptRepository { get; set; }
+        private MonateryFlowCRUD<Expenditure> expenditureRepository { get; set; }
+        private MonateryFlowCRUD<Receipt> receiptRepository { get; set; }
 
-		private MonateryFlowReportFactory reportFactory;
+        private MonateryFlowReportFactory reportFactory;
 
 		public MonateryFlowReportViewModel()
 		{
@@ -42,5 +45,5 @@ namespace AccountingWPF.ViewModels
 
 
 
-	}
+    }
 }

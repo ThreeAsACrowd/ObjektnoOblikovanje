@@ -8,25 +8,17 @@ using AccountingWPF.Repositories;
 
 namespace AccountingWPF.Factories
 {
-	public class MonateryFlowReportFactory
+	public abstract class MonateryFlowReportFactory
 	{
-		public int ReportYear { get; set; }
-		public int UserId { get; set; }
+		public virtual int ReportYear { get; set; }
+		public virtual int UserId { get; set; }
 
-		private List<MonateryFlow> monateryFlow { get; set; }
+		public virtual List<MonateryFlow> monateryFlow { get; set; }
 
-		public MonateryFlowReportFactory(int userId, int reportYear)
-		{
-			ReportYear = reportYear;
-			UserId = userId;
+		public virtual MonateryFlowCRUD<Expenditure> expenditureRepository { get; set; }
+		public virtual MonateryFlowCRUD<Receipt> receiptRepository { get; set; }
 
-
-		}
-
-		public string generateInHTML()
-		{
-			return null;
-		}
+		public abstract string Create();
 
 
 	}

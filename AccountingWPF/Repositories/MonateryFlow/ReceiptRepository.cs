@@ -12,7 +12,7 @@ using NHibernate.Linq;
 
 namespace AccountingWPF.Repositories
 {
-    public class ReceiptRepository : MonateryFlowCRUD
+    public class ReceiptRepository<MonateryFlow> : MonateryFlowCRUD<MonateryFlow>
     {
 
         public void Create(MonateryFlow monateryFlow)
@@ -54,15 +54,15 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return session.Get<Receipt>(id);
+                return session.Get<MonateryFlow>(id);
             }
         }
 
-        public IList<Receipt> getByUserId(int userId)
+        public IList<MonateryFlow> getByUserId(int userId)
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return session.Query<Receipt>()
+                return (IList<MonateryFlow>)session.Query<Receipt>()
                      .Where(x => x.FK_UserId == userId)
                      .ToList();
             }

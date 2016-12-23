@@ -11,6 +11,7 @@ using AccountingWPF.Models;
 using AccountingWPF.Models.nHibernateModels;
 using AccountingWPF.nHibernateDb;
 using AccountingWPF.Repositories;
+using AccountingWPF.Repositories.InvoiceRepository;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
@@ -20,7 +21,7 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace AccountingWPF.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace AccountingWPF.Repositories
 
                 if (users.Count() == 0)
                 {
-                  //  MessageBox.Show("User does not exists!");
+                    //  MessageBox.Show("User does not exists!");
                     return null;
                 }
                 User user = users[0];

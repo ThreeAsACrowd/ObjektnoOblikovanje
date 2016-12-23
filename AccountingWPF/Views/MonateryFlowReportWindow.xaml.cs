@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AccountingWPF.ViewModels;
+using Microsoft.Win32;
 
 namespace AccountingWPF.Views
 {
@@ -21,12 +22,29 @@ namespace AccountingWPF.Views
     public partial class MonateryFlowReportWindow : Window
     {
 		public MonateryFlowReportViewModel monateryFlowReportVM;
+		private SaveFileDialog saveFileDialog;
 
         public MonateryFlowReportWindow()
         {
             InitializeComponent();
+
 			monateryFlowReportVM = new MonateryFlowReportViewModel();
 			this.DataContext = monateryFlowReportVM;
+			
+			saveFileDialog = new SaveFileDialog();
+			saveFileDialog.DefaultExt = ".html";
+			saveFileDialog.Filter = "HyperText Markup File (*.html)|*.html";
+
         }
+
+		private void btn_create_Click(object sender, RoutedEventArgs e)
+		{
+			bool? dialogResult = saveFileDialog.ShowDialog();
+			if (dialogResult.HasValue && dialogResult.Value == true)
+			{
+				monateryFlowReportVM.CreateReport(saveFileDialog.FileName);
+			}
+
+		}
     }
 }

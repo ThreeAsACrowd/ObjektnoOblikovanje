@@ -98,9 +98,10 @@
     <Compile Include="Models\UserCredentials.cs" />
     <Compile Include="Models\VAT.cs" />
     <Compile Include="Notification\PropertyChangedNotification.cs" />
-    <Compile Include="Repositories\Invoice\IngoingInvoiceRepository.cs" />
-    <Compile Include="Repositories\Invoice\InvoiceCRUD.cs" />
-    <Compile Include="Repositories\Invoice\OutgoingInvoiceRepository.cs" />
+    <Compile Include="Repositories\InvoiceRepository\IngoingInvoiceRepository.cs" />
+    <Compile Include="Repositories\InvoiceRepository\InvoiceCRUD.cs" />
+    <Compile Include="Repositories\InvoiceRepository\IUserRepository.cs" />
+    <Compile Include="Repositories\InvoiceRepository\OutgoingInvoiceRepository.cs" />
     <Compile Include="Repositories\MonateryFlow\ExpenditureRepository.cs" />
     <Compile Include="Repositories\VATRepository.cs" />
     <Compile Include="ViewModels\AnnualReportViewModel.cs" />
