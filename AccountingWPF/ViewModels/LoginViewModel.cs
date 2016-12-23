@@ -79,13 +79,22 @@ namespace AccountingWPF.ViewModels
 
         public void TestLogin()
         {
-
-              populateDatabase();
+            IUserRepository userRepository = new UserRepository();
+            IVatRepository vatRepo = new VATRepository();
+            MonateryFlowCRUD<Expenditure> expenditureRepo = new ExpenditureRepository<Expenditure>();
+            MonateryFlowCRUD<Receipt> receiptsRepo = new ReceiptRepository<Receipt>();
+            IInvoiceRepository<IngoingInvoice> ingoingInvoiceRepo = new IngoingInvoiceRepository<IngoingInvoice>();
+            IInvoiceRepository<OutgoingInvoice> outgoingInvoiceRepo = new OutgoingInvoiceRepository<OutgoingInvoice>();
+            // populateDatabase();
             //       UserCredentials cred = new UserCredentials(Mock.getUser().Username, Mock.getUser().Password);
             //         User mock = Mock.getUser();
 
-            MonateryFlowCRUD<Expenditure> expenditureRepo = new ExpenditureRepository<Expenditure>();
-            IList<Expenditure> e = expenditureRepo.getByUserId(1);
+            // IList<Expenditure> e = expenditureRepo.getByUserId(1);
+
+            IList<Expenditure> eByYear = expenditureRepo.getUserMonateryFlowByYear(1, 2016);
+            IList<Expenditure> rByYear = expenditureRepo.getUserMonateryFlowByYear(1, 2016);
+            IList<Expenditure> rByNoYear = expenditureRepo.getUserMonateryFlowByYear(1, 2015);
+
 
         }
 

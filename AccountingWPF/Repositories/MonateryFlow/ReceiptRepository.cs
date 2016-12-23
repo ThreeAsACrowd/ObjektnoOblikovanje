@@ -67,5 +67,16 @@ namespace AccountingWPF.Repositories
                      .ToList();
             }
         }
+
+        public IList<MonateryFlow> getUserMonateryFlowByYear(int userId, int year)
+        {
+            using (ISession session = SessionManager.OpenSession())
+            {
+                return (IList<MonateryFlow>)session.Query<Expenditure>()
+                     .Where(x => x.User.Id == userId)
+                     .Where(x => x.Date.Year == year)
+                     .ToList();
+            }
+        }
     }
 }

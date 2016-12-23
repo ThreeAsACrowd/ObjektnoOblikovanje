@@ -17,5 +17,7 @@ namespace AccountingWPF.Repositories
         MonateryFlow GetById(int id);
 
         IList<MonateryFlow> getByUserId(int userId);
+
+        IList<MonateryFlow> getUserMonateryFlowByYear(int userId,int year);
     }
 }

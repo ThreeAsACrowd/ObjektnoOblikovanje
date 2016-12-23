@@ -20,12 +20,12 @@ namespace AccountingWPF.Repositories
 
         public void Create(MonateryFlow monateryFlow)
         {
-           
+
             using (var session = SessionManager.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
-                 
+
                     session.SaveOrUpdate(monateryFlow);
                     transaction.Commit();
                 }
@@ -93,6 +93,15 @@ namespace AccountingWPF.Repositories
             }
         }
 
-
+        public IList<MonateryFlow> getUserMonateryFlowByYear(int userId, int year)
+        {
+            using (ISession session = SessionManager.OpenSession())
+            {
+                return (IList<MonateryFlow>)session.Query<Expenditure>()
+                     .Where(x => x.User.Id == userId)
+                     .Where(x => x.Date.Year == year)
+                     .ToList();
+            }
+        }
     }
 }
