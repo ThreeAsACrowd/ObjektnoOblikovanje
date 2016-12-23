@@ -15,7 +15,7 @@
                 <MenuItem Name="mi_ingoingInvoices" Header="Ingoing Invoices" HorizontalAlignment="Left" Click="mi_ingoingInvoices_Click"/>
             </MenuItem>
             <MenuItem Header="Generate reports" Height="22">
-                <MenuItem Name="mi_monetaryFlowReport" Header="Monetary flow report" HorizontalAlignment="Left" Click="mi_monetaryFlowReport_Click"/>
+                <MenuItem Name="mi_monateryFlowReport" Header="Monatery flow report" HorizontalAlignment="Left" Click="mi_monateryFlowReport_Click"/>
                 <MenuItem Name="mi_yearlyReport" Header="Annual report" HorizontalAlignment="Left" Click="mi_yearlyReport_Click"/>
             </MenuItem>
             <MenuItem Header="User Account">

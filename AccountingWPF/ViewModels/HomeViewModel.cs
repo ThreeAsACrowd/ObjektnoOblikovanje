@@ -47,9 +47,9 @@ namespace AccountingWPF.ViewModels
             ChildWindow.ShowDialog();
 		}
 
-		public void generateMonetaryFlowReport()
+		public void generateMonateryFlowReport()
 		{
-            ChildWindow = new MonetaryFlowReportWindow();
+            ChildWindow = new MonateryFlowReportWindow();
             ChildWindow.ShowDialog();
 		}
 

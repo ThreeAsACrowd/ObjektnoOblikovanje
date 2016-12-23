@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="BaseLib\UserManager.cs" />
     <Compile Include="BindingModels\LoginBindingModel.cs" />
+    <Compile Include="Factories\MonateryFlowReportFactory.cs" />
     <Compile Include="Models\nHibernateModels\VatMap.cs" />
     <Compile Include="nHibernateDb\Database.cs" />
     <Compile Include="Factories\.gitkeep.cs" />
@@ -111,7 +112,7 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\IngoingInvoiceViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\MonetaryFlowReportViewModel.cs" />
+    <Compile Include="ViewModels\MonateryFlowReportViewModel.cs" />
     <Compile Include="ViewModels\OutgoingInvoiceViewModel.cs" />
     <Compile Include="ViewModels\ReceiptViewModel.cs" />
     <Compile Include="Views\AnnualReportWindow.xaml.cs">
@@ -123,8 +124,8 @@
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MonetaryFlowReportWindow.xaml.cs">
-      <DependentUpon>MonetaryFlowReportWindow.xaml</DependentUpon>
+    <Compile Include="Views\MonateryFlowReportWindow.xaml.cs">
+      <DependentUpon>MonateryFlowReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IngoingInvoiceMainWindow.xaml.cs">
       <DependentUpon>IngoingInvoiceMainWindow.xaml</DependentUpon>
@@ -183,7 +184,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MonetaryFlowReportWindow.xaml">
+    <Page Include="Views\MonateryFlowReportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

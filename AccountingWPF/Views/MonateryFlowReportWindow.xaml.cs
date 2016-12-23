@@ -11,17 +11,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AccountingWPF.ViewModels;
 
 namespace AccountingWPF.Views
 {
     /// <summary>
     /// Interaction logic for IncomesExpensesReport.xaml
     /// </summary>
-    public partial class MonetaryFlowReportWindow : Window
+    public partial class MonateryFlowReportWindow : Window
     {
-        public MonetaryFlowReportWindow()
+		public MonateryFlowReportViewModel monateryFlowReportVM;
+
+        public MonateryFlowReportWindow()
         {
             InitializeComponent();
+			monateryFlowReportVM = new MonateryFlowReportViewModel();
+			this.DataContext = monateryFlowReportVM;
         }
     }
 }
