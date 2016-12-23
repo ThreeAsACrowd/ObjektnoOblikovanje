@@ -1,6 +1,7 @@
 ﻿using AccountingWPF.Notification;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace AccountingWPF.Models
 {
     public abstract class MonateryFlow : PropertyChangedNotification
     {
+
         public virtual int Id {
             get {
                 return GetValue(() => Id);
@@ -63,6 +65,7 @@ namespace AccountingWPF.Models
             }
         }
 
+		[RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
         public virtual string AmountCash {
             get {
                 return GetValue(() => AmountCash);
@@ -72,6 +75,7 @@ namespace AccountingWPF.Models
             }
         }
 
+		[RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
         public virtual string AmountTransferAccount {
             get {
                 return GetValue(() => AmountTransferAccount);
@@ -81,6 +85,7 @@ namespace AccountingWPF.Models
             }
         }
 
+		[RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
         public virtual string AmountNonCashBenefit {
             get {
                 return GetValue(() => AmountNonCashBenefit);

@@ -11,7 +11,7 @@ namespace AccountingWPF.Models
 {
 	public class Expenditure : MonateryFlow
     {
-		[Required]
+		[RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
         public virtual string Article22 {
             get 
 			{
