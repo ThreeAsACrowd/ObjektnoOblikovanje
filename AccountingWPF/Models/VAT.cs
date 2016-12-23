@@ -8,42 +8,33 @@ using System.Threading.Tasks;
 namespace AccountingWPF.Models
 {
 
-	public abstract class VAT : PropertyChangedNotification
-	{
-		public int Id
-		{
-			get
-			{
-				return GetValue(() => Id);
-			}
-			set
-			{
-				SetValue(() => Id, value);
-			}
-		}
+    public class VAT : PropertyChangedNotification
+    {
+        public virtual int Id {
+            get {
+                return GetValue(() => Id);
+            }
+            set {
+                SetValue(() => Id, value);
+            }
+        }
 
-		public string Name
-		{
-			get
-			{
-				return GetValue(() => Name);
-			}
-			set
-			{
-				SetValue(() => Name, value);
-			}
-		}
+        public virtual string Name {
+            get {
+                return GetValue(() => Name);
+            }
+            set {
+                SetValue(() => Name, value);
+            }
+        }
 
-		public string Percentage
-		{
-			get
-			{
-				return GetValue(() => Percentage);
-			}
-			set
-			{
-				SetValue(() => Percentage, value);
-			}
-		}
-	}
+        public virtual int Percentage {
+            get {
+                return GetValue(() => Percentage);
+            }
+            set {
+                SetValue(() => Percentage, value);
+            }
+        }
+    }
 }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AccountingWPF.ViewModels;
 
 namespace AccountingWPF.Views
 {
@@ -19,9 +20,15 @@ namespace AccountingWPF.Views
 	/// </summary>
 	public partial class ReceiptMainWindow : Window
 	{
+        ReceiptViewModel receiptsVM { get; set; } 
+
 		public ReceiptMainWindow()
 		{
 			InitializeComponent();
+
+            receiptsVM = new ReceiptViewModel();
+            this.dataGridReceipts.ItemsSource = receiptsVM.receipts;
 		}
+
 	}
 }

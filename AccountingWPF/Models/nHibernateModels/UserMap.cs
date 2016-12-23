@@ -11,13 +11,13 @@ namespace AccountingWPF.Models.nHibernateModels
 
             Table("User");
 
-            Id(x => x.Id).Column("Id").GeneratedBy.Increment();
-            Map(x => x.Username);
-            Map(x => x.Password);
-            Map(x => x.Email);
-            Map(x => x.Address);
-            Map(x => x.AssociationName);
-            Map(x => x.OIB);
+            Id(x => x.Id).GeneratedBy.Native().Unique();
+            Map(x => x.Username).Not.Nullable();
+            Map(x => x.Password).Not.Nullable();
+            Map(x => x.Email).Nullable();
+            Map(x => x.Address).Nullable();
+            Map(x => x.AssociationName).Nullable();
+            Map(x => x.OIB).Nullable();
 
         }
 

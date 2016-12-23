@@ -60,5 +60,5 @@ CREATE TABLE OutgoingInvoice(
 CREATE TABLE VAT(
    Id 			INT PRIMARY KEY	NOT NULL,
    Name 		TEXT NOT NULL,
-   Percentage 	NUMERIC
+   Percentage 	NUMERIC NOT NULL
 );

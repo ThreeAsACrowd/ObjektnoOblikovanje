@@ -61,7 +61,7 @@ namespace AccountingWPF.Views
 
         private void mi_userAccount_Click(object sender, RoutedEventArgs e)
         {
-
+            HomeVM.showUserAccountMainWindow();
         }
 
         private void mi_logout_Click(object sender, RoutedEventArgs e)
