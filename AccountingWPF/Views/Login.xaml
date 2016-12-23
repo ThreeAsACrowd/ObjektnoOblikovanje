@@ -3,14 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Login" Height="200" Width="500">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Username" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,20,20"/>
-        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Margin="0,20,0,0"/>
-        <Label Content="Password" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,20,20,20"/>
-        <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="150"/>
-        <Button IsDefault="True" Content="Login" HorizontalAlignment="Center" Margin="85,20,81,74" VerticalAlignment="Center" Width="80" Click="Button_Click" Grid.Column="1" Height="76"/>
+        <Label Content="Username" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0" Grid.Row="0"/>
+        <TextBox Name="tbx_Username" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Margin="0,20,0,0"/>
+        <Label Content="{Binding (Validation.Errors)[0].ErrorContent, ElementName=tbx_Username}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20,20,0,10" Foreground="Red"/>
+          
+        <Label Content="Password" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0" Grid.Row="1"/>
+        <TextBox Name="tbx_Password" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Margin="0,20,0,0"/>
+        <Label Content="{Binding (Validation.Errors)[0].ErrorContent, ElementName=tbx_Password}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20,20,0,10" Foreground="Red"/>
+        
+        <Button IsDefault="True" Content="Login" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="80" Click="Button_Click" Grid.Column="1" Height="76" Grid.RowSpan="2"/>
     </Grid>
 </Window>
