@@ -15,33 +15,32 @@ namespace AccountingWPF.ViewModels
     {
 
 
-		public List<int> ActiveYears { get; set; }
-		public int SelectedYear { get; set; }
+        public IList<int> ActiveYears { get; set; }
+        public int SelectedYear { get; set; }
 
         private MonateryFlowCRUD<Expenditure> expenditureRepository { get; set; }
         private MonateryFlowCRUD<Receipt> receiptRepository { get; set; }
 
         private MonateryFlowReportFactory reportFactory;
 
-		public MonateryFlowReportViewModel()
-		{
-			//UNCOMMENT WHEN THE REPOS ARE READY
-			//ActiveYears = expenditureRepository.getActiveYears();
-			//ActiveYears.AddRange(receiptRepository.getActiveYears());
-			ActiveYears = new List<int>(){2014, 2015, 2016, 2015};
-			ActiveYears = ActiveYears.Distinct().ToList();
-			SelectedYear = ActiveYears.FirstOrDefault();
-		}
+        public MonateryFlowReportViewModel()
+        {
 
-		public void CreateReport(string filepath)
-		{
-			reportFactory = new MonateryFlowHTMLFactory(UserManager.CurrentUser.Id, SelectedYear);
-			using (System.IO.StreamWriter writer = new System.IO.StreamWriter(filepath))
-			{
-				writer.Write(reportFactory.Create());
-			}
-			
-		}
+            expenditureRepository = new ExpenditureRepository<Expenditure>();
+            receiptRepository = new ReceiptRepository<Receipt>();
+
+            ActiveYears = receiptRepository.getAvailableYearsByUserId(UserManager.CurrentUser.Id);
+        }
+
+        public void CreateReport(string filepath)
+        {
+            reportFactory = new MonateryFlowHTMLFactory(UserManager.CurrentUser.Id, SelectedYear);
+            using (System.IO.StreamWriter writer = new System.IO.StreamWriter(filepath))
+            {
+                writer.Write(reportFactory.Create());
+            }
+
+        }
 
 
 
