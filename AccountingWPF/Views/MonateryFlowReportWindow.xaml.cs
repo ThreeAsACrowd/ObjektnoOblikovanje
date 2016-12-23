@@ -43,6 +43,12 @@ namespace AccountingWPF.Views
 			if (dialogResult.HasValue && dialogResult.Value == true)
 			{
 				monateryFlowReportVM.CreateReport(saveFileDialog.FileName);
+
+				lbl_status.Content = "Report created at: " + saveFileDialog.FileName.ToString();
+			}
+			else
+			{
+				lbl_status.Content = "Report creation aborted!";
 			}
 
 		}

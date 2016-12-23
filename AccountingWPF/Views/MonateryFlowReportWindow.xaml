@@ -14,5 +14,6 @@
         <Label Content="Select a year:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,10"/>
         <ComboBox ItemsSource="{Binding Path=ActiveYears}" SelectedItem="{Binding Path=SelectedYear}" x:Name="cbx_yearSelection" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,10" VerticalAlignment="Bottom" Width="120"/>
         <Button x:Name="btn_create" Content="Create report" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btn_create_Click"/>
+        <Label Name="lbl_status" Content="" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,5"/>
     </Grid>
 </Window>
