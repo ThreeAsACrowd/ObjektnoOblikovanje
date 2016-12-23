@@ -70,6 +70,7 @@ namespace AccountingWPF.ViewModels
 
         public void OpenHome()
         {
+			
             ChildWindow = new Home();
             ChildWindow.ShowDialog();
 
@@ -79,13 +80,14 @@ namespace AccountingWPF.ViewModels
 
         public void TestLogin()
         {
+			
             IUserRepository userRepository = new UserRepository();
             IVatRepository vatRepo = new VATRepository();
             MonateryFlowCRUD<Expenditure> expenditureRepo = new ExpenditureRepository<Expenditure>();
             MonateryFlowCRUD<Receipt> receiptsRepo = new ReceiptRepository<Receipt>();
             IInvoiceRepository<IngoingInvoice> ingoingInvoiceRepo = new IngoingInvoiceRepository<IngoingInvoice>();
             IInvoiceRepository<OutgoingInvoice> outgoingInvoiceRepo = new OutgoingInvoiceRepository<OutgoingInvoice>();
-            // populateDatabase();
+            //populateDatabase();
             //       UserCredentials cred = new UserCredentials(Mock.getUser().Username, Mock.getUser().Password);
             //         User mock = Mock.getUser();
 

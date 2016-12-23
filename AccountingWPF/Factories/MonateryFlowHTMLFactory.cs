@@ -22,7 +22,7 @@ namespace AccountingWPF.Factories
             monateryFlow = new List<MonateryFlow>();
         }
 
-        public override string Create()
+        public override byte[] Create()
         {
             monateryFlow.AddRange(expenditureRepository.getUserMonateryFlowByYear(UserManager.CurrentUser.Id, ReportYear));
             monateryFlow.AddRange(receiptRepository.getUserMonateryFlowByYear(UserManager.CurrentUser.Id, ReportYear));
@@ -52,8 +52,10 @@ namespace AccountingWPF.Factories
 
             fileText += "</table></html>";
 
+            
+			byte[] fileBytes = Encoding.UTF8.GetBytes(fileText);
 
-            return fileText;
+			return fileBytes;
         }
     }
 }

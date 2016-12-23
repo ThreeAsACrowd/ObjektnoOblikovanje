@@ -13,8 +13,6 @@ namespace AccountingWPF.ViewModels
 {
     public class MonateryFlowReportViewModel
     {
-
-
         public IList<int> ActiveYears { get; set; }
         public int SelectedYear { get; set; }
 
@@ -30,14 +28,17 @@ namespace AccountingWPF.ViewModels
             receiptRepository = new ReceiptRepository<Receipt>();
 
             ActiveYears = receiptRepository.getAvailableYearsByUserId(UserManager.CurrentUser.Id);
+
+			SelectedYear = ActiveYears.FirstOrDefault();
         }
 
         public void CreateReport(string filepath)
         {
             reportFactory = new MonateryFlowHTMLFactory(UserManager.CurrentUser.Id, SelectedYear);
-            using (System.IO.StreamWriter writer = new System.IO.StreamWriter(filepath))
+            using (System.IO.BinaryWriter writer = new System.IO.BinaryWriter(System.IO.File.Open(filepath, System.IO.FileMode.OpenOrCreate)))
             {
                 writer.Write(reportFactory.Create());
+				writer.Flush();
             }
 
         }

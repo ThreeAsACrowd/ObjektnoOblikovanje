@@ -23,5 +23,10 @@ namespace AccountingWPF.Views
         {
             InitializeComponent();
         }
+
+		private void btn_create_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
     }
 }
