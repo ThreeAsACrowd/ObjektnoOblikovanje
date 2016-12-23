@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AccountingWPF.Repositories;
 using AccountingWPF.Factories;
+using AccountingWPF.BaseLib;
 
 namespace AccountingWPF.ViewModels
 {
@@ -12,6 +13,7 @@ namespace AccountingWPF.ViewModels
 	{
 
 		public List<int> ActiveYears { get; set; }
+		public int SelectedYear { get; set; }
 
 		private ExpenditureRepository expenditureRepository { get; set; }
 		private ReceiptRepository receiptRepository { get; set; }
@@ -25,13 +27,17 @@ namespace AccountingWPF.ViewModels
 			//ActiveYears.AddRange(receiptRepository.getActiveYears());
 			ActiveYears = new List<int>(){2014, 2015, 2016, 2015};
 			ActiveYears = ActiveYears.Distinct().ToList();
+			SelectedYear = ActiveYears.FirstOrDefault();
 		}
 
-		public void getReport()
+		public void CreateReport(string filepath)
 		{
-			string	fileText = "<html><table border=\"1\">";
-			fileText += "<tr><th rowspan = \"2\">Redni broj</th><th rowspan = \"2\">Broj temeljnice</th><th rowspan = \"2\">Datum</th><th colspan = \"5\" rowspan = \"1\">Primici</th><th colspan = \"6\" rowspan = \"1\">Izdaci</th></tr>";
-			fileText += "<tr><th>U gotovini</th><th>U naravi</th><th>Na žiro-račun</th><th>PDV</th><th>Ukupno</th><th>U gotovini</th><th>U naravi</th><th>Na žiro-račun</th><th>Članak 22</th><th>PDV</th><th>Ukupno</th></tr>";
+			reportFactory = new MonateryFlowHTMLFactory(UserManager.CurrentUser.Id, SelectedYear);
+			using (System.IO.StreamWriter writer = new System.IO.StreamWriter(filepath))
+			{
+				writer.Write(reportFactory.Create());
+			}
+			
 		}
 
 
