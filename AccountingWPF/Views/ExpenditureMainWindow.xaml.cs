@@ -27,8 +27,10 @@ namespace AccountingWPF.Views
 			InitializeComponent();
            
             expenditureVM = new ExpenditureViewModel();
-
-            this.dataGridExpenditure.ItemsSource = expenditureVM.expenditures;
+			this.DataContext = expenditureVM;
+			this.dg_cbx_VAT.ItemsSource = expenditureVM.vats;
+			//this.dataGridExpenditure.ItemsSource = expenditureVM.expenditures;
+			//this.dataGridExpenditure.ItemsSource = expenditureVM;
 
 
 		}

@@ -29,7 +29,8 @@
                   HeadersVisibility="All" CanUserAddRows="True"
                   ScrollViewer.CanContentScroll="True" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto" Grid.Row="1">
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto" Grid.Row="1"
+                  ItemsSource="{Binding expenditures}">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Date}" Header="Date" />
@@ -38,13 +39,15 @@
                 <DataGridTextColumn Binding="{Binding AmountTransferAccount}" Header="Amount (Transfer Acc.)" />
                 <DataGridTextColumn Binding="{Binding AmountNonCashBenefit}" Header="Amount (NonCashBenefit)" />
                 <DataGridTextColumn Binding="{Binding Article22}" Header="Amount (Article 22.)" />
-                <DataGridComboBoxColumn 
-                            SelectedValueBinding="{Binding ValueAddedTaxId}" 
+                <DataGridComboBoxColumn x:Name="dg_cbx_VAT" Width="80"
+                            SelectedValueBinding="{Binding FK_VAT, UpdateSourceTrigger=PropertyChanged}" 
                             DisplayMemberPath="Percentage" 
                             SelectedValuePath="Id"
                             Header="VAT">
+                            <!--ItemsSource="{Binding vats}"-->
+                            
 
-                    <DataGridComboBoxColumn.ElementStyle>
+                    <!--<DataGridComboBoxColumn.ElementStyle>
                         <Style TargetType="{x:Type ComboBox}">
                             <Setter Property="ItemsSource" Value="{Binding Path=DataContext.VAT, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
                         </Style>
@@ -53,7 +56,7 @@
                         <Style TargetType="{x:Type ComboBox}">
                             <Setter Property="ItemsSource" Value="{Binding Path=DataContext.VAT, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
                         </Style>
-                    </DataGridComboBoxColumn.EditingElementStyle>
+                    </DataGridComboBoxColumn.EditingElementStyle>-->
                 </DataGridComboBoxColumn>
                 <DataGridTextColumn Binding="{Binding Total}" Header="Ukupno" />
             </DataGrid.Columns>
