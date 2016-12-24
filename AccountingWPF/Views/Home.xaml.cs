@@ -69,5 +69,10 @@ namespace AccountingWPF.Views
             UserManager.LogOut();
             this.Close();
         }
+
+		private void Window_Closed(object sender, EventArgs e)
+		{
+			UserManager.LogOut();
+		}
     }
 }
