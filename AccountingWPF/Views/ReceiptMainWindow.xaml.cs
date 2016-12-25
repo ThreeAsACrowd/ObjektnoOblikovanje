@@ -27,7 +27,8 @@ namespace AccountingWPF.Views
 			InitializeComponent();
 
             receiptsVM = new ReceiptViewModel();
-            this.dataGridReceipts.ItemsSource = receiptsVM.receipts;
+            this.DataContext = receiptsVM;
+            this.dg_cbx_VAT.ItemsSource = receiptsVM.vats;
 		}
 
 	}

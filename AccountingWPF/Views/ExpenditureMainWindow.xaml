@@ -44,21 +44,8 @@
                             DisplayMemberPath="Percentage" 
                             SelectedValuePath="Id"
                             Header="VAT">
-                            <!--ItemsSource="{Binding vats}"-->
-                            
-
-                    <!--<DataGridComboBoxColumn.ElementStyle>
-                        <Style TargetType="{x:Type ComboBox}">
-                            <Setter Property="ItemsSource" Value="{Binding Path=DataContext.VAT, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
-                        </Style>
-                    </DataGridComboBoxColumn.ElementStyle>
-                    <DataGridComboBoxColumn.EditingElementStyle>
-                        <Style TargetType="{x:Type ComboBox}">
-                            <Setter Property="ItemsSource" Value="{Binding Path=DataContext.VAT, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
-                        </Style>
-                    </DataGridComboBoxColumn.EditingElementStyle>-->
                 </DataGridComboBoxColumn>
-                <DataGridTextColumn Binding="{Binding Total}" Header="Ukupno" />
+                <DataGridTextColumn Binding="{Binding Total}" Header="Total" />
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Add new expenditure" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22"/>
