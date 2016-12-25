@@ -74,10 +74,8 @@
     </Compile>
     <Compile Include="BaseLib\UserManager.cs" />
     <Compile Include="BindingModels\LoginBindingModel.cs" />
-    <Compile Include="Factories\AnnualReportFactory.cs" />
-    <Compile Include="Factories\AnnualReportHTMLFactory.cs" />
-    <Compile Include="Factories\MonetaryFlowHTMLFactory.cs" />
-    <Compile Include="Factories\MonetaryFlowReportFactory.cs" />
+    <Compile Include="Reporting\HtmlReport.cs" />
+    <Compile Include="Reporting\AbstractReport.cs" />
     <Compile Include="Models\nHibernateModels\VatMap.cs" />
     <Compile Include="nHibernateDb\SessionManager.cs" />
     <Compile Include="Factories\.gitkeep.cs" />

@@ -42,7 +42,7 @@ namespace AccountingWPF.Views
 			bool? dialogResult = saveFileDialog.ShowDialog();
 			if (dialogResult.HasValue && dialogResult.Value == true)
 			{
-				monetaryFlowReportVM.CreateReport(saveFileDialog.FileName);
+				monetaryFlowReportVM.CreateReportByYear(saveFileDialog.FileName);
 
 				lbl_status.Content = "Report created at: " + saveFileDialog.FileName.ToString();
 			}

@@ -33,7 +33,7 @@ namespace AccountingWPF.ViewModels
                 TestLogin();
                 return false;
             }
-            else if (true)
+            else if (false)
             {
                 //napuni bazu podataka
                 populateDatabase();

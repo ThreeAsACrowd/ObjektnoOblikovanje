@@ -19,7 +19,7 @@ namespace AccountingWPF.ViewModels
         private MonetaryFlowRepository<Expenditure> expenditureRepository { get; set; }
         private MonetaryFlowRepository<Receipt> receiptRepository { get; set; }
 
-        private MonetaryFlowReportFactory reportFactory;
+        private AbstractReport htmlReport;
 
         public MonetaryFlowReportViewModel()
         {
@@ -30,14 +30,19 @@ namespace AccountingWPF.ViewModels
             ActiveYears = receiptRepository.getAvailableYearsByUserId(UserManager.CurrentUser.Id);
 
 			SelectedYear = ActiveYears.FirstOrDefault();
+
+            htmlReport = new HtmlReport();
         }
 
-        public void CreateReport(string filepath)
+        public void CreateReportByYear(string filepath)
         {
-            reportFactory = new MonetaryFlowHTMLFactory(UserManager.CurrentUser.Id, SelectedYear);
+            List<MonetaryFlow> monetaryFlow = new List<MonetaryFlow>();
+            monetaryFlow.AddRange(expenditureRepository.getUserMonetaryFlowByYear(UserManager.CurrentUser.Id, SelectedYear));
+            monetaryFlow.AddRange(receiptRepository.getUserMonetaryFlowByYear(UserManager.CurrentUser.Id, SelectedYear));
+
             using (System.IO.BinaryWriter writer = new System.IO.BinaryWriter(System.IO.File.Open(filepath, System.IO.FileMode.OpenOrCreate)))
             {
-                writer.Write(reportFactory.Create());
+                writer.Write(htmlReport.CreateReportByYear(UserManager.CurrentUser, monetaryFlow));
 				writer.Flush();
             }
 
