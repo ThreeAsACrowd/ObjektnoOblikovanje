@@ -9,7 +9,7 @@ using AccountingWPF.Repositories.InvoiceRepository;
 
 namespace AccountingWPF.Factories
 {
-    public static class Mock
+    public static class MockFactory
     {
         public static IList<Vat> getAllVATs()
         {

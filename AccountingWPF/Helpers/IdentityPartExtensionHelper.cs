@@ -8,7 +8,7 @@ using NHibernate.Id;
 
 namespace AccountingWPF.Helpers
 {
-    public static class IdentityPartExtensions
+    public static class IdentityPartExtensionHelper
     {
         public static void NumericIdentity(this IdentityGenerationStrategyBuilder<IdentityPart> identityBuilder)
         {

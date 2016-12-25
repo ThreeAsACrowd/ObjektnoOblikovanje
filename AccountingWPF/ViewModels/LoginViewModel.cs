@@ -146,7 +146,7 @@ namespace AccountingWPF.ViewModels
 
         public IList<Expenditure> createExcedituresInDatabase(MonetaryFlowRepository<Expenditure> expenditureRepo, int id)
         {
-            IList<Expenditure> expenditures = Mock.getExpendituresByUserId(id);
+            IList<Expenditure> expenditures = MockFactory.getExpendituresByUserId(id);
             foreach (Expenditure e in expenditures)
             {
                 expenditureRepo.Create(e);
@@ -157,7 +157,7 @@ namespace AccountingWPF.ViewModels
 
         public IList<Receipt> createReceiptsInDatabase(MonetaryFlowRepository<Receipt> receiptsRepo, int id)
         {
-            IList<Receipt> receipts = Mock.getReceiptsByUserId(id);
+            IList<Receipt> receipts = MockFactory.getReceiptsByUserId(id);
             foreach (Receipt r in receipts)
             {
                 receiptsRepo.Create(r);
@@ -168,7 +168,7 @@ namespace AccountingWPF.ViewModels
 
         public IList<Vat> createVatsInDatabase(IVatRepository vatRepo)
         {
-            IList<Vat> vats = Mock.getAllVATs();
+            IList<Vat> vats = MockFactory.getAllVATs();
             foreach (Vat v in vats)
             {
                 vatRepo.Create(v);
@@ -179,7 +179,7 @@ namespace AccountingWPF.ViewModels
 
         public IList<IngoingInvoice> createIngointInvoiceInDatabase(IInvoiceRepository<IngoingInvoice> ingoingInvoiceRepo, int id)
         {
-            IList<IngoingInvoice> ingoingInvoices = Mock.getIngoingInvoicesByUserId(id);
+            IList<IngoingInvoice> ingoingInvoices = MockFactory.getIngoingInvoicesByUserId(id);
             foreach (IngoingInvoice i in ingoingInvoices)
             {
                 ingoingInvoiceRepo.Create(i);
@@ -190,7 +190,7 @@ namespace AccountingWPF.ViewModels
 
         public IList<OutgoingInvoice> createOutgointInvoiceInDatabase(IInvoiceRepository<OutgoingInvoice> outgoingInvoiceRepo, int id)
         {
-            IList<OutgoingInvoice> outgoingInvoices = Mock.getOutgoingInvoicesByUserId(id);
+            IList<OutgoingInvoice> outgoingInvoices = MockFactory.getOutgoingInvoicesByUserId(id);
             foreach (OutgoingInvoice i in outgoingInvoices)
             {
                 outgoingInvoiceRepo.Create(i);

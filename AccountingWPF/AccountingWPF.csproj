@@ -78,14 +78,13 @@
     <Compile Include="Reporting\AbstractReport.cs" />
     <Compile Include="Models\nHibernateModels\VatMap.cs" />
     <Compile Include="nHibernateDb\SessionManager.cs" />
-    <Compile Include="Factories\.gitkeep.cs" />
-    <Compile Include="Factories\Mock.cs" />
-    <Compile Include="Helpers\IdentityPartExtensions.cs" />
+    <Compile Include="Factories\MockFactory.cs" />
+    <Compile Include="Helpers\IdentityPartExtensionHelper.cs" />
     <Compile Include="Models\MonetaryFlow.cs" />
     <Compile Include="Models\nHibernateModels\ExpenditureMap.cs" />
     <Compile Include="Models\nHibernateModels\IngoingInvoiceMap.cs" />
     <Compile Include="Models\nHibernateModels\InvoiceMap.cs" />
-    <Compile Include="Models\nHibernateModels\MonateryFlowMap.cs" />
+    <Compile Include="Models\nHibernateModels\MonetaryFlowMap.cs" />
     <Compile Include="Models\nHibernateModels\OutgoingInvoiceMapcs.cs" />
     <Compile Include="Models\nHibernateModels\ReceiptMap.cs" />
     <Compile Include="Models\nHibernateModels\UserMap.cs" />
@@ -103,19 +102,19 @@
     <Compile Include="Repositories\InvoiceRepository\IUserRepository.cs" />
     <Compile Include="Repositories\InvoiceRepository\OutgoingInvoiceRepository.cs" />
     <Compile Include="Repositories\IVatRepository.cs" />
-    <Compile Include="Repositories\MonateryFlow\ExpenditureRepository.cs" />
+    <Compile Include="Repositories\MonetaryFlow\ExpenditureRepository.cs" />
     <Compile Include="Repositories\VatRepository.cs" />
     <Compile Include="ViewModels\AnnualReportViewModel.cs" />
     <Compile Include="ViewModels\ExpenditureViewModel.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
-    <Compile Include="Repositories\MonateryFlow\MonetaryFlowRepository.cs" />
-    <Compile Include="Repositories\MonateryFlow\ReceiptRepository.cs" />
+    <Compile Include="Repositories\MonetaryFlow\MonetaryFlowRepository.cs" />
+    <Compile Include="Repositories\MonetaryFlow\ReceiptRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\IngoingInvoiceViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\MonateryFlowReportViewModel.cs" />
+    <Compile Include="ViewModels\MonetaryFlowReportViewModel.cs" />
     <Compile Include="ViewModels\OutgoingInvoiceViewModel.cs" />
     <Compile Include="ViewModels\ReceiptViewModel.cs" />
     <Compile Include="Views\AnnualReportWindow.xaml.cs">
@@ -127,8 +126,8 @@
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MonateryFlowReportWindow.xaml.cs">
-      <DependentUpon>MonateryFlowReportWindow.xaml</DependentUpon>
+    <Compile Include="Views\MonetaryFlowReportWindow.xaml.cs">
+      <DependentUpon>MonetaryFlowReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IngoingInvoiceMainWindow.xaml.cs">
       <DependentUpon>IngoingInvoiceMainWindow.xaml</DependentUpon>
@@ -187,7 +186,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MonateryFlowReportWindow.xaml">
+    <Page Include="Views\MonetaryFlowReportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
