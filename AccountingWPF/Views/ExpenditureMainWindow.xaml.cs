@@ -35,15 +35,15 @@ namespace AccountingWPF.Views
 
         private void DeinitializeDataGrid() 
         {
-            this.Delete_new_expenditure_button.IsEnabled = false;
-            this.Save_new_expenditure_button.IsEnabled = false;
+            this.Delete_expenditure_button.IsEnabled = false;
+            this.Save_expenditure_button.IsEnabled = false;
             this.dataGridExpenditure.IsEnabled = false;
         }
         private void InitializeDataGrid()
         {
             this.dataGridExpenditure.IsEnabled = true;
-            this.Delete_new_expenditure_button.IsEnabled = true;
-            this.Save_new_expenditure_button.IsEnabled = true;
+            this.Delete_expenditure_button.IsEnabled = true;
+            this.Save_expenditure_button.IsEnabled = true;
         }
 
         private void Add_new_expenditure_Button_Click(object sender, RoutedEventArgs e)
