@@ -11,10 +11,10 @@ using NHibernate.Linq;
 
 namespace AccountingWPF.Models
 {
-    public class VATRepository : IVatRepository
+    public class VatRepository : IVatRepository
     {
 
-        public void Create(VAT vat)
+        public void Create(Vat vat)
         {
             using (var session = SessionManager.OpenSession())
             {
@@ -31,7 +31,7 @@ namespace AccountingWPF.Models
 
             using (ISession session = SessionManager.OpenSession())
             {
-                VAT vat = session.Get<VAT>(id);
+                Vat vat = session.Get<Vat>(id);
                 if (vat == null)
                 {
                     MessageBox.Show("VAT for given id does not exists");
@@ -42,7 +42,7 @@ namespace AccountingWPF.Models
 
         }
 
-        public void Update(VAT vat)
+        public void Update(Vat vat)
         {
             using (ISession session = SessionManager.OpenSession())
             {
@@ -50,20 +50,20 @@ namespace AccountingWPF.Models
             }
         }
 
-        public VAT GetById(int id)
+        public Vat GetById(int id)
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return session.Get<VAT>(id);
+                return session.Get<Vat>(id);
             }
         }
 
-        public IList<VAT> getAll()
+        public IList<Vat> getAll()
         {
             using (ISession session = SessionManager.OpenSession())
             {
 
-                return session.Query<VAT>()
+                return session.Query<Vat>()
                      .ToList();
             }
         }

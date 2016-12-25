@@ -82,9 +82,9 @@ namespace AccountingWPF.ViewModels
         {
 			
             IUserRepository userRepository = new UserRepository();
-            IVatRepository vatRepo = new VATRepository();
-            MonateryFlowCRUD<Expenditure> expenditureRepo = new ExpenditureRepository<Expenditure>();
-            MonateryFlowCRUD<Receipt> receiptsRepo = new ReceiptRepository<Receipt>();
+            IVatRepository vatRepo = new VatRepository();
+            MonateryFlowRepository<Expenditure> expenditureRepo = new ExpenditureRepository<Expenditure>();
+            MonateryFlowRepository<Receipt> receiptsRepo = new ReceiptRepository<Receipt>();
             IInvoiceRepository<IngoingInvoice> ingoingInvoiceRepo = new IngoingInvoiceRepository<IngoingInvoice>();
             IInvoiceRepository<OutgoingInvoice> outgoingInvoiceRepo = new OutgoingInvoiceRepository<OutgoingInvoice>();
             //populateDatabase();
@@ -116,9 +116,9 @@ namespace AccountingWPF.ViewModels
 
             //repoi
             IUserRepository userRepository = new UserRepository();
-            IVatRepository vatRepo = new VATRepository();
-            MonateryFlowCRUD<Expenditure> expenditureRepo = new ExpenditureRepository<Expenditure>();
-            MonateryFlowCRUD<Receipt> receiptsRepo = new ReceiptRepository<Receipt>();
+            IVatRepository vatRepo = new VatRepository();
+            MonateryFlowRepository<Expenditure> expenditureRepo = new ExpenditureRepository<Expenditure>();
+            MonateryFlowRepository<Receipt> receiptsRepo = new ReceiptRepository<Receipt>();
             IInvoiceRepository<IngoingInvoice> ingoingInvoiceRepo = new IngoingInvoiceRepository<IngoingInvoice>();
             IInvoiceRepository<OutgoingInvoice> outgoingInvoiceRepo = new OutgoingInvoiceRepository<OutgoingInvoice>();
 
@@ -128,14 +128,14 @@ namespace AccountingWPF.ViewModels
 
 
             //kreiranje objekata
-            IList<VAT> v = createVatsInDatabase(vatRepo);
+            IList<Vat> v = createVatsInDatabase(vatRepo);
             IList<Expenditure> e = createExcedituresInDatabase(expenditureRepo, mock.Id);
             IList<Receipt> r = createReceiptsInDatabase(receiptsRepo, mock.Id);
             IList<IngoingInvoice> ingoingInvoices = createIngointInvoiceInDatabase(ingoingInvoiceRepo, mock.Id);
             IList<OutgoingInvoice> outgoingInvoices = createOutgointInvoiceInDatabase(outgoingInvoiceRepo, mock.Id);
         }
 
-        public IList<Expenditure> createExcedituresInDatabase(MonateryFlowCRUD<Expenditure> expenditureRepo, int id)
+        public IList<Expenditure> createExcedituresInDatabase(MonateryFlowRepository<Expenditure> expenditureRepo, int id)
         {
             IList<Expenditure> expenditures = Mock.getExpendituresByUserId(id);
             foreach (Expenditure e in expenditures)
@@ -146,7 +146,7 @@ namespace AccountingWPF.ViewModels
             return expenditureRepo.getByUserId(id);
         }
 
-        public IList<Receipt> createReceiptsInDatabase(MonateryFlowCRUD<Receipt> receiptsRepo, int id)
+        public IList<Receipt> createReceiptsInDatabase(MonateryFlowRepository<Receipt> receiptsRepo, int id)
         {
             IList<Receipt> receipts = Mock.getReceiptsByUserId(id);
             foreach (Receipt r in receipts)
@@ -157,10 +157,10 @@ namespace AccountingWPF.ViewModels
             return receiptsRepo.getByUserId(id);
         }
 
-        public IList<VAT> createVatsInDatabase(IVatRepository vatRepo)
+        public IList<Vat> createVatsInDatabase(IVatRepository vatRepo)
         {
-            IList<VAT> vats = Mock.getAllVATs();
-            foreach (VAT v in vats)
+            IList<Vat> vats = Mock.getAllVATs();
+            foreach (Vat v in vats)
             {
                 vatRepo.Create(v);
             }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace AccountingWPF.Models
 {
 
-    public class VAT : PropertyChangedNotification
+    public class Vat : PropertyChangedNotification
     {
         public virtual int Id {
             get {

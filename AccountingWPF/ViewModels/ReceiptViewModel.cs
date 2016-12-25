@@ -12,14 +12,14 @@ namespace AccountingWPF.ViewModels
     public class ReceiptViewModel
     {
         public IList<Receipt> receipts { get; set; }
-        public IList<VAT> vats { get; set; }
-        private MonateryFlowCRUD<Receipt> receiptRepo { get; set; }
-        private VATRepository vatRepo { get; set; }
+        public IList<Vat> vats { get; set; }
+        private MonateryFlowRepository<Receipt> receiptRepo { get; set; }
+        private VatRepository vatRepo { get; set; }
 
         public ReceiptViewModel()
         {
             receiptRepo = new ReceiptRepository<Receipt>();
-            vatRepo = new VATRepository();
+            vatRepo = new VatRepository();
 
             receipts = receiptRepo.getByUserId(UserManager.CurrentUser.Id);
             vats = vatRepo.getAll();

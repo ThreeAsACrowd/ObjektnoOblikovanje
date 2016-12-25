@@ -15,7 +15,7 @@ using AccountingWPF.Models;
 
 namespace AccountingWPF.Repositories
 {
-    public class ExpenditureRepository<MonateryFlow> : MonateryFlowCRUD<MonateryFlow>
+    public class ExpenditureRepository<MonateryFlow> : MonateryFlowRepository<MonateryFlow>
     {
 
         public void Create(MonateryFlow monateryFlow)
@@ -65,7 +65,7 @@ namespace AccountingWPF.Repositories
                 }
 
 
-                VAT vat = session.Get<VAT>(expenditure.FK_VAT);
+                Vat vat = session.Get<Vat>(expenditure.FK_VAT);
                 User user = session.Get<User>(expenditure.FK_UserId);
 
                 expenditure.Vat = vat;

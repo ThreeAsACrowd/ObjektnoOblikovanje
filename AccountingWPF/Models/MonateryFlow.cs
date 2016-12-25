@@ -29,7 +29,7 @@ namespace AccountingWPF.Models
             }
         }
 
-        public virtual VAT Vat {
+        public virtual Vat Vat {
             get {
                 return GetValue(() => Vat);
             }

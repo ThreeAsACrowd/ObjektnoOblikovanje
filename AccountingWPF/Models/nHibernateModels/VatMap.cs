@@ -7,7 +7,7 @@ using FluentNHibernate.Mapping;
 
 namespace AccountingWPF.Models.nHibernateModels
 {
-    public class VatMap : ClassMap<VAT>
+    public class VatMap : ClassMap<Vat>
     {
 
         public VatMap()

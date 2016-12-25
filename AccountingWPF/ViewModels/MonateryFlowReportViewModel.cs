@@ -16,8 +16,8 @@ namespace AccountingWPF.ViewModels
         public IList<int> ActiveYears { get; set; }
         public int SelectedYear { get; set; }
 
-        private MonateryFlowCRUD<Expenditure> expenditureRepository { get; set; }
-        private MonateryFlowCRUD<Receipt> receiptRepository { get; set; }
+        private MonateryFlowRepository<Expenditure> expenditureRepository { get; set; }
+        private MonateryFlowRepository<Receipt> receiptRepository { get; set; }
 
         private MonateryFlowReportFactory reportFactory;
 

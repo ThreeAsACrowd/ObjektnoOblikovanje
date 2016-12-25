@@ -10,12 +10,12 @@ namespace AccountingWPF.Repositories
     public interface IVatRepository
     {
 
-        void Create(VAT vat);
+        void Create(Vat vat);
         void Delete(int id);
-        void Update(VAT vat);
+        void Update(Vat vat);
 
-        VAT GetById(int id);
+        Vat GetById(int id);
 
-        IList<VAT> getAll();
+        IList<Vat> getAll();
     }
 }

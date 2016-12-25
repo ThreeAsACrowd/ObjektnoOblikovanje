@@ -12,14 +12,14 @@ namespace AccountingWPF.ViewModels
     public class ExpenditureViewModel
     {
         public IList<Expenditure> expenditures { get; set; }
-        public IList<VAT> vats { get; set; }
-        private MonateryFlowCRUD<Expenditure> expenditureRepo { get; set; }
-        private VATRepository vatRepo { get; set; }
+        public IList<Vat> vats { get; set; }
+        private MonateryFlowRepository<Expenditure> expenditureRepo { get; set; }
+        private VatRepository vatRepo { get; set; }
 
         public ExpenditureViewModel()
         {
             expenditureRepo = new ExpenditureRepository<Expenditure>();
-			vatRepo = new VATRepository();
+			vatRepo = new VatRepository();
 
             expenditures = expenditureRepo.getByUserId(UserManager.CurrentUser.Id);
 			vats = vatRepo.getAll();

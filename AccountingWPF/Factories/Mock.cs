@@ -11,9 +11,9 @@ namespace AccountingWPF.Factories
 {
     public static class Mock
     {
-        public static IList<VAT> getAllVATs()
+        public static IList<Vat> getAllVATs()
         {
-            IList<VAT> vats = new List<VAT>();
+            IList<Vat> vats = new List<Vat>();
             for (int i = 0; i < 5; i++)
             {
                 vats.Add(getVat("vat" + i, 10 + i));
@@ -21,9 +21,9 @@ namespace AccountingWPF.Factories
             return vats;
         }
 
-        private static VAT getVat(String name, int percentage)
+        private static Vat getVat(String name, int percentage)
         {
-            VAT vat = new VAT();
+            Vat vat = new Vat();
             vat.Name = name;
             vat.Percentage = percentage;
             return vat;
@@ -102,8 +102,8 @@ namespace AccountingWPF.Factories
 
         private static Receipt getReceipts(int i)
         {
-            VATRepository vatRepo = new VATRepository();
-            IList<VAT> vats = vatRepo.getAll();
+            VatRepository vatRepo = new VatRepository();
+            IList<Vat> vats = vatRepo.getAll();
 
             User u = getUserFromDb();
 
@@ -123,8 +123,8 @@ namespace AccountingWPF.Factories
 
         private static Expenditure getExpenditure(int i)
         {
-            VATRepository vatRepo = new VATRepository();
-            IList<VAT> vats = vatRepo.getAll();
+            VatRepository vatRepo = new VatRepository();
+            IList<Vat> vats = vatRepo.getAll();
             User u = getUserFromDb();
 
             Expenditure expenditure = new Expenditure();
