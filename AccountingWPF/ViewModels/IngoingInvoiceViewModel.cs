@@ -18,7 +18,6 @@ namespace AccountingWPF.ViewModels
         {
             IngoingInvoicesRepo = new IngoingInvoiceRepository<IngoingInvoice>();
             ingoing_invoices = IngoingInvoicesRepo.getByUserId(UserManager.CurrentUser.Id);
-            //TODO!
         }
     }
 }

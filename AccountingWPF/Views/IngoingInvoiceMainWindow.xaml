@@ -23,17 +23,20 @@
                   HeadersVisibility="All" CanUserAddRows="True"
                   ScrollViewer.CanContentScroll="True" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ItemsSource="{Binding ingoing_invoices}"    
+                      >
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Date}" Header="Date" />
                     <DataGridTextColumn Binding="{Binding InvoiceClassNumber}" Header="Invoice class number" />
-                    <DataGridTextColumn Binding="{Binding CustomerInfo}" Header="Customer info" />
-                    <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
+                    <DataGridTextColumn Binding="{Binding SupplierInfo}" Header="Supplier info" />
+                    <DataGridTextColumn Binding="{Binding Amount}" Header="Amount"
+                  />
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="Add new ingoing invoice" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22"/>
-            <Button Content="Delete ingoing invoice" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22"/>
-            <Button Content="Edit ingoing invoice" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22"/>
-            <Button Content="Save ingoing invoice" HorizontalAlignment="Left" Margin="495,10,0,0" VerticalAlignment="Top" Width="130" Height="22"/>
+        <Button Name ="Add_new_ingoing_invoice_button" Content="Add new ingoing invoice" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22" Click="Add_new_ingoing_invoice_Button_Click"/>
+        <Button Name ="Delete_ingoing_invoice_button" Content="Delete ingoing invoice" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22"  Click="Delete_ingoing_invoice_Button_Click"/>
+        <Button Name ="Edit_ingoing_invoice_button" Content="Edit ingoing invoice" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22"  Click="Edit_ingoing_invoice_Button_Click"/>
+        <Button Name ="Save_ingoing_invoice_button" Content="Save ingoing invoice" HorizontalAlignment="Left" Margin="495,10,0,0" VerticalAlignment="Top" Width="130" Height="22"  Click="Save_ingoing_invoice_Button_Click"/>
         </Grid>
 </Window>

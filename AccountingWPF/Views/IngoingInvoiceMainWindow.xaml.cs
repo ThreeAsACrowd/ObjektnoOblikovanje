@@ -29,7 +29,45 @@ namespace AccountingWPF.Views
 			InitializeComponent();
 
             ingoingInvoiceVM = new IngoingInvoiceViewModel();
-            //TODO!
-		}
+            this.DataContext = ingoingInvoiceVM;
+            DeinitializeDataGrid();
+
+        }
+
+        private void DeinitializeDataGrid()
+        {
+            this.Delete_ingoing_invoice_button.IsEnabled = false;
+            this.Save_ingoing_invoice_button.IsEnabled = false;
+            this.dataGridIngoingInvoices.IsEnabled = false;
+        }
+        private void InitializeDataGrid()
+        {
+            this.dataGridIngoingInvoices.IsEnabled = true;
+            this.Delete_ingoing_invoice_button.IsEnabled = true;
+            this.Save_ingoing_invoice_button.IsEnabled = true;
+        }
+
+        private void Add_new_ingoing_invoice_Button_Click(object sender, RoutedEventArgs e)
+        {
+            InitializeDataGrid();
+            MessageBox.Show("Add");
+        }
+
+        private void Delete_ingoing_invoice_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("delete");
+        }
+
+        private void Edit_ingoing_invoice_Button_Click(object sender, RoutedEventArgs e)
+        {
+            InitializeDataGrid();
+            MessageBox.Show("edit");
+        }
+
+        private void Save_ingoing_invoice_Button_Click(object sender, RoutedEventArgs e)
+        {
+            DeinitializeDataGrid();
+            MessageBox.Show("save");
+        }
 	}
 }
