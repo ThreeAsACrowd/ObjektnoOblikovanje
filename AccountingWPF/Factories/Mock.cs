@@ -55,12 +55,15 @@ namespace AccountingWPF.Factories
 
         private static IngoingInvoice getIngoingInvoice(int i)
         {
+            User u = getUserFromDb();
+
             IngoingInvoice ingoingInvoice = new IngoingInvoice();
             ingoingInvoice.InvoiceClassNumber = "12";
             ingoingInvoice.Amount = "" + i;
             ingoingInvoice.Date = DateTime.Now;
             ingoingInvoice.SupplierInfo = "supplier";
-            ingoingInvoice.FK_UserId = getUserFromDb().Id;
+            ingoingInvoice.User = u;
+            ingoingInvoice.FK_UserId = u.Id;
             return ingoingInvoice;
         }
 
@@ -78,12 +81,15 @@ namespace AccountingWPF.Factories
 
         private static OutgoingInvoice getOutgoingInvoice(int i)
         {
+            User u = getUserFromDb();
+
             OutgoingInvoice outgoingInvoice = new OutgoingInvoice();
             outgoingInvoice.InvoiceClassNumber = "12";
             outgoingInvoice.Amount = "" + i;
             outgoingInvoice.Date = DateTime.Now;
             outgoingInvoice.CustomerInfo = "customer";
-            outgoingInvoice.FK_UserId = getUserFromDb().Id;
+            outgoingInvoice.User = u;
+            outgoingInvoice.FK_UserId = u.Id;
             return outgoingInvoice;
         }
 

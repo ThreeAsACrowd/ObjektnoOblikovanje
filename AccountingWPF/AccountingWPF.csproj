@@ -76,14 +76,14 @@
     <Compile Include="BindingModels\LoginBindingModel.cs" />
     <Compile Include="Factories\AnnualReportFactory.cs" />
     <Compile Include="Factories\AnnualReportHTMLFactory.cs" />
-    <Compile Include="Factories\MonateryFlowHTMLFactory.cs" />
-    <Compile Include="Factories\MonateryFlowReportFactory.cs" />
+    <Compile Include="Factories\MonetaryFlowHTMLFactory.cs" />
+    <Compile Include="Factories\MonetaryFlowReportFactory.cs" />
     <Compile Include="Models\nHibernateModels\VatMap.cs" />
-    <Compile Include="nHibernateDb\Database.cs" />
+    <Compile Include="nHibernateDb\SessionManager.cs" />
     <Compile Include="Factories\.gitkeep.cs" />
     <Compile Include="Factories\Mock.cs" />
     <Compile Include="Helpers\IdentityPartExtensions.cs" />
-    <Compile Include="Models\MonateryFlow.cs" />
+    <Compile Include="Models\MonetaryFlow.cs" />
     <Compile Include="Models\nHibernateModels\ExpenditureMap.cs" />
     <Compile Include="Models\nHibernateModels\IngoingInvoiceMap.cs" />
     <Compile Include="Models\nHibernateModels\InvoiceMap.cs" />
@@ -111,7 +111,7 @@
     <Compile Include="ViewModels\ExpenditureViewModel.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
-    <Compile Include="Repositories\MonateryFlow\MonateryFlowRepository.cs" />
+    <Compile Include="Repositories\MonateryFlow\MonetaryFlowRepository.cs" />
     <Compile Include="Repositories\MonateryFlow\ReceiptRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />

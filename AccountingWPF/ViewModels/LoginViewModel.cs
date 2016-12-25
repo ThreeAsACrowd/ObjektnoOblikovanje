@@ -29,7 +29,14 @@ namespace AccountingWPF.ViewModels
         {
             if (false)
             {
+                //testiranje repozitorijal
                 TestLogin();
+                return false;
+            }
+            else if (true)
+            {
+                //napuni bazu podataka
+                populateDatabase();
                 return false;
             }
             else
@@ -70,7 +77,7 @@ namespace AccountingWPF.ViewModels
 
         public void OpenHome()
         {
-			
+
             ChildWindow = new Home();
             ChildWindow.ShowDialog();
 
@@ -80,26 +87,28 @@ namespace AccountingWPF.ViewModels
 
         public void TestLogin()
         {
-			
+
             IUserRepository userRepository = new UserRepository();
             IVatRepository vatRepo = new VatRepository();
             MonetaryFlowRepository<Expenditure> expenditureRepo = new ExpenditureRepository<Expenditure>();
             MonetaryFlowRepository<Receipt> receiptsRepo = new ReceiptRepository<Receipt>();
             IInvoiceRepository<IngoingInvoice> ingoingInvoiceRepo = new IngoingInvoiceRepository<IngoingInvoice>();
             IInvoiceRepository<OutgoingInvoice> outgoingInvoiceRepo = new OutgoingInvoiceRepository<OutgoingInvoice>();
-            //populateDatabase();
+
             //       UserCredentials cred = new UserCredentials(Mock.getUser().Username, Mock.getUser().Password);
             //         User mock = Mock.getUser();
 
             // IList<Expenditure> e = expenditureRepo.getByUserId(1);
 
-             IList<Expenditure> eByYear = expenditureRepo.getUserMonetaryFlowByYear(1, 2016);
-             IList<Expenditure> rByYear = expenditureRepo.getUserMonetaryFlowByYear(1, 2016);
+            IList<Expenditure> eByYear = expenditureRepo.getUserMonetaryFlowByYear(1, 2016);
+            IList<Expenditure> rByYear = expenditureRepo.getUserMonetaryFlowByYear(1, 2016);
             // IList<Expenditure> rByNoYear = expenditureRepo.getUserMonetaryFlowByYear(1, 2015);
 
             IList<int> eYears = expenditureRepo.getAvailableYearsByUserId(1);
             IList<int> rYears = receiptsRepo.getAvailableYearsByUserId(1);
 
+            IList<IngoingInvoice> ingoing = ingoingInvoiceRepo.getByUserId(1);
+            IList<OutgoingInvoice> outgoing = outgoingInvoiceRepo.getByUserId(1);
 
         }
 

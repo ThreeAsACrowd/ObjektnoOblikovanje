@@ -24,7 +24,7 @@ namespace AccountingWPF.nHibernateDb
                     sessionFactory = Fluently.Configure()
                    .Database(SQLiteConfiguration.Standard.ShowSql().UsingFile("accountingDB.db"))
                    .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                   //.ExposeConfiguration(BuildSchema)
+                   .ExposeConfiguration(BuildSchema)
                    .BuildSessionFactory();
                 }
                 return sessionFactory;
@@ -34,7 +34,7 @@ namespace AccountingWPF.nHibernateDb
 
         private static void BuildSchema(Configuration config)
         {
-            if (File.Exists("accountingDB.db"))
+            if (!File.Exists("accountingDB.db"))
             {
                 new SchemaExport(config).Create(false, true);
             }
