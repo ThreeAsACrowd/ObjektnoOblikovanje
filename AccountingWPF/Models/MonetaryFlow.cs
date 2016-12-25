@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AccountingWPF.Models
 {
-    public abstract class MonateryFlow : PropertyChangedNotification
+    public abstract class MonetaryFlow : PropertyChangedNotification
     {
 
         public virtual int Id {

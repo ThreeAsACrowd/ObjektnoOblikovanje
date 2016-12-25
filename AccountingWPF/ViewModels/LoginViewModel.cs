@@ -83,8 +83,8 @@ namespace AccountingWPF.ViewModels
 			
             IUserRepository userRepository = new UserRepository();
             IVatRepository vatRepo = new VatRepository();
-            MonateryFlowRepository<Expenditure> expenditureRepo = new ExpenditureRepository<Expenditure>();
-            MonateryFlowRepository<Receipt> receiptsRepo = new ReceiptRepository<Receipt>();
+            MonetaryFlowRepository<Expenditure> expenditureRepo = new ExpenditureRepository<Expenditure>();
+            MonetaryFlowRepository<Receipt> receiptsRepo = new ReceiptRepository<Receipt>();
             IInvoiceRepository<IngoingInvoice> ingoingInvoiceRepo = new IngoingInvoiceRepository<IngoingInvoice>();
             IInvoiceRepository<OutgoingInvoice> outgoingInvoiceRepo = new OutgoingInvoiceRepository<OutgoingInvoice>();
             //populateDatabase();
@@ -93,9 +93,9 @@ namespace AccountingWPF.ViewModels
 
             // IList<Expenditure> e = expenditureRepo.getByUserId(1);
 
-             IList<Expenditure> eByYear = expenditureRepo.getUserMonateryFlowByYear(1, 2016);
-             IList<Expenditure> rByYear = expenditureRepo.getUserMonateryFlowByYear(1, 2016);
-            // IList<Expenditure> rByNoYear = expenditureRepo.getUserMonateryFlowByYear(1, 2015);
+             IList<Expenditure> eByYear = expenditureRepo.getUserMonetaryFlowByYear(1, 2016);
+             IList<Expenditure> rByYear = expenditureRepo.getUserMonetaryFlowByYear(1, 2016);
+            // IList<Expenditure> rByNoYear = expenditureRepo.getUserMonetaryFlowByYear(1, 2015);
 
             IList<int> eYears = expenditureRepo.getAvailableYearsByUserId(1);
             IList<int> rYears = receiptsRepo.getAvailableYearsByUserId(1);
@@ -117,8 +117,8 @@ namespace AccountingWPF.ViewModels
             //repoi
             IUserRepository userRepository = new UserRepository();
             IVatRepository vatRepo = new VatRepository();
-            MonateryFlowRepository<Expenditure> expenditureRepo = new ExpenditureRepository<Expenditure>();
-            MonateryFlowRepository<Receipt> receiptsRepo = new ReceiptRepository<Receipt>();
+            MonetaryFlowRepository<Expenditure> expenditureRepo = new ExpenditureRepository<Expenditure>();
+            MonetaryFlowRepository<Receipt> receiptsRepo = new ReceiptRepository<Receipt>();
             IInvoiceRepository<IngoingInvoice> ingoingInvoiceRepo = new IngoingInvoiceRepository<IngoingInvoice>();
             IInvoiceRepository<OutgoingInvoice> outgoingInvoiceRepo = new OutgoingInvoiceRepository<OutgoingInvoice>();
 
@@ -135,7 +135,7 @@ namespace AccountingWPF.ViewModels
             IList<OutgoingInvoice> outgoingInvoices = createOutgointInvoiceInDatabase(outgoingInvoiceRepo, mock.Id);
         }
 
-        public IList<Expenditure> createExcedituresInDatabase(MonateryFlowRepository<Expenditure> expenditureRepo, int id)
+        public IList<Expenditure> createExcedituresInDatabase(MonetaryFlowRepository<Expenditure> expenditureRepo, int id)
         {
             IList<Expenditure> expenditures = Mock.getExpendituresByUserId(id);
             foreach (Expenditure e in expenditures)
@@ -146,7 +146,7 @@ namespace AccountingWPF.ViewModels
             return expenditureRepo.getByUserId(id);
         }
 
-        public IList<Receipt> createReceiptsInDatabase(MonateryFlowRepository<Receipt> receiptsRepo, int id)
+        public IList<Receipt> createReceiptsInDatabase(MonetaryFlowRepository<Receipt> receiptsRepo, int id)
         {
             IList<Receipt> receipts = Mock.getReceiptsByUserId(id);
             foreach (Receipt r in receipts)

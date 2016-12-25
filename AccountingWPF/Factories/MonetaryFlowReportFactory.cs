@@ -8,15 +8,15 @@ using AccountingWPF.Repositories;
 
 namespace AccountingWPF.Factories
 {
-	public abstract class MonateryFlowReportFactory
+	public abstract class MonetaryFlowReportFactory
 	{
 		public virtual int ReportYear { get; set; }
 		public virtual int UserId { get; set; }
 
-		public virtual List<MonateryFlow> monateryFlow { get; set; }
+		public virtual List<MonetaryFlow> monetaryFlow { get; set; }
 
-		public virtual MonateryFlowRepository<Expenditure> expenditureRepository { get; set; }
-		public virtual MonateryFlowRepository<Receipt> receiptRepository { get; set; }
+		public virtual MonetaryFlowRepository<Expenditure> expenditureRepository { get; set; }
+		public virtual MonetaryFlowRepository<Receipt> receiptRepository { get; set; }
 
 		public abstract byte[] Create();
 

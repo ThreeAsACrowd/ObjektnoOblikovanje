@@ -12,16 +12,16 @@ using NHibernate.Linq;
 
 namespace AccountingWPF.Repositories
 {
-    public class ReceiptRepository<MonateryFlow> : MonateryFlowRepository<MonateryFlow>
+    public class ReceiptRepository<MonetaryFlow> : MonetaryFlowRepository<MonetaryFlow>
     {
 
-        public void Create(MonateryFlow monateryFlow)
+        public void Create(MonetaryFlow monetaryFlow)
         {
             using (var session = SessionManager.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
-                    session.SaveOrUpdate(monateryFlow);
+                    session.SaveOrUpdate(monetaryFlow);
                     transaction.Commit();
                 }
             }
@@ -42,37 +42,37 @@ namespace AccountingWPF.Repositories
             }
         }
 
-        public void Update(MonateryFlow monateryFlow)
+        public void Update(MonetaryFlow monetaryFlow)
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                session.Update(monateryFlow);
+                session.Update(monetaryFlow);
             }
         }
 
-        public MonateryFlow GetById(int id)
+        public MonetaryFlow GetById(int id)
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return session.Get<MonateryFlow>(id);
+                return session.Get<MonetaryFlow>(id);
             }
         }
 
-        public IList<MonateryFlow> getByUserId(int userId)
+        public IList<MonetaryFlow> getByUserId(int userId)
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return (IList<MonateryFlow>)session.Query<Receipt>()
+                return (IList<MonetaryFlow>)session.Query<Receipt>()
                      .Where(x => x.User.Id == userId)
                      .ToList();
             }
         }
 
-        public IList<MonateryFlow> getUserMonateryFlowByYear(int userId, int year)
+        public IList<MonetaryFlow> getUserMonetaryFlowByYear(int userId, int year)
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return (IList<MonateryFlow>)session.Query<Receipt>()
+                return (IList<MonetaryFlow>)session.Query<Receipt>()
                      .Where(x => x.User.Id == userId)
                      .Where(x => x.Date.Year == year)
                      .ToList();

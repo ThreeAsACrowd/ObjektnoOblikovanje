@@ -13,7 +13,7 @@ namespace AccountingWPF.ViewModels
     {
         public IList<Expenditure> expenditures { get; set; }
         public IList<Vat> vats { get; set; }
-        private MonateryFlowRepository<Expenditure> expenditureRepo { get; set; }
+        private MonetaryFlowRepository<Expenditure> expenditureRepo { get; set; }
         private VatRepository vatRepo { get; set; }
 
         public ExpenditureViewModel()

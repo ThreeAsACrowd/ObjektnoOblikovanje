@@ -19,17 +19,17 @@ namespace AccountingWPF.Views
     /// <summary>
     /// Interaction logic for IncomesExpensesReport.xaml
     /// </summary>
-    public partial class MonateryFlowReportWindow : Window
+    public partial class MonetaryFlowReportWindow : Window
     {
-		public MonateryFlowReportViewModel monateryFlowReportVM;
+		public MonetaryFlowReportViewModel monetaryFlowReportVM;
 		private SaveFileDialog saveFileDialog;
 
-        public MonateryFlowReportWindow()
+        public MonetaryFlowReportWindow()
         {
             InitializeComponent();
 
-			monateryFlowReportVM = new MonateryFlowReportViewModel();
-			this.DataContext = monateryFlowReportVM;
+			monetaryFlowReportVM = new MonetaryFlowReportViewModel();
+			this.DataContext = monetaryFlowReportVM;
 			
 			saveFileDialog = new SaveFileDialog();
 			saveFileDialog.DefaultExt = ".html";
@@ -42,7 +42,7 @@ namespace AccountingWPF.Views
 			bool? dialogResult = saveFileDialog.ShowDialog();
 			if (dialogResult.HasValue && dialogResult.Value == true)
 			{
-				monateryFlowReportVM.CreateReport(saveFileDialog.FileName);
+				monetaryFlowReportVM.CreateReport(saveFileDialog.FileName);
 
 				lbl_status.Content = "Report created at: " + saveFileDialog.FileName.ToString();
 			}

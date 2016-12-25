@@ -16,8 +16,8 @@ namespace AccountingWPF.Factories
 		public virtual List<Expenditure> expenditures { get; set; }
 		public virtual List<Receipt> receipts { get; set; }
 
-		public virtual MonateryFlowRepository<Expenditure> expenditureRepository { get; set; }
-		public virtual MonateryFlowRepository<Receipt> receiptRepository { get; set; }
+		public virtual MonetaryFlowRepository<Expenditure> expenditureRepository { get; set; }
+		public virtual MonetaryFlowRepository<Receipt> receiptRepository { get; set; }
 
 		public abstract byte[] Create();
 	}

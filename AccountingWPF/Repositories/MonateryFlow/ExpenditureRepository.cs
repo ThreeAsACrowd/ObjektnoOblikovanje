@@ -15,10 +15,10 @@ using AccountingWPF.Models;
 
 namespace AccountingWPF.Repositories
 {
-    public class ExpenditureRepository<MonateryFlow> : MonateryFlowRepository<MonateryFlow>
+    public class ExpenditureRepository<MonetaryFlow> : MonetaryFlowRepository<MonetaryFlow>
     {
 
-        public void Create(MonateryFlow monateryFlow)
+        public void Create(MonetaryFlow monetaryFlow)
         {
 
             using (var session = SessionManager.OpenSession())
@@ -26,7 +26,7 @@ namespace AccountingWPF.Repositories
                 using (ITransaction transaction = session.BeginTransaction())
                 {
 
-                    session.SaveOrUpdate(monateryFlow);
+                    session.SaveOrUpdate(monetaryFlow);
                     transaction.Commit();
                 }
             }
@@ -52,7 +52,7 @@ namespace AccountingWPF.Repositories
 
         }
 
-        public MonateryFlow GetById(int id)
+        public MonetaryFlow GetById(int id)
         {
             using (ISession session = SessionManager.OpenSession())
             {
@@ -61,7 +61,7 @@ namespace AccountingWPF.Repositories
 
                 if (expenditure == null)
                 {
-                    return default(MonateryFlow);
+                    return default(MonetaryFlow);
                 }
 
 
@@ -71,33 +71,33 @@ namespace AccountingWPF.Repositories
                 expenditure.Vat = vat;
                 expenditure.User = user;
 
-                return session.Get<MonateryFlow>(id);
+                return session.Get<MonetaryFlow>(id);
             }
         }
 
-        public void Update(MonateryFlow monateryFlow)
+        public void Update(MonetaryFlow monetaryFlow)
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                session.Update(monateryFlow);
+                session.Update(monetaryFlow);
             }
         }
 
-        public IList<MonateryFlow> getByUserId(int userId)
+        public IList<MonetaryFlow> getByUserId(int userId)
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return (IList<MonateryFlow>)session.Query<Expenditure>()
+                return (IList<MonetaryFlow>)session.Query<Expenditure>()
                      .Where(x => x.User.Id == userId)
                      .ToList();
             }
         }
 
-        public IList<MonateryFlow> getUserMonateryFlowByYear(int userId, int year)
+        public IList<MonetaryFlow> getUserMonetaryFlowByYear(int userId, int year)
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return (IList<MonateryFlow>)session.Query<Expenditure>()
+                return (IList<MonetaryFlow>)session.Query<Expenditure>()
                      .Where(x => x.User.Id == userId)
                      .Where(x => x.Date.Year == year)
                      .ToList();

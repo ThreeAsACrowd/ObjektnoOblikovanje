@@ -9,9 +9,9 @@ using AccountingWPF.Models;
 
 namespace AccountingWPF.Factories
 {
-    public class MonateryFlowHTMLFactory : MonateryFlowReportFactory
+    public class MonetaryFlowHTMLFactory : MonetaryFlowReportFactory
     {
-        public MonateryFlowHTMLFactory(int userId, int year)
+        public MonetaryFlowHTMLFactory(int userId, int year)
         {
             ReportYear = year;
             UserId = userId;
@@ -19,15 +19,15 @@ namespace AccountingWPF.Factories
             expenditureRepository = new ExpenditureRepository<Expenditure>();
             receiptRepository = new ReceiptRepository<Receipt>();
 
-            monateryFlow = new List<MonateryFlow>();
+            monetaryFlow = new List<MonetaryFlow>();
         }
 
         public override byte[] Create()
         {
-            monateryFlow.AddRange(expenditureRepository.getUserMonateryFlowByYear(UserManager.CurrentUser.Id, ReportYear));
-            monateryFlow.AddRange(receiptRepository.getUserMonateryFlowByYear(UserManager.CurrentUser.Id, ReportYear));
+            monetaryFlow.AddRange(expenditureRepository.getUserMonetaryFlowByYear(UserManager.CurrentUser.Id, ReportYear));
+            monetaryFlow.AddRange(receiptRepository.getUserMonetaryFlowByYear(UserManager.CurrentUser.Id, ReportYear));
 
-            monateryFlow = monateryFlow.OrderByDescending(x => x.Date).ToList();
+            monetaryFlow = monetaryFlow.OrderByDescending(x => x.Date).ToList();
 
             string fileText = "<html><table border=\"1\">";
             fileText += "<tr><th rowspan = \"2\">Redni broj</th><th rowspan = \"2\">Broj temeljnice</th><th rowspan = \"2\">Datum</th><th colspan = \"5\" rowspan = \"1\">Primici</th><th colspan = \"6\" rowspan = \"1\">Izdaci</th></tr>";
@@ -35,7 +35,7 @@ namespace AccountingWPF.Factories
 
             int itemNumber = 0;
 
-            foreach (MonateryFlow item in monateryFlow)
+            foreach (MonetaryFlow item in monetaryFlow)
             {
                 fileText += string.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td>", (++itemNumber).ToString(), item.JournalEntryNum, item.Date.ToShortDateString());
 

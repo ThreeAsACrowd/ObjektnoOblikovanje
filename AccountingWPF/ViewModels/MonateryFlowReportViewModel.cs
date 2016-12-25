@@ -11,17 +11,17 @@ using AccountingWPF.BaseLib;
 
 namespace AccountingWPF.ViewModels
 {
-    public class MonateryFlowReportViewModel
+    public class MonetaryFlowReportViewModel
     {
         public IList<int> ActiveYears { get; set; }
         public int SelectedYear { get; set; }
 
-        private MonateryFlowRepository<Expenditure> expenditureRepository { get; set; }
-        private MonateryFlowRepository<Receipt> receiptRepository { get; set; }
+        private MonetaryFlowRepository<Expenditure> expenditureRepository { get; set; }
+        private MonetaryFlowRepository<Receipt> receiptRepository { get; set; }
 
-        private MonateryFlowReportFactory reportFactory;
+        private MonetaryFlowReportFactory reportFactory;
 
-        public MonateryFlowReportViewModel()
+        public MonetaryFlowReportViewModel()
         {
 
             expenditureRepository = new ExpenditureRepository<Expenditure>();
@@ -34,7 +34,7 @@ namespace AccountingWPF.ViewModels
 
         public void CreateReport(string filepath)
         {
-            reportFactory = new MonateryFlowHTMLFactory(UserManager.CurrentUser.Id, SelectedYear);
+            reportFactory = new MonetaryFlowHTMLFactory(UserManager.CurrentUser.Id, SelectedYear);
             using (System.IO.BinaryWriter writer = new System.IO.BinaryWriter(System.IO.File.Open(filepath, System.IO.FileMode.OpenOrCreate)))
             {
                 writer.Write(reportFactory.Create());

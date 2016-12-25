@@ -7,10 +7,10 @@ using FluentNHibernate.Mapping;
 
 namespace AccountingWPF.Models.nHibernateModels
 {
-    public class MonateryFlowMap : ClassMap<MonateryFlow>
+    public class MonetaryFlowMap : ClassMap<MonetaryFlow>
     {
 
-        public MonateryFlowMap()
+        public MonetaryFlowMap()
         {
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Date);

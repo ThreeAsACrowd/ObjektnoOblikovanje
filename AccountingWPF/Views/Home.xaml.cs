@@ -49,9 +49,9 @@ namespace AccountingWPF.Views
             HomeVM.showIngoingInvoiceMainWindow();
         }
 
-        private void mi_monateryFlowReport_Click(object sender, RoutedEventArgs e)
+        private void mi_monetaryFlowReport_Click(object sender, RoutedEventArgs e)
         {
-            HomeVM.generateMonateryFlowReport();
+            HomeVM.generateMonetaryFlowReport();
         }
 
         private void mi_yearlyReport_Click(object sender, RoutedEventArgs e)
