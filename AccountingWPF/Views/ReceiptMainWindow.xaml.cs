@@ -31,5 +31,24 @@ namespace AccountingWPF.Views
             this.dg_cbx_VAT.ItemsSource = receiptsVM.vats;
 		}
 
+        private void Add_new_receipt_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Add");
+        }
+
+        private void Delete_receipt_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Delete");
+        }
+
+        private void Edit_receipt_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Edit");
+        }
+
+        private void Save_receipt_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Save");
+        }
 	}
 }

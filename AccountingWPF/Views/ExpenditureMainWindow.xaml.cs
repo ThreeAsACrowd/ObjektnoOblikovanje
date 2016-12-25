@@ -31,5 +31,25 @@ namespace AccountingWPF.Views
 			this.dg_cbx_VAT.ItemsSource = expenditureVM.vats;
 			
 		}
+
+        private void Add_new_expenditure_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Add");
+        }
+
+        private void Delete_expenditure_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("delete");
+        }
+
+        private void Edit_expenditure_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("edit");
+        }
+
+        private void Save_ependiture_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("save");
+        }
 	}
 }

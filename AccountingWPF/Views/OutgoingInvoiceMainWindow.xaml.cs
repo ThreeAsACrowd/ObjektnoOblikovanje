@@ -21,11 +21,12 @@ namespace AccountingWPF.Views
 	public partial class OutgoingInvoiceMainWindow : Window
 	{
         OutgoingInvoiceViewModel outgoingInvoiceVM { get; set; }
+
 		public OutgoingInvoiceMainWindow()
 		{
 			InitializeComponent();
             outgoingInvoiceVM = new OutgoingInvoiceViewModel();
-            //TODO databinding
+            this.DataContext = outgoingInvoiceVM;
 		}
 	}
 }

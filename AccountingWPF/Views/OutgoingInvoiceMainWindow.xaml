@@ -23,7 +23,8 @@
                   HeadersVisibility="All" CanUserAddRows="True"
                   ScrollViewer.CanContentScroll="True" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ItemsSource="{Binding outgoing_invoices}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Date}" Header="Date" />
                 <DataGridTextColumn Binding="{Binding InvoiceClassNumber}" Header="Invoice class number" />
