@@ -18,10 +18,20 @@ namespace AccountingWPF.Repositories
     public class ExpenditureRepository<MonetaryFlow> : IMonetaryFlowRepository<MonetaryFlow>
     {
 
+        private ISessionFactory sessionFactory;
+        public ExpenditureRepository(ISessionFactory sessionFactory)
+        {
+            this.sessionFactory = sessionFactory;
+        }
+        public ExpenditureRepository()
+        {
+            this.sessionFactory = SessionManager.SessionFactory;
+        }
+
         public void Create(MonetaryFlow monetaryFlow)
         {
 
-            using (var session = SessionManager.OpenSession())
+            using (var session = sessionFactory.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -36,7 +46,7 @@ namespace AccountingWPF.Repositories
         public void Delete(int id)
         {
 
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -58,7 +68,7 @@ namespace AccountingWPF.Repositories
 
         public MonetaryFlow GetById(int id)
         {
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -86,7 +96,7 @@ namespace AccountingWPF.Repositories
 
         public void Update(MonetaryFlow monetaryFlow)
         {
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -98,7 +108,7 @@ namespace AccountingWPF.Repositories
 
         public IList<MonetaryFlow> getByUserId(int userId)
         {
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -113,7 +123,7 @@ namespace AccountingWPF.Repositories
 
         public IList<MonetaryFlow> getUserMonetaryFlowByYear(int userId, int year)
         {
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -129,7 +139,7 @@ namespace AccountingWPF.Repositories
 
         public IList<int> getAvailableYearsByUserId(int userId)
         {
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {

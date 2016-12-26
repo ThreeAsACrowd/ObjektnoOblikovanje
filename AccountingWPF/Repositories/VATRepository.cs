@@ -13,10 +13,19 @@ namespace AccountingWPF.Models
 {
     public class VatRepository : IVatRepository
     {
+        private ISessionFactory sessionFactory;
+        public VatRepository(ISessionFactory sessionFactory)
+        {
+            this.sessionFactory = sessionFactory;
+        }
+        public VatRepository()
+        {
+            this.sessionFactory = SessionManager.SessionFactory;
+        }
 
         public void Create(Vat vat)
         {
-            using (var session = SessionManager.OpenSession())
+            using (var session = sessionFactory.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -29,7 +38,7 @@ namespace AccountingWPF.Models
         public void Delete(int id)
         {
 
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 Vat vat = session.Get<Vat>(id);
                 if (vat == null)
@@ -44,7 +53,7 @@ namespace AccountingWPF.Models
 
         public void Update(Vat vat)
         {
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 session.Update(vat);
             }
@@ -52,7 +61,7 @@ namespace AccountingWPF.Models
 
         public Vat GetById(int id)
         {
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 return session.Get<Vat>(id);
             }
@@ -60,7 +69,7 @@ namespace AccountingWPF.Models
 
         public IList<Vat> getAll()
         {
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
 
                 return session.Query<Vat>()

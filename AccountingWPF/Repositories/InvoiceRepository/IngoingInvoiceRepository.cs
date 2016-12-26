@@ -14,9 +14,19 @@ namespace AccountingWPF.Repositories
 {
     public class IngoingInvoiceRepository<Invoice> : IInvoiceRepository<Invoice>
     {
+
+        private ISessionFactory sessionFactory;
+        public IngoingInvoiceRepository(ISessionFactory sessionFactory)
+        {
+            this.sessionFactory = sessionFactory;
+        }
+        public IngoingInvoiceRepository()
+        {
+            this.sessionFactory = SessionManager.SessionFactory;
+        }
         public void Create(Invoice invoice)
         {
-            using (var session = SessionManager.OpenSession())
+            using (var session = sessionFactory.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -28,7 +38,7 @@ namespace AccountingWPF.Repositories
 
         public void Delete(int id)
         {
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -47,7 +57,7 @@ namespace AccountingWPF.Repositories
 
         public Invoice GetById(int id)
         {
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -60,7 +70,7 @@ namespace AccountingWPF.Repositories
 
         public void Update(Invoice invoice)
         {
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -73,7 +83,7 @@ namespace AccountingWPF.Repositories
         public IList<Invoice> getByUserId(int userId)
         {
 
-            using (ISession session = SessionManager.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
