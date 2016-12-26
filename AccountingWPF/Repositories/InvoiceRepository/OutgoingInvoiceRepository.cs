@@ -30,14 +30,18 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-
-                Invoice invoice = session.Get<Invoice>(id);
-                if (invoice == null)
+                using (ITransaction transaction = session.BeginTransaction())
                 {
-                    MessageBox.Show("Invoice for given id does not exists");
-                    return;
+                    Invoice invoice = session.Get<Invoice>(id);
+                    if (invoice == null)
+                    {
+                        MessageBox.Show("Invoice for given id does not exists");
+                        transaction.Commit();
+                        return;
+                    }
+                    session.Delete(invoice);
+                    transaction.Commit();
                 }
-                session.Delete(invoice);
             }
         }
 
@@ -45,7 +49,12 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return session.Get<Invoice>(id);
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    Invoice data = session.Get<Invoice>(id);
+                    transaction.Commit();
+                    return data;
+                }
             }
         }
 
@@ -53,7 +62,11 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                session.Update(invoice);
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    session.Update(invoice);
+                    transaction.Commit();
+                }
             }
         }
 
@@ -61,9 +74,14 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return (IList<Invoice>)session.Query<OutgoingInvoice>()
-                     .Where(x => x.FK_UserId == userId)
-                     .ToList();
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    IList<Invoice> list = (IList<Invoice>)session.Query<OutgoingInvoice>()
+                                                                 .Where(x => x.FK_UserId == userId)
+                                                                 .ToList();
+                    transaction.Commit();
+                    return list;
+                }
             }
         }
     }

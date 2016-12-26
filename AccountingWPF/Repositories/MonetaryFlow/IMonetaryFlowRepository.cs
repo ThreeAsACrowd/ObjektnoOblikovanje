@@ -7,7 +7,7 @@ using AccountingWPF.Models;
 
 namespace AccountingWPF.Repositories
 {
-    public interface MonetaryFlowRepository<MonetaryFlow>
+    public interface IMonetaryFlowRepository<MonetaryFlow>
     {
         void Create(MonetaryFlow monetaryFlow);
         void Delete(int id);

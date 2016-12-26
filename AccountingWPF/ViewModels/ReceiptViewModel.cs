@@ -13,7 +13,7 @@ namespace AccountingWPF.ViewModels
     {
         public IList<Receipt> receipts { get; set; }
         public IList<Vat> vats { get; set; }
-        private MonetaryFlowRepository<Receipt> receiptRepo { get; set; }
+        private IMonetaryFlowRepository<Receipt> receiptRepo { get; set; }
         private VatRepository vatRepo { get; set; }
 
         public ReceiptViewModel()

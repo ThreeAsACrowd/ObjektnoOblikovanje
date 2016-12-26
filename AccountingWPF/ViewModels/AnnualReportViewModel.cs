@@ -15,8 +15,8 @@ namespace AccountingWPF.ViewModels
         public IList<int> ActiveYears { get; set; }
         public int SelectedYear { get; set; }
 
-        private MonetaryFlowRepository<Expenditure> expenditureRepository { get; set; }
-        private MonetaryFlowRepository<Receipt> receiptRepository { get; set; }
+        private IMonetaryFlowRepository<Expenditure> expenditureRepository { get; set; }
+        private IMonetaryFlowRepository<Receipt> receiptRepository { get; set; }
 
         private AbstractReport htmlReport;
 

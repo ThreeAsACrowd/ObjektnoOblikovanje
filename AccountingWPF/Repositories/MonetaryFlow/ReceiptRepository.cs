@@ -12,7 +12,7 @@ using NHibernate.Linq;
 
 namespace AccountingWPF.Repositories
 {
-    public class ReceiptRepository<MonetaryFlow> : MonetaryFlowRepository<MonetaryFlow>
+    public class ReceiptRepository<MonetaryFlow> : IMonetaryFlowRepository<MonetaryFlow>
     {
 
         public void Create(MonetaryFlow monetaryFlow)
@@ -31,14 +31,18 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-
-                Receipt expenditure = session.Get<Receipt>(id);
-                if (expenditure == null)
+                using (ITransaction transaction = session.BeginTransaction())
                 {
-                    MessageBox.Show("Expenditure for given id does not exists");
-                    return;
+                    Receipt expenditure = session.Get<Receipt>(id);
+                    if (expenditure == null)
+                    {
+                        MessageBox.Show("Expenditure for given id does not exists");
+                        transaction.Commit();
+                        return;
+                    }
+                    session.Delete(expenditure);
+                    transaction.Commit();
                 }
-                session.Delete(expenditure);
             }
         }
 
@@ -46,7 +50,11 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                session.Update(monetaryFlow);
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    session.Update(monetaryFlow);
+                    transaction.Commit();
+                }
             }
         }
 
@@ -54,7 +62,12 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return session.Get<MonetaryFlow>(id);
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    MonetaryFlow receipt = session.Get<MonetaryFlow>(id);
+                    transaction.Commit();
+                    return receipt;
+                }
             }
         }
 
@@ -62,9 +75,14 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return (IList<MonetaryFlow>)session.Query<Receipt>()
-                     .Where(x => x.User.Id == userId)
-                     .ToList();
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    IList<MonetaryFlow> list = (IList<MonetaryFlow>)session.Query<Receipt>()
+                                                                         .Where(x => x.User.Id == userId)
+                                                                         .ToList();
+                    transaction.Commit();
+                    return list;
+                }
             }
         }
 
@@ -72,10 +90,15 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return (IList<MonetaryFlow>)session.Query<Receipt>()
-                     .Where(x => x.User.Id == userId)
-                     .Where(x => x.Date.Year == year)
-                     .ToList();
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    IList<MonetaryFlow> list = (IList<MonetaryFlow>)session.Query<Receipt>()
+                                                                         .Where(x => x.User.Id == userId)
+                                                                         .Where(x => x.Date.Year == year)
+                                                                         .ToList();
+                    transaction.Commit();
+                    return list;
+                }
             }
         }
 
@@ -83,12 +106,16 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-
-                return session.Query<Receipt>()
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    IList<int> years = session.Query<Receipt>()
                             .Where(x => x.User.Id == userId)
                             .Select(x => x.Date.Year)
                             .Distinct()
                             .ToList();
+                    transaction.Commit();
+                    return years;
+                }
             }
         }
     }

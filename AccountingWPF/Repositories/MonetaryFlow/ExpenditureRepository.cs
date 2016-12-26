@@ -15,7 +15,7 @@ using AccountingWPF.Models;
 
 namespace AccountingWPF.Repositories
 {
-    public class ExpenditureRepository<MonetaryFlow> : MonetaryFlowRepository<MonetaryFlow>
+    public class ExpenditureRepository<MonetaryFlow> : IMonetaryFlowRepository<MonetaryFlow>
     {
 
         public void Create(MonetaryFlow monetaryFlow)
@@ -38,16 +38,20 @@ namespace AccountingWPF.Repositories
 
             using (ISession session = SessionManager.OpenSession())
             {
-
-                Expenditure expenditure = session.Get<Expenditure>(id);
-
-                if (expenditure == null)
+                using (ITransaction transaction = session.BeginTransaction())
                 {
-                    MessageBox.Show("Expenditure for given id does not exists");
-                    return;
-                }
+                    Expenditure expenditure = session.Get<Expenditure>(id);
 
-                session.Delete(expenditure);
+                    if (expenditure == null)
+                    {
+                        MessageBox.Show("Expenditure for given id does not exists");
+                        transaction.Commit();
+                        return;
+                    }
+
+                    session.Delete(expenditure);
+                    transaction.Commit();
+                }
             }
 
         }
@@ -56,22 +60,27 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                Expenditure expenditure = session.Get<Expenditure>(id);
-
-
-                if (expenditure == null)
+                using (ITransaction transaction = session.BeginTransaction())
                 {
-                    return default(MonetaryFlow);
+                    Expenditure expenditure = session.Get<Expenditure>(id);
+
+                    if (expenditure == null)
+                    {
+                        transaction.Commit();
+                        return default(MonetaryFlow);
+                    }
+
+
+                    Vat vat = session.Get<Vat>(expenditure.FK_VAT);
+                    User user = session.Get<User>(expenditure.FK_UserId);
+
+                    expenditure.Vat = vat;
+                    expenditure.User = user;
+
+                    MonetaryFlow data = session.Get<MonetaryFlow>(id);
+                    transaction.Commit();
+                    return data;
                 }
-
-
-                Vat vat = session.Get<Vat>(expenditure.FK_VAT);
-                User user = session.Get<User>(expenditure.FK_UserId);
-
-                expenditure.Vat = vat;
-                expenditure.User = user;
-
-                return session.Get<MonetaryFlow>(id);
             }
         }
 
@@ -79,7 +88,11 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                session.Update(monetaryFlow);
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    session.Update(monetaryFlow);
+                    transaction.Commit();
+                }
             }
         }
 
@@ -87,9 +100,14 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return (IList<MonetaryFlow>)session.Query<Expenditure>()
-                     .Where(x => x.User.Id == userId)
-                     .ToList();
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    IList<MonetaryFlow> list = (IList<MonetaryFlow>)session.Query<Expenditure>()
+                                                                            .Where(x => x.User.Id == userId)
+                                                                            .ToList();
+                    transaction.Commit();
+                    return list;
+                }
             }
         }
 
@@ -97,10 +115,15 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-                return (IList<MonetaryFlow>)session.Query<Expenditure>()
-                     .Where(x => x.User.Id == userId)
-                     .Where(x => x.Date.Year == year)
-                     .ToList();
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    IList<MonetaryFlow> list = (IList<MonetaryFlow>)session.Query<Expenditure>()
+                                                                            .Where(x => x.User.Id == userId)
+                                                                            .Where(x => x.Date.Year == year)
+                                                                            .ToList();
+                    transaction.Commit();
+                    return list;
+                }
             }
         }
 
@@ -108,12 +131,16 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = SessionManager.OpenSession())
             {
-
-                return session.Query<Expenditure>()
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    IList<int> years = session.Query<Expenditure>()
                             .Where(x => x.User.Id == userId)
                             .Select(x => x.Date.Year)
                             .Distinct()
                             .ToList();
+                    transaction.Commit();
+                    return years;
+                }
             }
         }
     }

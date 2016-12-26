@@ -69,19 +69,21 @@ namespace AccountingWPF.Repositories
         {
             using (ISession session = sessionFactory.OpenSession())
             {
-                var users = session.CreateCriteria<User>()
-                  .Add(Restrictions.Eq("Username", userCredentials.Username))
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    var users = session.CreateCriteria<User>()
+                                    .Add(Restrictions.Eq("Username", userCredentials.Username))
                                     .Add(Restrictions.Eq("Password", userCredentials.Password))
                                     .List<User>();
+                    transaction.Commit();
 
-                if (users.Count() == 0)
-                {
-                    //  MessageBox.Show("User does not exists!");
-                    return null;
+                    if (users.Count() == 0)
+                    {
+                        return null;
+                    }
+                    User user = users[0];
+                    return user;
                 }
-                User user = users[0];
-                // MessageBox.Show("User " + user.Username + " exists!");
-                return user;
             }
         }
 
