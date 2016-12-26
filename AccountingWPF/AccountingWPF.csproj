@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="BaseLib\UserManager.cs" />
     <Compile Include="BindingModels\LoginBindingModel.cs" />
+    <Compile Include="nHibernateDb\AbstractSessionManager.cs" />
     <Compile Include="Reporting\HtmlReport.cs" />
     <Compile Include="Reporting\AbstractReport.cs" />
     <Compile Include="Models\nHibernateModels\VatMap.cs" />
@@ -99,7 +100,7 @@
     <Compile Include="Notification\PropertyChangedNotification.cs" />
     <Compile Include="Repositories\InvoiceRepository\IngoingInvoiceRepository.cs" />
     <Compile Include="Repositories\InvoiceRepository\IInvoiceRepository.cs" />
-    <Compile Include="Repositories\InvoiceRepository\IUserRepository.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\InvoiceRepository\OutgoingInvoiceRepository.cs" />
     <Compile Include="Repositories\IVatRepository.cs" />
     <Compile Include="Repositories\MonetaryFlow\ExpenditureRepository.cs" />

@@ -13,7 +13,7 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace AccountingWPF.nHibernateDb
 {
-    public static class SessionManager
+    public static class SessionManagerTest
     {
         private static ISessionFactory sessionFactory;
         public static ISessionFactory SessionFactory {
@@ -22,7 +22,7 @@ namespace AccountingWPF.nHibernateDb
                 {
 
                     sessionFactory = Fluently.Configure()
-                   .Database(SQLiteConfiguration.Standard.ShowSql().UsingFile("accountingDB.db"))
+                   .Database(SQLiteConfiguration.Standard.ShowSql().UsingFile("accountingDBtest.db"))
                    .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
                    .ExposeConfiguration(BuildSchema)
                    .BuildSessionFactory();
@@ -34,7 +34,7 @@ namespace AccountingWPF.nHibernateDb
 
         private static void BuildSchema(Configuration config)
         {
-            if (!File.Exists("accountingDB.db"))
+            if (!File.Exists("accountingDBtest.db"))
             {
                 new SchemaExport(config).Create(false, true);
             }
@@ -44,6 +44,8 @@ namespace AccountingWPF.nHibernateDb
         {
             return SessionFactory.OpenSession();
         }
+
+
 
     }
 }

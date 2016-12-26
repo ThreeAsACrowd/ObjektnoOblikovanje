@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingWPF", "Accounting
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{BC7931B5-46A4-4CB5-934B-FC23EB8F42F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFUnitTestsProject", "WPFUnitTestsProject\WPFUnitTestsProject.csproj", "{F3B7668E-6434-4894-9E80-0D63683AD138}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingUnitTestProject", "AccountingUnitTestProject\AccountingUnitTestProject.csproj", "{1ABF48F8-36D7-44CF-A645-192863973427}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{BC7931B5-46A4-4CB5-934B-FC23EB8F42F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC7931B5-46A4-4CB5-934B-FC23EB8F42F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC7931B5-46A4-4CB5-934B-FC23EB8F42F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3B7668E-6434-4894-9E80-0D63683AD138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3B7668E-6434-4894-9E80-0D63683AD138}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3B7668E-6434-4894-9E80-0D63683AD138}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3B7668E-6434-4894-9E80-0D63683AD138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ABF48F8-36D7-44CF-A645-192863973427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ABF48F8-36D7-44CF-A645-192863973427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ABF48F8-36D7-44CF-A645-192863973427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ABF48F8-36D7-44CF-A645-192863973427}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

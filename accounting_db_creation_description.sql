@@ -1,8 +1,8 @@
 CREATE TABLE User(
-   Id 			INT 	PRIMARY KEY	NOT NULL,
+   Id 			INT 	PRIMARY KEY	,
    Username		TEXT    NOT NULL,
    Password		TEXT    NOT NULL,
-   Adress		TEXT,
+   Address		TEXT,
    Email		TEXT,
    AssociationName TEXT,
    OIB			TEXT
