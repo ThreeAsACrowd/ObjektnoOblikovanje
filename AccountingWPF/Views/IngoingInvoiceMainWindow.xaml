@@ -25,7 +25,7 @@
                   ScrollViewer.CanContentScroll="True" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  ItemsSource="{Binding ingoing_invoices}"
+                  ItemsSource="{Binding i_invoices, UpdateSourceTrigger=PropertyChanged}"
                   SelectedItem="{Binding selectedItem, Mode=TwoWay}"
                   CanUserAddRows="False"
                       >

@@ -9,11 +9,13 @@ using DataRepository.Repositories;
 using System.Windows.Input;
 using AccountingWPF.Commands;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace AccountingWPF.ViewModels
 {
     public class IngoingInvoiceViewModel
     {
+        public ObservableCollection<IngoingInvoice> i_invoices { get; set; }
         public IList<IngoingInvoice> ingoing_invoices { get; set; }
         public IInvoiceRepository<IngoingInvoice> IngoingInvoicesRepo { get; set; }
 
@@ -41,6 +43,9 @@ namespace AccountingWPF.ViewModels
         {
             IngoingInvoicesRepo = new IngoingInvoiceRepository<IngoingInvoice>();
             ingoing_invoices = IngoingInvoicesRepo.getByUserId(UserManager.CurrentUser.Id);
+
+            this.i_invoices = new ObservableCollection<IngoingInvoice>(ingoing_invoices);
+
             AddNewIngoingInvoiceCommand = new AddNewIngoingInvoiceCommand(this);
             DeleteIngoingInvoiceCommand = new DeleteIngoingInvoiceCommand(this);
             UpdateIngoingInvoiceCommand = new UpdateIngoingInvoiceCommand(this);
@@ -80,6 +85,9 @@ namespace AccountingWPF.ViewModels
             if (this.selectedItem != null)
             {
                 this.IngoingInvoicesRepo.Delete(this.selectedItem.Id);
+                this.ingoing_invoices = IngoingInvoicesRepo.getByUserId(UserManager.CurrentUser.Id);
+
+                this.i_invoices = new ObservableCollection<IngoingInvoice>(ingoing_invoices);
             }
             else
             {
