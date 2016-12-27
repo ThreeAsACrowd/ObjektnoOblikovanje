@@ -1,10 +1,7 @@
-﻿using System;
-using AccountingWPF.Models;
-using AccountingWPF.nHibernateDb;
-using AccountingWPF.Repositories;
-using AccountingWPF.Repositories.InvoiceRepository;
+﻿using DataRepository.Models;
+using DataRepository.Repositories;
+using DataRepository.Repositories.InvoiceRepository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NHibernate;
 
 namespace AccountingUnitTestProject
 {

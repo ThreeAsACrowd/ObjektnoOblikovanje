@@ -74,14 +74,14 @@
     <Compile Include="UserMap.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AccountingWPF\AccountingWPF.csproj">
-      <Project>{10BD4959-B85C-4E91-9DD1-B54DA434694D}</Project>
-      <Name>AccountingWPF</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataRepository\DataRepository.csproj">
+      <Project>{4629e650-821f-4007-bd15-0c55ced9efd8}</Project>
+      <Name>DataRepository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

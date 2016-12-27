@@ -1,5 +1,5 @@
 ﻿
-using AccountingWPF.Helpers;
+using DataRepository.Models;
 using FluentNHibernate.Mapping;
 
 namespace AccountingWPF.Models.nHibernateModels

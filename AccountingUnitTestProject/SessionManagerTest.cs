@@ -11,41 +11,39 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
-namespace AccountingWPF.nHibernateDb
+public static class SessionManagerTest
 {
-    public static class SessionManagerTest
-    {
-        private static ISessionFactory sessionFactory;
-        public static ISessionFactory SessionFactory {
-            get {
-                if (sessionFactory == null)
-                {
-
-                    sessionFactory = Fluently.Configure()
-                   .Database(SQLiteConfiguration.Standard.ShowSql().UsingFile("accountingDBtest.db"))
-                   .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                   .ExposeConfiguration(BuildSchema)
-                   .BuildSessionFactory();
-                }
-                return sessionFactory;
-            }
-        }
-
-
-        private static void BuildSchema(Configuration config)
-        {
-            if (!File.Exists("accountingDBtest.db"))
+    private static ISessionFactory sessionFactory;
+    public static ISessionFactory SessionFactory {
+        get {
+            if (sessionFactory == null)
             {
-                new SchemaExport(config).Create(false, true);
+
+                sessionFactory = Fluently.Configure()
+               .Database(SQLiteConfiguration.Standard.ShowSql().UsingFile("accountingDBtest.db"))
+               .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+               .ExposeConfiguration(BuildSchema)
+               .BuildSessionFactory();
             }
+            return sessionFactory;
         }
-
-        public static ISession OpenSession()
-        {
-            return SessionFactory.OpenSession();
-        }
-
-
-
     }
+
+
+    private static void BuildSchema(Configuration config)
+    {
+        if (!File.Exists("accountingDBtest.db"))
+        {
+            new SchemaExport(config).Create(false, true);
+        }
+    }
+
+    public static ISession OpenSession()
+    {
+        return SessionFactory.OpenSession();
+    }
+
+
+
 }
+
