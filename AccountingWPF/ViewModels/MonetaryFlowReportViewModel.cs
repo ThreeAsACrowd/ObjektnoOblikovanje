@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AccountingWPF.Repositories;
-using AccountingWPF.Factories;
-using AccountingWPF.Models;
+using DataRepository.Repositories;
+using DataRepository.Factories;
+using DataRepository.Models;
 using AccountingWPF.BaseLib;
-
+using AccountingWPF.Factories;
 
 namespace AccountingWPF.ViewModels
 {

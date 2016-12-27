@@ -1,12 +1,13 @@
 ﻿using AccountingWPF.BaseLib;
 using AccountingWPF.Factories;
-using AccountingWPF.Models;
-using AccountingWPF.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataRepository.Repositories;
+using DataRepository.Models;
+using DataRepository.Factories;
 
 namespace AccountingWPF.ViewModels
 {

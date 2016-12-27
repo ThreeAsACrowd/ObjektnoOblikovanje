@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AccountingWPF.Models;
+using DataRepository.Models;
 
-namespace AccountingWPF.Factories
+namespace DataRepository.Factories
 {
     public abstract class AbstractReport
     {

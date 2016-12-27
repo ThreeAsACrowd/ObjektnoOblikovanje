@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AccountingWPF</RootNamespace>
     <AssemblyName>AccountingWPF</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -38,6 +38,10 @@
   <ItemGroup>
     <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NHibernate, Version=4.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
@@ -77,44 +81,12 @@
     <Compile Include="Commands\AddNewIngoingInvoiceCommand.cs" />
     <Compile Include="Commands\DeleteIngoingInvoiceCommand.cs" />
     <Compile Include="Commands\UpdateIngoingInvoiceCommand.cs" />
-    <Compile Include="nHibernateDb\AbstractSessionManager.cs" />
     <Compile Include="Reporting\HtmlReport.cs" />
     <Compile Include="Reporting\AbstractReport.cs" />
-    <Compile Include="Models\nHibernateModels\VatMap.cs" />
-    <Compile Include="nHibernateDb\SessionManager.cs" />
-    <Compile Include="Factories\MockFactory.cs" />
     <Compile Include="Helpers\IdentityPartExtensionHelper.cs" />
-    <Compile Include="Models\MonetaryFlow.cs" />
-    <Compile Include="Models\nHibernateModels\ExpenditureMap.cs" />
-    <Compile Include="Models\nHibernateModels\IngoingInvoiceMap.cs" />
-    <Compile Include="Models\nHibernateModels\InvoiceMap.cs" />
-    <Compile Include="Models\nHibernateModels\MonetaryFlowMap.cs" />
-    <Compile Include="Models\nHibernateModels\OutgoingInvoiceMapcs.cs" />
-    <Compile Include="Models\nHibernateModels\ReceiptMap.cs" />
-    <Compile Include="Models\nHibernateModels\UserMap.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\Expenditure.cs" />
-    <Compile Include="Models\IngoingInvoice.cs" />
-    <Compile Include="Models\Invoice.cs" />
-    <Compile Include="Models\OutgoingInvoice.cs" />
-    <Compile Include="Models\Receipt.cs" />
-    <Compile Include="Models\UserCredentials.cs" />
-    <Compile Include="Models\Vat.cs" />
     <Compile Include="Notification\PropertyChangedNotification.cs" />
-    <Compile Include="Repositories\InvoiceRepository\IngoingInvoiceRepository.cs" />
-    <Compile Include="Repositories\InvoiceRepository\IInvoiceRepository.cs" />
-    <Compile Include="Repositories\IUserRepository.cs" />
-    <Compile Include="Repositories\InvoiceRepository\OutgoingInvoiceRepository.cs" />
-    <Compile Include="Repositories\IVatRepository.cs" />
-    <Compile Include="Repositories\MonetaryFlow\ExpenditureRepository.cs" />
-    <Compile Include="Repositories\MonetaryFlow\IMonetaryFlowRepository.cs" />
-    <Compile Include="Repositories\VatRepository.cs" />
     <Compile Include="ViewModels\AnnualReportViewModel.cs" />
     <Compile Include="ViewModels\ExpenditureViewModel.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="Repositories\RepositoryBase.cs" />
-    <Compile Include="Repositories\MonetaryFlow\ReceiptRepository.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\IngoingInvoiceViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -222,7 +194,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DataRepository\DataRepository.csproj">
+      <Project>{4629e650-821f-4007-bd15-0c55ced9efd8}</Project>
+      <Name>DataRepository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

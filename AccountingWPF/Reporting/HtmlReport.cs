@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AccountingWPF.Models;
+using DataRepository.Factories;
+using DataRepository.Models;
 
 namespace AccountingWPF.Factories
 {

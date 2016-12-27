@@ -1,10 +1,5 @@
-﻿using AccountingWPF.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AccountingWPF.Repositories;
+﻿
+using DataRepository.Models;
 
 namespace AccountingWPF.BaseLib
 {

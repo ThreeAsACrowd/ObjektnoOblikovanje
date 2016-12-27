@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AccountingWPF.ViewModels;
 
-using AccountingWPF.Models;
+using DataRepository.Models;
 
 namespace AccountingWPF.Views
 {
