@@ -74,6 +74,9 @@
     </Compile>
     <Compile Include="BaseLib\UserManager.cs" />
     <Compile Include="BindingModels\LoginBindingModel.cs" />
+    <Compile Include="Commands\AddNewIngoingInvoiceCommand.cs" />
+    <Compile Include="Commands\DeleteIngoingInvoiceCommand.cs" />
+    <Compile Include="Commands\UpdateIngoingInvoiceCommand.cs" />
     <Compile Include="nHibernateDb\AbstractSessionManager.cs" />
     <Compile Include="Reporting\HtmlReport.cs" />
     <Compile Include="Reporting\AbstractReport.cs" />
@@ -104,12 +107,12 @@
     <Compile Include="Repositories\InvoiceRepository\OutgoingInvoiceRepository.cs" />
     <Compile Include="Repositories\IVatRepository.cs" />
     <Compile Include="Repositories\MonetaryFlow\ExpenditureRepository.cs" />
+    <Compile Include="Repositories\MonetaryFlow\IMonetaryFlowRepository.cs" />
     <Compile Include="Repositories\VatRepository.cs" />
     <Compile Include="ViewModels\AnnualReportViewModel.cs" />
     <Compile Include="ViewModels\ExpenditureViewModel.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
-    <Compile Include="Repositories\MonetaryFlow\MonetaryFlowRepository.cs" />
     <Compile Include="Repositories\MonetaryFlow\ReceiptRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -141,6 +144,9 @@
     </Compile>
     <Compile Include="Views\ReceiptMainWindow.xaml.cs">
       <DependentUpon>ReceiptMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateIngoingInvoice.xaml.cs">
+      <DependentUpon>UpdateIngoingInvoice.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserAccountWindow.xaml.cs">
       <DependentUpon>UserAccountWindow.xaml</DependentUpon>
@@ -204,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ReceiptMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateIngoingInvoice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
