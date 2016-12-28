@@ -27,7 +27,7 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   ItemsSource="{Binding ingoingInvoices, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   SelectedItem="{Binding selectedItem, Mode=TwoWay}"
-                  CanUserAddRows="False"
+                  CanUserAddRows="True"
                       >
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Date}" Header="Date" />

@@ -26,11 +26,14 @@
                   Margin="10,10.766,10,23" 
                   Name="dataGridExpenditure" 
                   AlternatingRowBackground="AliceBlue" 
-                  HeadersVisibility="All" CanUserAddRows="True"
+                  HeadersVisibility="All"
+                  CanUserAddRows="True"
+                  CanUserDeleteRows="True"
                   ScrollViewer.CanContentScroll="True" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto" Grid.Row="1"
-                  ItemsSource="{Binding expenditures}">
+                  ItemsSource="{Binding expenditures, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding selectedItem, Mode=TwoWay}">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Date}" Header="Date" />
@@ -48,10 +51,9 @@
                 <DataGridTextColumn Binding="{Binding Total}" Header="Total" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name ="Add_new_expenditure_button" Content="Add new expenditure" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22" Click="Add_new_expenditure_Button_Click"/>
-        <Button Name ="Delete_expenditure_button" Content="Delete expenditure" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22" Click="Delete_expenditure_Button_Click"/>
-        <Button Name ="Edit_expenditure_button" Content="Edit expenditure" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22" Click="Edit_expenditure_Button_Click"/>
-        <Button Name ="Save_expenditure_button" Content="Save expenditure" HorizontalAlignment="Left" Margin="495,10,0,0" VerticalAlignment="Top" Width="130" Height="22" Click="Save_ependiture_Button_Click"/>
-
+        <Button Name ="Add_new_expenditure_button" Command ="{Binding AddNewExpenditureCommand}" Content="Add new expenditure" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22" />
+        <Button Name ="Delete_expenditure_button" Command ="{Binding DeleteExpenditureCommand}" Content="Delete expenditure" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22" />
+        <Button Name ="Edit_expenditure_button" Command ="{Binding UpdateExpenditureCommand}" Content="Edit expenditure" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22" />
+       
     </Grid>
 </Window>
