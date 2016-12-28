@@ -10,13 +10,14 @@ using System.Windows.Input;
 using AccountingWPF.Commands;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Data;
 
 namespace AccountingWPF.ViewModels
 {
     public class IngoingInvoiceViewModel
     {
-        public ObservableCollection<IngoingInvoice> i_invoices { get; set; }
-        public IList<IngoingInvoice> ingoing_invoices { get; set; }
+        public ObservableCollection<IngoingInvoice> ingoingInvoices { get; set; }
         public IInvoiceRepository<IngoingInvoice> IngoingInvoicesRepo { get; set; }
 
         public IngoingInvoice selectedItem { get; set; }
@@ -41,10 +42,12 @@ namespace AccountingWPF.ViewModels
 
         public IngoingInvoiceViewModel()
         {
-            IngoingInvoicesRepo = new IngoingInvoiceRepository<IngoingInvoice>();
-            ingoing_invoices = IngoingInvoicesRepo.getByUserId(UserManager.CurrentUser.Id);
+            IList<IngoingInvoice> ingoingInvoicesList;
 
-            this.i_invoices = new ObservableCollection<IngoingInvoice>(ingoing_invoices);
+            IngoingInvoicesRepo = new IngoingInvoiceRepository<IngoingInvoice>();
+            ingoingInvoicesList = IngoingInvoicesRepo.getByUserId(UserManager.CurrentUser.Id);
+
+            this.ingoingInvoices = new ObservableCollection<IngoingInvoice>(ingoingInvoicesList);
 
             AddNewIngoingInvoiceCommand = new AddNewIngoingInvoiceCommand(this);
             DeleteIngoingInvoiceCommand = new DeleteIngoingInvoiceCommand(this);
@@ -84,10 +87,10 @@ namespace AccountingWPF.ViewModels
         {
             if (this.selectedItem != null)
             {
-                this.IngoingInvoicesRepo.Delete(this.selectedItem.Id);
-                this.ingoing_invoices = IngoingInvoicesRepo.getByUserId(UserManager.CurrentUser.Id);
 
-                this.i_invoices = new ObservableCollection<IngoingInvoice>(ingoing_invoices);
+                this.IngoingInvoicesRepo.Delete(this.selectedItem.Id);
+                this.ingoingInvoices.Remove(this.selectedItem);
+
             }
             else
             {
@@ -102,7 +105,6 @@ namespace AccountingWPF.ViewModels
             //TODO IMPLEMENTATION
             Debug.Assert(false, "Update invoice.");
         }
-
 
     }
 }

@@ -32,5 +32,6 @@ namespace AccountingWPF.Views
             this.DataContext = ingoingInvoiceVM;
 
         }
+
 	}
 }

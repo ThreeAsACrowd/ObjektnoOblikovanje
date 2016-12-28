@@ -25,7 +25,7 @@
                   ScrollViewer.CanContentScroll="True" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  ItemsSource="{Binding i_invoices, UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding ingoingInvoices, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   SelectedItem="{Binding selectedItem, Mode=TwoWay}"
                   CanUserAddRows="False"
                       >
@@ -37,8 +37,8 @@
                   />
                 </DataGrid.Columns>
             </DataGrid>
-        <Button Name ="Add_new_ingoing_invoice_button" Command ="{Binding AddNewIngoingInvoiceCommand}" Content="Add new ingoing invoice" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22"/>
-        <Button Name ="Delete_ingoing_invoice_button" Command ="{Binding DeleteIngoingInvoiceCommand}" Content="Delete ingoing invoice" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22" />
+        <Button Name ="Add_new_ingoing_invoice_button"  Command ="{Binding AddNewIngoingInvoiceCommand}" Content="Add new ingoing invoice" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22"/>
+        <Button Name ="Delete_ingoing_invoice_button"  Command ="{Binding DeleteIngoingInvoiceCommand}" Content="Delete ingoing invoice" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22" />
         <Button Name ="Update_ingoing_invoice_button" Command ="{Binding UpdateIngoingInvoiceCommand}" Content="Update ingoing invoice" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22"  />
         </Grid>
 </Window>
