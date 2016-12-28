@@ -47,9 +47,9 @@ namespace AccountingWPF.ViewModels
 
             this.outgoingInvoices = new ObservableCollection<OutgoingInvoice>(outgoingInvoicesList);
 
-            //AddNewOutgoingInvoiceCommand = new AddNewOutgoingInvoiceCommand(this);
-            //DeleteOutgoingInvoiceCommand = new DeleteOutgoingInvoiceCommand(this);
-            //UpdateOutgoingInvoiceCommand = new UpdateOutgoingInvoiceCommand(this);
+            AddNewOutgoingInvoiceCommand = new Command(this.AddNewInvoice, this.CanExecuteAdd);
+            DeleteOutgoingInvoiceCommand = new Command(this.DeleteOutgoingInvoice, this.CanExecuteDelete);
+            UpdateOutgoingInvoiceCommand = new Command(this.UpdateOutgoingInvoice, this.CanExecuteUpdate);
         }
 
 

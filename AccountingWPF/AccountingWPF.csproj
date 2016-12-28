@@ -78,10 +78,7 @@
     </Compile>
     <Compile Include="BaseLib\UserManager.cs" />
     <Compile Include="BindingModels\LoginBindingModel.cs" />
-    <Compile Include="Commands\AddNewIngoingInvoiceCommand.cs" />
     <Compile Include="Commands\Command.cs" />
-    <Compile Include="Commands\DeleteIngoingInvoiceCommand.cs" />
-    <Compile Include="Commands\UpdateIngoingInvoiceCommand.cs" />
     <Compile Include="Reporting\HtmlReport.cs" />
     <Compile Include="Reporting\AbstractReport.cs" />
     <Compile Include="Helpers\IdentityPartExtensionHelper.cs" />

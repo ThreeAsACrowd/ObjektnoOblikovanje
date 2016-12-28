@@ -24,7 +24,9 @@
                   ScrollViewer.CanContentScroll="True" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  ItemsSource="{Binding outgoing_invoices}">
+                  ItemsSource="{Binding outgoingInvoices, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding selectedItem, Mode=TwoWay}"
+                  >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Date}" Header="Date" />
                 <DataGridTextColumn Binding="{Binding InvoiceClassNumber}" Header="Invoice class number" />
@@ -32,9 +34,8 @@
                 <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name ="Add_new_outgoing_invoice_button" Content="Add new outgoing invoice" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22" Click="Add_new_outgoing_invoice_Button_Click"/>
-        <Button Name ="Delete_outgoing_invoice_button" Content="Delete outgoing invoice" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22" Click="Delete_outgoing_invoice_Button_Click"/>
-        <Button Name ="Edit_outgoing_invoice_button" Content="Edit outgoing invoice" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22" Click="Edit_outgoing_invoice_Button_Click"/>
-        <Button Name ="Save_outgoing_invoice_button" Content="Save outgoing invoice" HorizontalAlignment="Left" Margin="495,10,0,0" VerticalAlignment="Top" Width="130" Height="22" Click="Save_outgoing_invoice_Button_Click"/>
-    </Grid>
+        <Button Name ="Add_new_outgoing_invoice_button" Command ="{Binding AddNewOutgoingInvoiceCommand}" Content="Add new outgoing invoice" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22"/>
+        <Button Name ="Delete_outgoing_invoice_button" Command ="{Binding DeleteOutgoingInvoiceCommand}" Content="Delete outgoing invoice" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22"/>
+        <Button Name ="Edit_outgoing_invoice_button" Command ="{Binding EditOutgoingInvoiceCommand}" Content="Edit outgoing invoice" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22"/>
+           </Grid>
 </Window>
