@@ -26,5 +26,34 @@ namespace AccountingWPF.ViewModels
 
         }
 
+
+        public bool CanExecuteAdd
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public bool CanExecuteDelete
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public bool CanExecuteUpdate
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        internal void AddNewExpenditure()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

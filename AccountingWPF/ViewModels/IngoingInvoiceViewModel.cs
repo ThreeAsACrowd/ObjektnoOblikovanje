@@ -50,7 +50,7 @@ namespace AccountingWPF.ViewModels
             this.ingoingInvoices = new ObservableCollection<IngoingInvoice>(ingoingInvoicesList);
 
             AddNewIngoingInvoiceCommand = new AddNewIngoingInvoiceCommand(this);
-            DeleteIngoingInvoiceCommand = new DeleteIngoingInvoiceCommand(this);
+            DeleteIngoingInvoiceCommand = new Command(this.DeleteIngoingInvoice, this.CanExecuteDelete);
             UpdateIngoingInvoiceCommand = new UpdateIngoingInvoiceCommand(this);
         }
 
