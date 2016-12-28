@@ -29,44 +29,7 @@ namespace AccountingWPF.Views
             receiptsVM = new ReceiptViewModel();
             this.DataContext = receiptsVM;
             this.dg_cbx_VAT.ItemsSource = receiptsVM.vats;
-            DeinitializeDataGrid();
-			
+            			
 		}
-
-        private void DeinitializeDataGrid() 
-        {
-            this.Delete_receipt_button.IsEnabled = false;
-            this.Save_receipt_button.IsEnabled = false;
-            this.dataGridReceipts.IsEnabled = false;
-        }
-        private void InitializeDataGrid()
-        {
-            this.dataGridReceipts.IsEnabled = true;
-            this.Delete_receipt_button.IsEnabled = true;
-            this.Save_receipt_button.IsEnabled = true;
-        }
-
-        private void Add_new_receipt_Button_Click(object sender, RoutedEventArgs e)
-        {
-            InitializeDataGrid();
-            MessageBox.Show("Add");
-        }
-
-        private void Delete_receipt_Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Delete");
-        }
-
-        private void Edit_receipt_Button_Click(object sender, RoutedEventArgs e)
-        {
-            InitializeDataGrid();
-            MessageBox.Show("Edit");
-        }
-
-        private void Save_receipt_Button_Click(object sender, RoutedEventArgs e)
-        {
-            DeinitializeDataGrid();
-            MessageBox.Show("Save");
-        }
 	}
 }

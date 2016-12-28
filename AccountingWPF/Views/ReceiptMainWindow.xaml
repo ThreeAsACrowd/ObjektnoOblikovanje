@@ -24,7 +24,9 @@
                   ScrollViewer.CanContentScroll="True" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  ItemsSource="{Binding receipts}">
+                  ItemsSource="{Binding receipts,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding selectedItem, Mode=TwoWay}">
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Date}" Header="Date" />
                 <DataGridTextColumn Binding="{Binding JournalEntryNum}" Header="Journal entry number" />
@@ -40,10 +42,9 @@
                 <DataGridTextColumn Binding="{Binding Total}" Header="Total" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name ="Add_new_receipt_button" Content="Add new receipt" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22" Click="Add_new_receipt_Button_Click"/>
-        <Button Name ="Delete_receipt_button" Content="Delete receipt" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22" Click="Delete_receipt_Button_Click"/>
-        <Button Name ="Edit_receipt_button" Content="Edit receipt" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22" Click="Edit_receipt_Button_Click"/>
-        <Button Name ="Save_receipt_button" Content="Save receipt" HorizontalAlignment="Left" Margin="495,10,0,0" VerticalAlignment="Top" Width="130" Height="22" Click="Save_receipt_Button_Click"/>
-
+        <Button Name ="Add_new_receipt_button" Command ="{Binding AddNewReceiptCommand}" Content="Add new receipt" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22" />
+        <Button Name ="Delete_receipt_button" Command ="{Binding DeleteReceiptCommand}" Content="Delete receipt" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22" />
+        <Button Name ="Edit_receipt_button" Command ="{Binding UpdateReceiptCommand}" Content="Edit receipt" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22" />
+       
     </Grid>
 </Window>
