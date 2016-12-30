@@ -81,7 +81,7 @@ namespace AccountingWPF.ViewModels
 
         internal void AddNewReceipt()
         {
-            //TODO IMPLEMENTATION
+            
             Debug.Assert(false, "Add new receipt.");
         }
 
