@@ -26,7 +26,17 @@ namespace AccountingWPF.ViewModels
             expenditureRepository = new ExpenditureRepository<Expenditure>();
             receiptRepository = new ReceiptRepository<Receipt>();
 
-            ActiveYears = receiptRepository.getAvailableYearsByUserId(UserManager.CurrentUser.Id);
+            IList<int> receiptsAvailableYears = receiptRepository.getAvailableYearsByUserId(UserManager.CurrentUser.Id);
+            IList<int> expendituresAvailableYears = expenditureRepository.getAvailableYearsByUserId(UserManager.CurrentUser.Id);
+
+            HashSet<int> yearsHashSet = new HashSet<int>();
+
+            foreach (int year in receiptsAvailableYears.Concat(expendituresAvailableYears))
+            {
+                yearsHashSet.Add(year);
+            }
+
+            ActiveYears = yearsHashSet.ToList();
 
             SelectedYear = ActiveYears.FirstOrDefault();
 
