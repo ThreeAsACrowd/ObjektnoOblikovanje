@@ -15,7 +15,6 @@ namespace AccountingWPF.ViewModels
     {
         public LoginBindingModel LoginBM { get; set; }
 
-        public Window ChildWindow { get; set; }
 
         public LoginViewModel()
         {
@@ -75,12 +74,14 @@ namespace AccountingWPF.ViewModels
         public void OpenHome()
         {
 
-            ChildWindow = new Home();
-            ChildWindow.ShowDialog();
+            IWindowFactory homeFactory = new HomeWindowFactory();
+            homeFactory.CreateNewWindow();
 
             LoginBM.Username = "";
             LoginBM.Password = "";
         }
+
+
 
         public void TestLogin()
         {
@@ -195,6 +196,7 @@ namespace AccountingWPF.ViewModels
 
             return outgoingInvoiceRepo.getByUserId(id);
         }
+
 
     }
 }

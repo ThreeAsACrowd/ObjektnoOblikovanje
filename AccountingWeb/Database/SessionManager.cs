@@ -11,7 +11,7 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
-namespace DataRepository.nHibernateDb
+namespace Database
 {
     public static class SessionManager
     {
@@ -20,10 +20,13 @@ namespace DataRepository.nHibernateDb
             get {
                 if (sessionFactory == null)
                 {
+
+                    string conn = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"../AccountingWPF/bin/Debug/accountingDB.db";
+
                     sessionFactory = Fluently.Configure()
-                   .Database(SQLiteConfiguration.Standard.ShowSql().UsingFile("accountingDB.db"))
+                   .Database(SQLiteConfiguration.Standard.ConnectionString(conn))
                    .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                     .ExposeConfiguration(BuildSchema)
+                   //  .ExposeConfiguration(BuildSchema)
                    .BuildSessionFactory();
                 }
                 return sessionFactory;

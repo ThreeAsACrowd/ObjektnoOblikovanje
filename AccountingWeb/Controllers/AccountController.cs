@@ -12,14 +12,19 @@ using AccountingWeb.Models;
 using DataRepository.Repositories;
 using DataRepository.Models;
 using AccountingWeb.Security;
+using DataRepository.Repositories.InvoiceRepository;
+using Database;
 
 namespace AccountingWeb.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+
+        IUserRepository userRepository;
         public AccountController()
         {
+            userRepository = new UserRepository(SessionManager.SessionFactory);
         }
 
 
@@ -38,17 +43,30 @@ namespace AccountingWeb.Controllers
         [AllowAnonymous]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
-			DBPopulate.DBPopulator db = new DBPopulate.DBPopulator();
-			db.populateDatabase();
-			UserRepository userRepository = new UserRepository();
-			if (Security.UserManager.IsValid(model.UserName, model.Password))
-			{
-				UserManager.LogIn(model.UserName, model.Password);
-				return RedirectToAction("MyAction"); // auth succeed 
-			}
-			// invalid username or password
-			ModelState.AddModelError("", "invalid username or password");
-			return View();
+
+            bool isCredentialsFormatValid = ValidationHelper.IsCredentialsValid(model.UserName, model.Password);
+            if (isCredentialsFormatValid)
+            {
+
+                User user = userRepository.GetUserByCredentials(new UserCredentials(model.UserName, model.Password));
+                if (user != null)
+                {
+                    UserManager.LogIn(user);
+                    return RedirectToAction("MyAction"); // auth succeed 
+                }
+                else
+                {
+                    // invalid username or password
+                    ModelState.AddModelError("", "invalid username or password");
+                    return View();
+                }
+            }
+            else
+            {
+                // username or password is too short
+                ModelState.AddModelError("", "Username and password should be minimum " + ValidationHelper.USERNAME_MIN_LENGTH + " characters length");
+                return View();
+            }
         }
 
         //
@@ -65,7 +83,7 @@ namespace AccountingWeb.Controllers
         [HttpPost]
         public ActionResult LogOff()
         {
-			UserManager.LogOut();
+            UserManager.LogOut();
             return RedirectToAction("Index", "Home");
         }
     }
