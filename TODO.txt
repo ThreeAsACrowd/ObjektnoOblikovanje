@@ -9,3 +9,11 @@ opis objektnog
 opis implementacije perzistencije
 opis desktop aplikacije
 opis web aplikacije
+
+==============================================================
+TODO 30.12.2016.
+==============================================================
+
+- napravit da modeli izgledaju kao loginbindingmodel jer inace nemamo validaciju, na razini cijelog modela 
+
+- 

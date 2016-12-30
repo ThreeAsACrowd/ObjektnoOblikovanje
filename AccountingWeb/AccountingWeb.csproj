@@ -71,6 +71,7 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -176,14 +177,20 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Attributes\AccountingAuthorize.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ExpenditureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IngoingInvoiceController.cs" />
+    <Compile Include="Controllers\OutgoingInvoiceController.cs" />
+    <Compile Include="Controllers\ReceiptController.cs" />
+    <Compile Include="DBPopulate\DBPopulator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\UserManager.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -285,6 +292,18 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\IngoingInvoice\Index.cshtml" />
+    <Content Include="Views\IngoingInvoice\Create.cshtml" />
+    <Content Include="Views\IngoingInvoice\Edit.cshtml" />
+    <Content Include="Views\OutgoingInvoice\Index.cshtml" />
+    <Content Include="Views\OutgoingInvoice\Create.cshtml" />
+    <Content Include="Views\OutgoingInvoice\Edit.cshtml" />
+    <Content Include="Views\Expenditure\Index.cshtml" />
+    <Content Include="Views\Expenditure\Create.cshtml" />
+    <Content Include="Views\Expenditure\Edit.cshtml" />
+    <Content Include="Views\Receipt\Index.cshtml" />
+    <Content Include="Views\Receipt\Create.cshtml" />
+    <Content Include="Views\Receipt\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
