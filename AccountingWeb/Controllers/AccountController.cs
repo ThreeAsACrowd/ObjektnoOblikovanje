@@ -36,8 +36,7 @@ namespace AccountingWeb.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
 			DBPopulate.DBPopulator db = new DBPopulate.DBPopulator();
 			db.populateDatabase();

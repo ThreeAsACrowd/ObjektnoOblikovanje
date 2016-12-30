@@ -9,7 +9,7 @@ namespace AccountingWeb.Security
 {
 	public static class UserManager
 	{
-		private static UserRepository userRepository = new UserRepository();
+		private static UserRepository userRepository;
 		public static User CurrentUser;
 
 		public static void LogOut()
@@ -19,12 +19,13 @@ namespace AccountingWeb.Security
 
 		public static void LogIn(string username, string password)
 		{
+			userRepository = new UserRepository();
 			CurrentUser = userRepository.GetUserByCredentials(new UserCredentials(username, password));
 		}
 
 		public static bool IsValid(string username, string password)
 		{
-			
+			userRepository = new UserRepository();
 			var user = userRepository.GetUserByCredentials(new UserCredentials(username, password));
 
 			if (user == null)
