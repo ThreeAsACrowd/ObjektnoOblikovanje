@@ -13,7 +13,7 @@ using DataRepository.Repositories;
 using DataRepository.Models;
 using AccountingWeb.Security;
 using DataRepository.Repositories.InvoiceRepository;
-using Database;
+using AccountingWeb.Database;
 
 namespace AccountingWeb.Controllers
 {
@@ -42,29 +42,26 @@ namespace AccountingWeb.Controllers
         [HttpPost]
         [AllowAnonymous]
         public ActionResult Login(LoginViewModel model, string returnUrl)
-        {
-
-            bool isCredentialsFormatValid = ValidationHelper.IsCredentialsValid(model.UserName, model.Password);
-            if (isCredentialsFormatValid)
+        {     
+            if (ModelState.IsValid)
             {
 
                 User user = userRepository.GetUserByCredentials(new UserCredentials(model.UserName, model.Password));
                 if (user != null)
                 {
                     UserManager.LogIn(user);
-                    return RedirectToAction("MyAction"); // auth succeed 
+                    return RedirectToAction("Index", "Home"); // auth succeed 
                 }
                 else
                 {
                     // invalid username or password
-                    ModelState.AddModelError("", "invalid username or password");
+					ModelState.AddModelError("", "Invalid Username or Password");
                     return View();
                 }
             }
             else
             {
-                // username or password is too short
-                ModelState.AddModelError("", "Username and password should be minimum " + ValidationHelper.USERNAME_MIN_LENGTH + " characters length");
+                // username or password not entered
                 return View();
             }
         }

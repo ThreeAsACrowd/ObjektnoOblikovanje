@@ -11,7 +11,7 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
-namespace Database
+namespace AccountingWeb.Database
 {
     public static class SessionManager
     {
@@ -38,7 +38,7 @@ namespace Database
         {
             if (!File.Exists("accountingDB.db"))
             {
-                new SchemaExport(config).Create(false, true);
+				//new SchemaExport(config).Create(false, true);
             }
         }
 

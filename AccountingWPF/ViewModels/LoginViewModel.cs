@@ -74,8 +74,8 @@ namespace AccountingWPF.ViewModels
         public void OpenHome()
         {
 
-            IWindowFactory homeFactory = new HomeWindowFactory();
-            homeFactory.CreateNewWindow();
+            //IWindowFactory homeFactory = new HomeWindowFactory();
+            //homeFactory.CreateNewWindow();
 
             LoginBM.Username = "";
             LoginBM.Password = "";

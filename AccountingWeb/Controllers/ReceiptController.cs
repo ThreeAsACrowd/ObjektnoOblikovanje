@@ -16,9 +16,10 @@ namespace AccountingWeb.Controllers
 		public ActionResult Index()
 		{
 			ReceiptRepository<Receipt> repo = new ReceiptRepository<Receipt>();
-			IList<Receipt> receipt = repo.getByUserId(UserManager.CurrentUser.Id);
+			IList<Receipt> receipts = repo.getByUserId(UserManager.CurrentUser.Id);
+			receipts = receipts.OrderByDescending(x => x.Date).ToList();
 
-			return View(receipt);
+			return View(receipts);
 		}
 
 		//

@@ -13,36 +13,38 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace DataRepository.nHibernateDb
 {
-    public static class SessionManager
-    {
-        private static ISessionFactory sessionFactory;
-        public static ISessionFactory SessionFactory {
-            get {
-                if (sessionFactory == null)
-                {
-                    sessionFactory = Fluently.Configure()
-                   .Database(SQLiteConfiguration.Standard.ShowSql().UsingFile("accountingDB.db"))
-                   .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                     .ExposeConfiguration(BuildSchema)
-                   .BuildSessionFactory();
-                }
-                return sessionFactory;
-            }
-        }
+	public static class SessionManager
+	{
+		private static ISessionFactory sessionFactory;
+		public static ISessionFactory SessionFactory
+		{
+			get
+			{
+				if (sessionFactory == null)
+				{
+					sessionFactory = Fluently.Configure()
+				   .Database(SQLiteConfiguration.Standard.ShowSql().UsingFile("accountingDB.db"))
+				   .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+					 .ExposeConfiguration(BuildSchema)
+				   .BuildSessionFactory();
+				}
+				return sessionFactory;
+			}
+		}
 
 
-        private static void BuildSchema(Configuration config)
-        {
-            if (!File.Exists("accountingDB.db"))
-            {
-                new SchemaExport(config).Create(false, true);
-            }
-        }
+		private static void BuildSchema(Configuration config)
+		{
+			if (!File.Exists("accountingDB.db"))
+			{
+				new SchemaExport(config).Create(false, true);
+			}
+		}
 
-        public static ISession OpenSession()
-        {
-            return SessionFactory.OpenSession();
-        }
+		public static ISession OpenSession()
+		{
+			return SessionFactory.OpenSession();
+		}
 
-    }
+	}
 }

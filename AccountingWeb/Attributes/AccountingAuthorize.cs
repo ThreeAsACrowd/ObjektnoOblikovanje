@@ -15,7 +15,7 @@ namespace AccountingWeb.Attributes
 	[AttributeUsageAttribute(AttributeTargets.Class | AttributeTargets.Method)]
 	public class AccountingAuthorize : AuthorizeAttribute
 	{
-		private UserRepository userRepository = new UserRepository();
+		//private UserRepository userRepository = new UserRepository();
 
 		protected override bool AuthorizeCore(HttpContextBase httpContext)
 		{
