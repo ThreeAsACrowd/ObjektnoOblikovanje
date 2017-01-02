@@ -70,12 +70,15 @@ namespace AccountingWPF.ViewModels
             }
 
         }
-
+        public Window ChildWindow { get; set; }
         public void OpenHome()
         {
 
             //IWindowFactory homeFactory = new HomeWindowFactory();
             //homeFactory.CreateNewWindow();
+
+            ChildWindow = new Home();
+            ChildWindow.ShowDialog();
 
             LoginBM.Username = "";
             LoginBM.Password = "";

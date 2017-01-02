@@ -6,18 +6,23 @@ using System.Web.Mvc;
 using DataRepository.Models;
 using DataRepository.Repositories;
 using AccountingWeb.Security;
+using AccountingWeb.Database;
 
 namespace AccountingWeb.Controllers
 {
     public class IngoingInvoiceController : Controller
     {
+        IInvoiceRepository<IngoingInvoice> ingoingInvoiceRepository;
+        public IngoingInvoiceController()
+        {
+            ingoingInvoiceRepository = new IngoingInvoiceRepository<IngoingInvoice>(SessionManager.SessionFactory);
+        }
+
         //
         // GET: /IngoingInvoice/
         public ActionResult Index()
         {
-			IngoingInvoiceRepository<IngoingInvoice> repo = new IngoingInvoiceRepository<IngoingInvoice>();
-			IList<IngoingInvoice> ingoingInvoices = repo.getByUserId(UserManager.CurrentUser.Id);
-
+            IList<IngoingInvoice> ingoingInvoices = ingoingInvoiceRepository.getByUserId(UserManager.CurrentUser.Id);
             return View(ingoingInvoices);
         }
 
@@ -36,9 +41,9 @@ namespace AccountingWeb.Controllers
             try
             {
                 // TODO: Add insert logic here
-				IngoingInvoiceRepository<IngoingInvoice> repo = new IngoingInvoiceRepository<IngoingInvoice>();
-				ingoingInvoice.FK_UserId = UserManager.CurrentUser.Id;
-				repo.Create(ingoingInvoice);
+                IngoingInvoiceRepository<IngoingInvoice> repo = new IngoingInvoiceRepository<IngoingInvoice>();
+                ingoingInvoice.FK_UserId = UserManager.CurrentUser.Id;
+                repo.Create(ingoingInvoice);
                 return RedirectToAction("Index");
             }
             catch
@@ -51,8 +56,8 @@ namespace AccountingWeb.Controllers
         // GET: /IngoingInvoice/Edit/5
         public ActionResult Edit(int id)
         {
-			IngoingInvoiceRepository<IngoingInvoice> repo = new IngoingInvoiceRepository<IngoingInvoice>();
-			IngoingInvoice ingoingInvoice = repo.GetById(id);
+            IngoingInvoiceRepository<IngoingInvoice> repo = new IngoingInvoiceRepository<IngoingInvoice>();
+            IngoingInvoice ingoingInvoice = repo.GetById(id);
 
             return View(ingoingInvoice);
         }
@@ -65,8 +70,8 @@ namespace AccountingWeb.Controllers
             try
             {
                 // TODO: Add update logic here
-				IngoingInvoiceRepository<IngoingInvoice> repo = new IngoingInvoiceRepository<IngoingInvoice>();
-				repo.Update(ingoingInvoice);
+                IngoingInvoiceRepository<IngoingInvoice> repo = new IngoingInvoiceRepository<IngoingInvoice>();
+                repo.Update(ingoingInvoice);
                 return RedirectToAction("Index");
             }
             catch
@@ -84,8 +89,8 @@ namespace AccountingWeb.Controllers
             try
             {
                 // TODO: Add delete logic here
-				IngoingInvoiceRepository<IngoingInvoice> repo = new IngoingInvoiceRepository<IngoingInvoice>();
-				repo.Delete(id);
+                IngoingInvoiceRepository<IngoingInvoice> repo = new IngoingInvoiceRepository<IngoingInvoice>();
+                repo.Delete(id);
                 return RedirectToAction("Index");
             }
             catch
