@@ -1,9 +1,23 @@
-﻿@model DataRepository.Models.Receipt
+﻿@model AccountingWeb.BindingModels.ReceiptBindingModel
 
 @{
     ViewBag.Title = "Edit";
 }
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+<!-- jQuery UI CSS Reference -->
+<link href="@Url.Content("~/Content/themes/base/all.css")" rel="stylesheet" />
+<!-- Required jQuery and jQuery UI Javascript references -->
+<script src="@Url.Content("~/Scripts/jquery-1.12.4.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
 
+<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('#Receipt_Date').datepicker({ dateFormat: 'd.m.yy.' });
+    })
+</script>
 <h2>Edit</h2>
 
 @using (Html.BeginForm())
@@ -14,69 +28,60 @@
         <h4>Receipt</h4>
         <hr />
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Receipt.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FK_VAT, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Receipt.Date, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FK_VAT)
-                @Html.ValidationMessageFor(model => model.FK_VAT)
+                @Html.EditorFor(model => model.Receipt.Date)
+                @Html.ValidationMessageFor(model => model.Receipt.Date)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FK_UserId, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Receipt.JournalEntryNum, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FK_UserId)
-                @Html.ValidationMessageFor(model => model.FK_UserId)
+                @Html.EditorFor(model => model.Receipt.JournalEntryNum)
+                @Html.ValidationMessageFor(model => model.Receipt.JournalEntryNum)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Receipt.AmountCash, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date)
-                @Html.ValidationMessageFor(model => model.Date)
+                @Html.EditorFor(model => model.Receipt.AmountCash)
+                @Html.ValidationMessageFor(model => model.Receipt.AmountCash)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.JournalEntryNum, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Receipt.AmountTransferAccount, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.JournalEntryNum)
-                @Html.ValidationMessageFor(model => model.JournalEntryNum)
+                @Html.EditorFor(model => model.Receipt.AmountTransferAccount)
+                @Html.ValidationMessageFor(model => model.Receipt.AmountTransferAccount)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AmountCash, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Receipt.AmountNonCashBenefit, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AmountCash)
-                @Html.ValidationMessageFor(model => model.AmountCash)
+                @Html.EditorFor(model => model.Receipt.AmountNonCashBenefit)
+                @Html.ValidationMessageFor(model => model.Receipt.AmountNonCashBenefit)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AmountTransferAccount, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Receipt.FK_VAT, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AmountTransferAccount)
-                @Html.ValidationMessageFor(model => model.AmountTransferAccount)
+                @Html.DropDownListFor(model => model.Receipt.FK_VAT, new SelectList(Model.VATs, "Id", "Percentage"))
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AmountNonCashBenefit, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Receipt.Total, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AmountNonCashBenefit)
-                @Html.ValidationMessageFor(model => model.AmountNonCashBenefit)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Total, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Total)
-                @Html.ValidationMessageFor(model => model.Total)
+                @Html.EditorFor(model => model.Receipt.Total)
+                @Html.ValidationMessageFor(model => model.Receipt.Total)
             </div>
         </div>
 

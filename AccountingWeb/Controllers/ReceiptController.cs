@@ -1,4 +1,5 @@
-﻿using AccountingWeb.Security;
+﻿using AccountingWeb.BindingModels;
+using AccountingWeb.Security;
 using DataRepository.Models;
 using DataRepository.Repositories;
 using System;
@@ -11,12 +12,14 @@ namespace AccountingWeb.Controllers
 {
     public class ReceiptController : Controller
     {
+		private IMonetaryFlowRepository<Receipt> receiptRepository = new ExpenditureRepository<Receipt>(AccountingWeb.Database.SessionManager.SessionFactory);
+		private IVatRepository vatRepository = new VatRepository(AccountingWeb.Database.SessionManager.SessionFactory);
+
 		//
 		// GET: /receipt/
 		public ActionResult Index()
 		{
-			ReceiptRepository<Receipt> repo = new ReceiptRepository<Receipt>();
-			IList<Receipt> receipts = repo.getByUserId(UserManager.CurrentUser.Id);
+			IList<Receipt> receipts = receiptRepository.getByUserId(UserManager.CurrentUser.Id);
 			receipts = receipts.OrderByDescending(x => x.Date).ToList();
 
 			return View(receipts);
@@ -26,20 +29,31 @@ namespace AccountingWeb.Controllers
 		// GET: /receipt/Create
 		public ActionResult Create()
 		{
-			return View();
+			Receipt receipt = new Receipt();
+			receipt.Date = DateTime.Now;
+
+			List<Vat> vats = vatRepository.getAll().ToList();
+
+			ReceiptBindingModel receiptBM = new ReceiptBindingModel(receipt, vats);
+            
+			return View(receiptBM);
 		}
 
 		//
 		// POST: /receipt/Create
 		[HttpPost]
-		public ActionResult Create(Receipt receipt)
+		public ActionResult Create(ReceiptBindingModel receiptBM)
 		{
 			try
 			{
 				// TODO: Add insert logic here
-				ReceiptRepository<Receipt> repo = new ReceiptRepository<Receipt>();
-				receipt.FK_UserId = UserManager.CurrentUser.Id;
-				repo.Create(receipt);
+				if (ModelState.IsValid)
+				{
+					//TODO: get the required VAT by fk and change it
+					//and user too
+					receiptBM.Receipt.FK_UserId = UserManager.CurrentUser.Id;
+					receiptRepository.Create(receiptBM.Receipt);
+				}
 
 				return RedirectToAction("Index");
 			}
@@ -53,21 +67,28 @@ namespace AccountingWeb.Controllers
 		// GET: /receipt/Edit/5
 		public ActionResult Edit(int id)
 		{
-			ReceiptRepository<Receipt> repo = new ReceiptRepository<Receipt>();
-			Receipt receipt = repo.GetById(id);
-			return View(receipt);
+			Receipt receipt = receiptRepository.GetById(id);
+
+			List<Vat> vats = vatRepository.getAll().ToList();
+
+			ReceiptBindingModel receiptBM = new ReceiptBindingModel(receipt, vats);
+			return View(receiptBM);
 		}
 
 		//
 		// POST: /receipt/Edit/5
 		[HttpPost]
-		public ActionResult Edit(int id, Receipt receipt)
+		public ActionResult Edit(int id, ReceiptBindingModel receiptBM)
 		{
 			try
 			{
-				// TODO: Add update logic here
-				ReceiptRepository<Receipt> repo = new ReceiptRepository<Receipt>();
-				repo.Update(receipt);
+				IEnumerable<ModelError> errors = ModelState.Values.SelectMany(x => x.Errors);
+				if (ModelState.IsValid)
+				{
+					//TODO: get the required VAT by fk and change it
+					//and user too
+					receiptRepository.Update(receiptBM.Receipt);
+				}
 
 				return RedirectToAction("Index");
 			}
@@ -79,14 +100,13 @@ namespace AccountingWeb.Controllers
 
 		//
 		// POST: /receipt/Delete/5
-		[HttpPost]
 		public ActionResult Delete(int id)
 		{
 			try
 			{
 				// TODO: Add delete logic here
-				ReceiptRepository<Receipt> repo = new ReceiptRepository<Receipt>();
-				repo.Delete(id);
+				receiptRepository.Delete(id);
+
 				return RedirectToAction("Index");
 			}
 			catch

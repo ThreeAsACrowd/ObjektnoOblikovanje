@@ -3,7 +3,21 @@
 @{
     ViewBag.Title = "Create";
 }
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+<!-- jQuery UI CSS Reference -->
+<link href="@Url.Content("~/Content/themes/base/all.css")" rel="stylesheet" />
+<!-- Required jQuery and jQuery UI Javascript references -->
+<script src="@Url.Content("~/Scripts/jquery-1.12.4.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
 
+<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('#Date').datepicker({ dateFormat: 'd.m.yy.' });
+    })
+</script>
 <h2>Create</h2>
 
 @using (Html.BeginForm()) 
@@ -14,14 +28,6 @@
         <h4>OutgoingInvoice</h4>
         <hr />
         @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FK_UserId, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FK_UserId)
-                @Html.ValidationMessageFor(model => model.FK_UserId)
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
@@ -40,18 +46,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Amount, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Amount)
-                @Html.ValidationMessageFor(model => model.Amount)
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.CustomerInfo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CustomerInfo)
                 @Html.ValidationMessageFor(model => model.CustomerInfo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Amount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Amount)
+                @Html.ValidationMessageFor(model => model.Amount)
             </div>
         </div>
 

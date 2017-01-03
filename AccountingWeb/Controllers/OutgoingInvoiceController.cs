@@ -6,94 +6,100 @@ using System.Web.Mvc;
 using DataRepository.Models;
 using DataRepository.Repositories;
 using AccountingWeb.Security;
+using AccountingWeb.Database;
 
 namespace AccountingWeb.Controllers
 {
     public class OutgoingInvoiceController : Controller
     {
-        //
-        // GET: /OutgoingInvoice/
-        public ActionResult Index()
-        {
-			OutgoingInvoiceRepository<OutgoingInvoice> repo = new OutgoingInvoiceRepository<OutgoingInvoice>();
-			IList<OutgoingInvoice> outgoingInvoices = repo.getByUserId(UserManager.CurrentUser.Id);
+		private IInvoiceRepository<OutgoingInvoice> outgoingInvoiceRepository = new OutgoingInvoiceRepository<OutgoingInvoice>(SessionManager.SessionFactory);
 
-            return View(outgoingInvoices);
-        }
+		//
+		// GET: /OutgoingInvoice/
+		public ActionResult Index()
+		{
+			IList<OutgoingInvoice> outgoingInvoices = outgoingInvoiceRepository.getByUserId(UserManager.CurrentUser.Id);
+			outgoingInvoices = outgoingInvoices.OrderByDescending(x => x.Date).ToList();
+			return View(outgoingInvoices);
+		}
 
-        //
-        // GET: /OutgoingInvoice/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+		//
+		// GET: /OutgoingInvoice/Create
+		public ActionResult Create()
+		{
+			OutgoingInvoice outgoingInvoice = new OutgoingInvoice();
+			outgoingInvoice.Date = DateTime.Now;
 
-        //
-        // POST: /OutgoingInvoice/Create
-        [HttpPost]
-        public ActionResult Create(OutgoingInvoice outgoingInvoice)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-				OutgoingInvoiceRepository<OutgoingInvoice> repo = new OutgoingInvoiceRepository<OutgoingInvoice>();
-				outgoingInvoice.FK_UserId = UserManager.CurrentUser.Id;
-				repo.Create(outgoingInvoice);
+			return View(outgoingInvoice);
+		}
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+		//
+		// POST: /OutgoingInvoice/Create
+		[HttpPost]
+		public ActionResult Create(OutgoingInvoice outgoingInvoice)
+		{
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					outgoingInvoice.FK_UserId = UserManager.CurrentUser.Id;
+					//TODO add user too
+					outgoingInvoiceRepository.Create(outgoingInvoice);
+				}
 
-        //
-        // GET: /OutgoingInvoice/Edit/5
-        public ActionResult Edit(int id)
-        {
-			OutgoingInvoiceRepository<OutgoingInvoice> repo = new OutgoingInvoiceRepository<OutgoingInvoice>();
-			OutgoingInvoice outgoingInvoice = repo.GetById(id);
-            return View(outgoingInvoice);
-        }
+				return RedirectToAction("Index");
+			}
+			catch
+			{
+				return View();
+			}
+		}
 
-        //
-        // POST: /OutgoingInvoice/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, OutgoingInvoice outgoingInvoice)
-        {
-            try
-            {
-                // TODO: Add update logic here
-				OutgoingInvoiceRepository<OutgoingInvoice> repo = new OutgoingInvoiceRepository<OutgoingInvoice>();
-				repo.Update(outgoingInvoice);
+		//
+		// GET: /OutgoingInvoice/Edit/5
+		public ActionResult Edit(int id)
+		{
+			OutgoingInvoice outgoingInvoice = outgoingInvoiceRepository.GetById(id);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+			return View(outgoingInvoice);
+		}
+
+		//
+		// POST: /OutgoingInvoice/Edit/5
+		[HttpPost]
+		public ActionResult Edit(int id, OutgoingInvoice outgoingInvoice)
+		{
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					// TODO: set object user to FK_User
+					outgoingInvoiceRepository.Update(outgoingInvoice);
+				}
+
+				return RedirectToAction("Index");
+			}
+			catch
+			{
+				return View();
+			}
+		}
 
 
-        //
-        // POST: /OutgoingInvoice/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-				OutgoingInvoiceRepository<OutgoingInvoice> repo = new OutgoingInvoiceRepository<OutgoingInvoice>();
-				repo.Delete(id);
+		//
+		// POST: /OutgoingInvoice/Delete/5
+		public ActionResult Delete(int id)
+		{
+			try
+			{
+				outgoingInvoiceRepository.Delete(id);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+				return RedirectToAction("Index");
+			}
+			catch
+			{
+				return View();
+			}
+		}
     }
 }

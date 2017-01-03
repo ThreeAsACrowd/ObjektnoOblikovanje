@@ -3,6 +3,22 @@
 @{
     ViewBag.Title = "Edit";
 }
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+<!-- jQuery UI CSS Reference -->
+<link href="@Url.Content("~/Content/themes/base/all.css")" rel="stylesheet" />
+<!-- Required jQuery and jQuery UI Javascript references -->
+<script src="@Url.Content("~/Scripts/jquery-1.12.4.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
+
+<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('#Expenditure_Date').datepicker({ dateFormat: 'd.m.yy.' });
+    })
+</script>
+
 
 <h2>Edit</h2>
 
@@ -16,12 +32,6 @@
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Expenditure.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Expenditure.FK_VAT, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Expenditure.FK_VAT, new SelectList(Model.VATs, "Id", "Percentage"))
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Expenditure.Date, new { @class = "control-label col-md-2" })
@@ -64,18 +74,25 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Expenditure.Total, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Expenditure.Total)
-                @Html.ValidationMessageFor(model => model.Expenditure.Total)
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.Expenditure.Article22, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Expenditure.Article22)
                 @Html.ValidationMessageFor(model => model.Expenditure.Article22)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Expenditure.FK_VAT, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Expenditure.FK_VAT, new SelectList(Model.VATs, "Id", "Percentage"))
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Expenditure.Total, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Expenditure.Total)
+                @Html.ValidationMessageFor(model => model.Expenditure.Total)
             </div>
         </div>
 
@@ -90,3 +107,4 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
