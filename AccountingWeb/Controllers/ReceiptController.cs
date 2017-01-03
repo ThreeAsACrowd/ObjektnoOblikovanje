@@ -12,7 +12,7 @@ namespace AccountingWeb.Controllers
 {
     public class ReceiptController : Controller
     {
-		private IMonetaryFlowRepository<Receipt> receiptRepository = new ExpenditureRepository<Receipt>(AccountingWeb.Database.SessionManager.SessionFactory);
+		private IMonetaryFlowRepository<Receipt> receiptRepository = new ReceiptRepository<Receipt>(AccountingWeb.Database.SessionManager.SessionFactory);
 		private IVatRepository vatRepository = new VatRepository(AccountingWeb.Database.SessionManager.SessionFactory);
 
 		//
