@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataRepository.Models;
 
-namespace DataRepository.Factories
+namespace Reporting
 {
     public abstract class AbstractReport
     {

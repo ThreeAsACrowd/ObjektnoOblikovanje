@@ -336,6 +336,10 @@
       <Project>{4629e650-821f-4007-bd15-0c55ced9efd8}</Project>
       <Name>DataRepository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reporting\Reporting.csproj">
+      <Project>{3744f86c-00b1-4438-af11-4980ec2cbc04}</Project>
+      <Name>Reporting</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

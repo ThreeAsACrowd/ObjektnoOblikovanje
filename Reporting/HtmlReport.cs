@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DataRepository.Factories;
 using DataRepository.Models;
 
-namespace AccountingWPF.Factories
+namespace Reporting
 {
     public class HtmlReport : AbstractReport
     {

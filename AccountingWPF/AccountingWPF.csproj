@@ -79,8 +79,6 @@
     <Compile Include="BaseLib\UserManager.cs" />
     <Compile Include="BindingModels\LoginBindingModel.cs" />
     <Compile Include="Commands\Command.cs" />
-    <Compile Include="Reporting\HtmlReport.cs" />
-    <Compile Include="Reporting\AbstractReport.cs" />
     <Compile Include="Helpers\IdentityPartExtensionHelper.cs" />
     <Compile Include="Notification\PropertyChangedNotification.cs" />
     <Compile Include="ViewModels\AnnualReportViewModel.cs" />
@@ -196,6 +194,10 @@
     <ProjectReference Include="..\DataRepository\DataRepository.csproj">
       <Project>{4629e650-821f-4007-bd15-0c55ced9efd8}</Project>
       <Name>DataRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reporting\Reporting.csproj">
+      <Project>{3744f86c-00b1-4438-af11-4980ec2cbc04}</Project>
+      <Name>Reporting</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

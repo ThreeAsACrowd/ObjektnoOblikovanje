@@ -1,5 +1,4 @@
 ﻿using AccountingWPF.BaseLib;
-using AccountingWPF.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataRepository.Repositories;
 using DataRepository.Models;
-using DataRepository.Factories;
+using Reporting;
 
 namespace AccountingWPF.ViewModels
 {

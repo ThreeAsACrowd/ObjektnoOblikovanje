@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataRepository.Repositories;
-using DataRepository.Factories;
+using Reporting;
 using DataRepository.Models;
 using AccountingWPF.BaseLib;
-using AccountingWPF.Factories;
 
 namespace AccountingWPF.ViewModels
 {
