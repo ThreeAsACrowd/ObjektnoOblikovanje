@@ -53,9 +53,8 @@ namespace AccountingWeb.Controllers
 				if (ModelState.IsValid)
 				{
 					expenditureBM.Expenditure.FK_UserId = UserManager.CurrentUser.Id;
-
-					//TODO: get the required VAT by fk and change it
-					//and user too
+					expenditureBM.Expenditure.User = UserManager.CurrentUser;
+					expenditureBM.Expenditure.Vat = vatRepository.GetById(expenditureBM.Expenditure.FK_VAT);
 					expenditureRepository.Create(expenditureBM.Expenditure);
 				}
 
@@ -89,8 +88,9 @@ namespace AccountingWeb.Controllers
             {
 				if(ModelState.IsValid)
 				{
-					//TODO: get the required VAT by fk and change it
-					//and user too
+					expenditureBM.Expenditure.FK_UserId = UserManager.CurrentUser.Id;
+					expenditureBM.Expenditure.User = UserManager.CurrentUser;
+					expenditureBM.Expenditure.Vat = vatRepository.GetById(expenditureBM.Expenditure.FK_VAT);
 					expenditureRepository.Update(expenditureBM.Expenditure);
 				}
 
@@ -108,7 +108,6 @@ namespace AccountingWeb.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
 				expenditureRepository.Delete(id);
 
                 return RedirectToAction("Index");

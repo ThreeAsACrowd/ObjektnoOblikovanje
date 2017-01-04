@@ -43,7 +43,7 @@ namespace AccountingWeb.Controllers
 				if (ModelState.IsValid)
 				{
 					outgoingInvoice.FK_UserId = UserManager.CurrentUser.Id;
-					//TODO add user too
+					outgoingInvoice.User = UserManager.CurrentUser;
 					outgoingInvoiceRepository.Create(outgoingInvoice);
 				}
 
@@ -73,7 +73,8 @@ namespace AccountingWeb.Controllers
 			{
 				if (ModelState.IsValid)
 				{
-					// TODO: set object user to FK_User
+					outgoingInvoice.FK_UserId = UserManager.CurrentUser.Id;
+					outgoingInvoice.User = UserManager.CurrentUser;
 					outgoingInvoiceRepository.Update(outgoingInvoice);
 				}
 
