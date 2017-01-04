@@ -15,11 +15,6 @@ namespace AccountingWPF.ChildWindow.ViewModel
 {
     public class AddIngoingInvoiceViewModel : NotificationObject
     {
-        public AddIngoingInvoiceViewModel()
-        {
-
-        }
-
         
         #region Events
 
@@ -36,11 +31,9 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
         #endregion
 
-        public AddIngoingInvoiceViewModel(int id)
+        public AddIngoingInvoiceViewModel()
         {
             okCommand = new DelegateCommand(SaveIngoingInvoice);
-
-            this.Id = id;
 
             Init();
 
@@ -83,6 +76,18 @@ namespace AccountingWPF.ChildWindow.ViewModel
             }
         }
 
+        private string supplierInfo;
+
+        public string SupplierInfo
+        {
+            get { return supplierInfo; }
+            set
+            {
+                supplierInfo = value;
+                RaisePropertyChanged("SupplierInfo");
+            }
+        }
+
 
         private string amount;
         [RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
@@ -105,10 +110,10 @@ namespace AccountingWPF.ChildWindow.ViewModel
                 {
                     
                     User = UserManager.CurrentUser,
-                    Date = date,
-                    InvoiceClassNumber = invoiceClassNumber,
-                    Amount = amount,
-                    Id = Id,
+                    Date = this.Date,
+                    InvoiceClassNumber = this.InvoiceClassNumber,
+                    Amount = this.Amount,
+                    SupplierInfo = this.SupplierInfo,
                     FK_UserId = UserManager.CurrentUser.Id
 
                 };

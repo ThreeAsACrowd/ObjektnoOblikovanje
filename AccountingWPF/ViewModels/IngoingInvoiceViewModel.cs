@@ -55,7 +55,7 @@ namespace AccountingWPF.ViewModels
 
             this.ingoingInvoices = new ObservableCollection<IngoingInvoice>(ingoingInvoicesList);
                 
-            childWindow.Show(1);
+            childWindow.Show();
 
             
         } 
