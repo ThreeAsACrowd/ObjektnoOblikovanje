@@ -46,7 +46,8 @@
                 @(++counter)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @*@Html.DisplayFor(modelItem => item.Date)*@
+                @String.Format("{0:d}", item.Date)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.JournalEntryNum)

@@ -3,9 +3,10 @@
 @{
     ViewBag.Title = "Create";
 }
-@*@section Scripts {
+@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}*@
+    @Scripts.Render("~/bundles/globalize")
+}
 <!-- jQuery UI CSS Reference -->
 <link href="@Url.Content("~/Content/themes/base/all.css")" rel="stylesheet" />
 <!-- Required jQuery and jQuery UI Javascript references -->
@@ -17,6 +18,17 @@
         // This will make every element with the class "date-picker" into a DatePicker element
         $('#Date').datepicker({ dateFormat: 'd.m.yy.' });
     })
+</script>
+<script type="text/javascript">
+    $(function () {
+        $.validator.methods.date = function (value, element) {
+            Globalize.culture("hr-HR");
+            // you can alternatively pass the culture to parseDate instead of
+            // setting the culture above, like so:
+            // parseDate(value, null, "en-AU")
+            return this.optional(element) || Globalize.parseDate(value) !== null;
+        }
+    });
 </script>
 <h2>Create</h2>
 
