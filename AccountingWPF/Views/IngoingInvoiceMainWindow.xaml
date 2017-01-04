@@ -2,7 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="IngoingInvoiceMainWindow" Height="500" Width="800">
+    <Border>
         <Grid RenderTransformOrigin="0.5,0.5">
+
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -11,12 +13,12 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Grid.RenderTransform>
-            <Grid.Resources>
-                <Style x:Key="RowHeadersWithId" TargetType="{x:Type DataGridRowHeader}">
-                    <Setter Property="Content" Value="{Binding Id}" />
-                </Style>
-            </Grid.Resources>
-            <DataGrid AutoGenerateColumns="False"
+        <Grid.Resources>
+            <Style x:Key="RowHeadersWithId" TargetType="{x:Type DataGridRowHeader}">
+                <Setter Property="Content" Value="{Binding Id}" />
+            </Style>
+        </Grid.Resources>
+        <DataGrid AutoGenerateColumns="False"
                   CanUserDeleteRows ="True"
                   Margin="10,53,14,71" 
                   Name="dataGridIngoingInvoices" 
@@ -37,8 +39,15 @@
                   />
                 </DataGrid.Columns>
             </DataGrid>
-        <Button Name ="Add_new_ingoing_invoice_button"  Command ="{Binding AddNewIngoingInvoiceCommand}" Content="Add new ingoing invoice" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22"/>
+            <Button Name ="Add_new_ingoing_invoice_button"  Command ="{Binding ShowChildWindowCommand}" Content="Add new ingoing invoice" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22"/>
         <Button Name ="Delete_ingoing_invoice_button"  Command ="{Binding DeleteIngoingInvoiceCommand}" Content="Delete ingoing invoice" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22" />
         <Button Name ="Update_ingoing_invoice_button" Command ="{Binding UpdateIngoingInvoiceCommand}" Content="Update ingoing invoice" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22"  />
+
+            <Border x:Name="childWindow" Visibility="{Binding WindowVisibility}" Background="#88000000" >
+                <ContentControl Content="{Binding XmlContent}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"></ContentControl>
+            </Border>
         </Grid>
+
+
+    </Border>
 </Window>
