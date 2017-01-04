@@ -321,10 +321,11 @@
     <Content Include="Views\Receipt\Index.cshtml" />
     <Content Include="Views\Receipt\Create.cshtml" />
     <Content Include="Views\Receipt\Edit.cshtml" />
+    <Content Include="Views\AnnualReport\Index.cshtml" />
+    <Content Include="Views\MonetaryFlowReport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AnnualReport\" />
     <Folder Include="Views\MonetaryFlow\" />
   </ItemGroup>
   <ItemGroup>
