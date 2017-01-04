@@ -95,13 +95,19 @@
     </Compile>
     <Compile Include="BaseLib\UserManager.cs" />
     <Compile Include="BindingModels\LoginBindingModel.cs" />
-    <Compile Include="ChildWindow\ChildWindowView.cs" />
+    <Compile Include="ChildWindow\ChildWindowAddIngoingInvoiceView.cs" />
+    <Compile Include="ChildWindow\ChildWindowUpdateIngoingInvoiceView.cs" />
     <Compile Include="ChildWindow\ViewModel\AddIngoingInvoiceViewModel.cs" />
+    <Compile Include="ChildWindow\ViewModel\UpdateIngoingInvoiceViewModel.cs" />
     <Compile Include="ChildWindow\View\AddIngoingInvoiceView.xaml.cs">
       <DependentUpon>AddIngoingInvoiceView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChildWindow\View\UpdateIngoingInvoiceView.xaml.cs">
+      <DependentUpon>UpdateIngoingInvoiceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Command.cs" />
-    <Compile Include="Helpers\ChildWindowManager.cs" />
+    <Compile Include="Helpers\ChildWindowAddManager.cs" />
+    <Compile Include="Helpers\ChildWindowUpdateManager.cs" />
     <Compile Include="Helpers\IdentityPartExtensionHelper.cs" />
     <Compile Include="Notification\PropertyChangedNotification.cs" />
     <Compile Include="ViewModels\AnnualReportViewModel.cs" />
@@ -170,6 +176,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="ChildWindow\View\AddIngoingInvoiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChildWindow\View\UpdateIngoingInvoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

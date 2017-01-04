@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace AccountingWPF.ChildWindow
 {
-    public class ChildWindowView
+    public class ChildWindowAddIngoingInvoiceView
     {
         public event Action<IngoingInvoice> Closed;
-        public ChildWindowView()
+        public ChildWindowAddIngoingInvoiceView()
         {
 
         }
@@ -22,14 +22,14 @@ namespace AccountingWPF.ChildWindow
         {
             AddIngoingInvoiceViewModel vm = new AddIngoingInvoiceViewModel();
             vm.Closed += ChildWindow_Closed;
-            ChildWindowManager.Instance.ShowChildWindow(new AddIngoingInvoiceView() { DataContext = vm });
+            ChildWindowAddManager.Instance.ShowChildWindow(new AddIngoingInvoiceView() { DataContext = vm });
         }
 
         void ChildWindow_Closed(IngoingInvoice invoice)
         {
             if (Closed != null)
                 Closed(invoice);
-            ChildWindowManager.Instance.CloseChildWindow();
+            ChildWindowAddManager.Instance.CloseChildWindow();
         }
     }
 }

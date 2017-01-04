@@ -27,37 +27,48 @@ namespace AccountingWPF.ViewModels
 
         public IngoingInvoice selectedItem { get; set; }
 
-        private DelegateCommand showChildWindowCommand;
-        public DelegateCommand ShowChildWindowCommand
+        private DelegateCommand showChildWindowAddCommand;
+        public DelegateCommand ShowChildWindowAddCommand
         {
-            get { return showChildWindowCommand; }
-        } 
-
-        public ICommand AddNewIngoingInvoiceCommand
+            get { return showChildWindowAddCommand; }
+        }
+ 
+        private DelegateCommand showChildWindowUpdateCommand;
+        public DelegateCommand ShowChildWindowUpdateCommand
         {
-            get;
-            private set;
+            get { return showChildWindowUpdateCommand; }
         }
 
-        private void ShowChildWindow()
+        private void ShowChildWindowAdd()
         {
-            var childWindow = new ChildWindowView();
+            var childWindow = new ChildWindowAddIngoingInvoiceView();
             childWindow.Closed += (r =>
             {
                 this.IngoingInvoicesRepo.Create(r);
+                this.ingoingInvoices.Add(r);
+
+            });
+                          
+            childWindow.Show();
+            
+        }
+
+        private void ShowChildWindowUpdate()
+        {
+            var childWindow = new ChildWindowUpdateIngoingInvoiceView();
+            childWindow.Closed += (r =>
+            {
+                this.IngoingInvoicesRepo.Update(r);
+                var item = this.ingoingInvoices.FirstOrDefault(i => i.Id == r.Id);
+                if (item != null)
+                {
+                    item = r;
+                }
 
             });
 
-            IList<IngoingInvoice> ingoingInvoicesList;
+            childWindow.Show(this.selectedItem.Id);
 
-
-            ingoingInvoicesList = this.IngoingInvoicesRepo.getByUserId(UserManager.CurrentUser.Id);
-
-            this.ingoingInvoices = new ObservableCollection<IngoingInvoice>(ingoingInvoicesList);
-                
-            childWindow.Show();
-
-            
         } 
 
         public ICommand DeleteIngoingInvoiceCommand
@@ -66,12 +77,7 @@ namespace AccountingWPF.ViewModels
             private set;
         }
 
-        public ICommand UpdateIngoingInvoiceCommand
-        {
-            get;
-            private set;
-        }
-
+        
         public IngoingInvoiceViewModel()
         {
             IList<IngoingInvoice> ingoingInvoicesList;
@@ -82,9 +88,9 @@ namespace AccountingWPF.ViewModels
             this.ingoingInvoices = new ObservableCollection<IngoingInvoice>(ingoingInvoicesList);
 
             DeleteIngoingInvoiceCommand = new Command(this.DeleteIngoingInvoice, this.CanExecuteDelete);
-            UpdateIngoingInvoiceCommand = new Command(this.UpdateIngoingInvoice, this.CanExecuteUpdate);
 
-            showChildWindowCommand = new DelegateCommand(ShowChildWindow);
+            showChildWindowAddCommand = new DelegateCommand(ShowChildWindowAdd);
+            showChildWindowUpdateCommand = new DelegateCommand(ShowChildWindowUpdate);
         }
 
 
@@ -95,13 +101,6 @@ namespace AccountingWPF.ViewModels
             }
         }
 
-        public bool CanExecuteUpdate
-        {
-            get
-            {
-                return true;
-            }
-        }
 
         internal void DeleteIngoingInvoice()
         {
@@ -119,63 +118,5 @@ namespace AccountingWPF.ViewModels
             }          
             
         }
-
-        internal void UpdateIngoingInvoice()
-        {
-            //TODO IMPLEMENTATION
-            Debug.Assert(false, "Update invoice.");
-        }
-
-        public int Id { get; set; }
-
-        public int FK_UserId { get; set; }
-
-        private User user;
-        public User User
-        {
-            get { return user; }
-            set
-            {
-                user = value;
-                RaisePropertyChanged("User");
-            }
-        }
-        private DateTime date;
-        public DateTime Date
-        {
-            get { return date; }
-            set
-            {
-                date = value;
-                RaisePropertyChanged("Date");
-            }
-        }
-
-        private string invoiceClassNumber;
-
-        public string InvoiceClassNumber
-        {
-            get { return invoiceClassNumber; }
-            set
-            {
-                invoiceClassNumber = value;
-                RaisePropertyChanged("InvoiceClassNumber");
-            }
-        }
-
-
-        private string amount;
-        [RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
-        public string Amount
-        {
-            get { return amount; }
-            set
-            {
-                amount = value;
-                RaisePropertyChanged("Amount");
-            }
-        }
-
-
     }
 }

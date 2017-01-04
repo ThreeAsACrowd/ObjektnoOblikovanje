@@ -1,21 +1,18 @@
-﻿using DataRepository.Models;
+﻿using AccountingWPF.BaseLib;
+using DataRepository.Models;
+using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.ViewModel;
-using System.Windows;
-using AccountingWPF.BaseLib;
-
 
 namespace AccountingWPF.ChildWindow.ViewModel
 {
-    public class AddIngoingInvoiceViewModel : NotificationObject
+    public class UpdateIngoingInvoiceViewModel : NotificationObject
     {
-        
         #region Events
 
         public event Action<IngoingInvoice> Closed;
@@ -31,12 +28,11 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
         #endregion
 
-        public AddIngoingInvoiceViewModel()
+        public UpdateIngoingInvoiceViewModel(int id_selected)
         {
+            this.Id = id_selected;
             okCommand = new DelegateCommand(SaveIngoingInvoice);
-
-            Init();
-
+            
         }
 
         public int Id { get; set; }
@@ -101,14 +97,14 @@ namespace AccountingWPF.ChildWindow.ViewModel
             }
         }
 
-        public void SaveIngoingInvoice() 
+        public void SaveIngoingInvoice()
         {
-            
+
             if (Closed != null)
             {
                 var _ingoingInvoice = new IngoingInvoice()
                 {
-                    
+                    Id = this.Id,
                     User = UserManager.CurrentUser,
                     Date = this.Date,
                     InvoiceClassNumber = this.InvoiceClassNumber,
@@ -117,15 +113,10 @@ namespace AccountingWPF.ChildWindow.ViewModel
                     FK_UserId = UserManager.CurrentUser.Id
 
                 };
-                
+
 
                 Closed(_ingoingInvoice);
             }
-        }
-
-        public void Init() 
-        {
-            //MessageBox.Show("Hello");
         }
 
     }

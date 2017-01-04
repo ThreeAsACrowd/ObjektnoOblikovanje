@@ -8,9 +8,9 @@ using System.Windows;
 
 namespace AccountingWPF.Helpers
 {
-    public class ChildWindowManager : NotificationObject
+    public class ChildWindowAddManager : NotificationObject
     {
-        public ChildWindowManager()
+        public ChildWindowAddManager()
         {
             
             WindowVisibility = Visibility.Collapsed;
@@ -18,14 +18,14 @@ namespace AccountingWPF.Helpers
         }
 
         //Singleton pattern implementation
-        private static ChildWindowManager instance;
-        public static ChildWindowManager Instance
+        private static ChildWindowAddManager instance;
+        public static ChildWindowAddManager Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new ChildWindowManager();
+                    instance = new ChildWindowAddManager();
                 }
                 return instance;
             }

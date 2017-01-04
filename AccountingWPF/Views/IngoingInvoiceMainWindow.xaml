@@ -39,11 +39,14 @@
                   />
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Name ="Add_new_ingoing_invoice_button"  Command ="{Binding ShowChildWindowCommand}" Content="Add new ingoing invoice" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22"/>
+            <Button Name ="Add_new_ingoing_invoice_button"  Command ="{Binding ShowChildWindowAddCommand}" Content="Add new ingoing invoice" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22"/>
         <Button Name ="Delete_ingoing_invoice_button"  Command ="{Binding DeleteIngoingInvoiceCommand}" Content="Delete ingoing invoice" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22" />
-        <Button Name ="Update_ingoing_invoice_button" Command ="{Binding UpdateIngoingInvoiceCommand}" Content="Update ingoing invoice" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22"  />
+            <Button Name ="Update_ingoing_invoice_button" Command ="{Binding ShowChildWindowUpdateCommand}" Content="Update ingoing invoice" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22"  />
 
-            <Border x:Name="childWindow" Visibility="{Binding WindowVisibility}" Background="#88000000" >
+            <Border x:Name="childWindowAdd" Visibility="{Binding WindowVisibility}" Background="#88000000" >
+                <ContentControl Content="{Binding XmlContent}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"></ContentControl>
+            </Border>
+            <Border x:Name="childWindowUpdate" Visibility="{Binding WindowVisibility}" Background="#87000000" >
                 <ContentControl Content="{Binding XmlContent}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"></ContentControl>
             </Border>
         </Grid>
