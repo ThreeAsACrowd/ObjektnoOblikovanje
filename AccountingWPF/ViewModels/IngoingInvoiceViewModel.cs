@@ -44,19 +44,20 @@ namespace AccountingWPF.ViewModels
             var childWindow = new ChildWindowView();
             childWindow.Closed += (r =>
             {
-                User= r.User;
-                RaisePropertyChanged("User");
+                this.IngoingInvoicesRepo.Create(r);
 
-                FK_UserId = r.FK_UserId;
-                RaisePropertyChanged("FK_UserId");
-
-                Date = r.Date;
-                RaisePropertyChanged("Date");
-
-                Amount = r.Amount;
-                RaisePropertyChanged("Amount");
             });
+
+            IList<IngoingInvoice> ingoingInvoicesList;
+
+
+            ingoingInvoicesList = this.IngoingInvoicesRepo.getByUserId(UserManager.CurrentUser.Id);
+
+            this.ingoingInvoices = new ObservableCollection<IngoingInvoice>(ingoingInvoicesList);
+                
             childWindow.Show(1);
+
+            
         } 
 
         public ICommand DeleteIngoingInvoiceCommand

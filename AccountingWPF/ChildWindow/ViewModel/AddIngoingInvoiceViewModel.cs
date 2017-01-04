@@ -20,6 +20,7 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
         }
 
+        
         #region Events
 
         public event Action<IngoingInvoice> Closed;
@@ -111,6 +112,8 @@ namespace AccountingWPF.ChildWindow.ViewModel
                     FK_UserId = UserManager.CurrentUser.Id
 
                 };
+                
+
                 Closed(_ingoingInvoice);
             }
         }
