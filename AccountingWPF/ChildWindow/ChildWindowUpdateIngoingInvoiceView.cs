@@ -19,9 +19,9 @@ namespace AccountingWPF.ChildWindow
 
         }
 
-        public void Show(int selected_id)
+        public void Show(IngoingInvoice selected)
         {
-            UpdateIngoingInvoiceViewModel vm = new UpdateIngoingInvoiceViewModel(selected_id);
+            UpdateIngoingInvoiceViewModel vm = new UpdateIngoingInvoiceViewModel(selected);
             vm.Closed += ChildWindow_Closed;
             ChildWindowAddManager.Instance.ShowChildWindow(new UpdateIngoingInvoiceView() { DataContext = vm });
         }

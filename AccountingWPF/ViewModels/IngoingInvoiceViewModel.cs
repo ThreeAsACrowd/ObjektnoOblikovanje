@@ -62,12 +62,15 @@ namespace AccountingWPF.ViewModels
                 var item = this.ingoingInvoices.FirstOrDefault(i => i.Id == r.Id);
                 if (item != null)
                 {
-                    item = r;
+                    item.Amount= r.Amount;
+                    item.Date = r.Date;
+                    item.InvoiceClassNumber = r.InvoiceClassNumber;
+                    item.SupplierInfo = r.SupplierInfo;
                 }
 
             });
 
-            childWindow.Show(this.selectedItem.Id);
+            childWindow.Show(this.selectedItem);
 
         } 
 

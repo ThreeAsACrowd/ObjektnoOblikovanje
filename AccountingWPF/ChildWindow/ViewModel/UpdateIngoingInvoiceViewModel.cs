@@ -28,9 +28,15 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
         #endregion
 
-        public UpdateIngoingInvoiceViewModel(int id_selected)
+        public UpdateIngoingInvoiceViewModel(IngoingInvoice selected)
         {
-            this.Id = id_selected;
+            this.Id = selected.Id;
+            this._User = selected.User;
+            this.FK_UserId = selected.FK_UserId;
+            this.Date = selected.Date;
+            this.SupplierInfo = selected.SupplierInfo;
+            this.Amount = selected.Amount;
+            this.InvoiceClassNumber = selected.InvoiceClassNumber;
             okCommand = new DelegateCommand(SaveIngoingInvoice);
             
         }
