@@ -23,14 +23,14 @@ namespace AccountingWPF.ChildWindow
         {
             UpdateIngoingInvoiceViewModel vm = new UpdateIngoingInvoiceViewModel(selected);
             vm.Closed += ChildWindow_Closed;
-            ChildWindowAddManager.Instance.ShowChildWindow(new UpdateIngoingInvoiceView() { DataContext = vm });
+            ChildWindowUpdateManager.Instance.ShowChildWindow(new UpdateIngoingInvoiceView() { DataContext = vm });
         }
 
         void ChildWindow_Closed(IngoingInvoice invoice)
         {
             if (Closed != null)
                 Closed(invoice);
-            ChildWindowAddManager.Instance.CloseChildWindow();
+            ChildWindowUpdateManager.Instance.CloseChildWindow();
         }
     }
 }

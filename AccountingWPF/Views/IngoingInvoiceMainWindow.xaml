@@ -28,7 +28,7 @@
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   ItemsSource="{Binding ingoingInvoices, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding selectedItem, Mode=TwoWay}"
+                  SelectedItem="{Binding selectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   CanUserAddRows="True"
                       >
                 <DataGrid.Columns>
@@ -46,7 +46,7 @@
             <Border x:Name="childWindowAdd" Visibility="{Binding WindowVisibility}" Background="#88000000" >
                 <ContentControl Content="{Binding XmlContent}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"></ContentControl>
             </Border>
-            <Border x:Name="childWindowUpdate" Visibility="{Binding WindowVisibility}" Background="#87000000" >
+            <Border x:Name="childWindowUpdate" Visibility="{Binding WindowVisibility}" Background="#84000000" >
                 <ContentControl Content="{Binding XmlContent}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"></ContentControl>
             </Border>
         </Grid>

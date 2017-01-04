@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace AccountingWPF.ChildWindow.ViewModel
 {
@@ -122,6 +123,7 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
 
                 Closed(_ingoingInvoice);
+                
             }
         }
 

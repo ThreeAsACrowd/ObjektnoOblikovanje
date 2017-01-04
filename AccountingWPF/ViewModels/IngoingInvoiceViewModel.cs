@@ -56,22 +56,26 @@ namespace AccountingWPF.ViewModels
         private void ShowChildWindowUpdate()
         {
             var childWindow = new ChildWindowUpdateIngoingInvoiceView();
+
             childWindow.Closed += (r =>
             {
                 this.IngoingInvoicesRepo.Update(r);
-                var item = this.ingoingInvoices.FirstOrDefault(i => i.Id == r.Id);
+
+                var item = this.ingoingInvoices.First(i => i.Id == r.Id);
                 if (item != null)
                 {
-                    item.Amount= r.Amount;
+                    item.Amount = r.Amount;
                     item.Date = r.Date;
                     item.InvoiceClassNumber = r.InvoiceClassNumber;
                     item.SupplierInfo = r.SupplierInfo;
                 }
-
+                CollectionViewSource.GetDefaultView(this.ingoingInvoices).Refresh();
+               
             });
 
             childWindow.Show(this.selectedItem);
-
+            
+            
         } 
 
         public ICommand DeleteIngoingInvoiceCommand
