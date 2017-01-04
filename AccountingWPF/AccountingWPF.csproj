@@ -97,23 +97,33 @@
     <Compile Include="BindingModels\LoginBindingModel.cs" />
     <Compile Include="ChildWindow\ChildWindowAddIngoingInvoiceView.cs" />
     <Compile Include="ChildWindow\ChildWindowAddOutgoingInvoiceView.cs" />
+    <Compile Include="ChildWindow\ChildWindowAddReceiptView.cs" />
     <Compile Include="ChildWindow\ChildWindowUpdateIngoingInvoiceView.cs" />
     <Compile Include="ChildWindow\ChildWindowUpdateOutgoingInvoiceView.cs" />
+    <Compile Include="ChildWindow\ChildWindowUpdateReceiptView.cs" />
     <Compile Include="ChildWindow\ViewModel\AddIngoingInvoiceViewModel.cs" />
     <Compile Include="ChildWindow\ViewModel\AddOutgoingInvoiceViewModel.cs" />
+    <Compile Include="ChildWindow\ViewModel\AddReceiptViewModel.cs" />
     <Compile Include="ChildWindow\ViewModel\UpdateIngoingInvoiceViewModel.cs" />
     <Compile Include="ChildWindow\ViewModel\UpdateOutgoingInvoiceViewModel.cs" />
+    <Compile Include="ChildWindow\ViewModel\UpdateReceiptViewModel.cs" />
     <Compile Include="ChildWindow\View\AddIngoingInvoiceView.xaml.cs">
       <DependentUpon>AddIngoingInvoiceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ChildWindow\View\AddOutgoingInvoiceView.xaml.cs">
       <DependentUpon>AddOutgoingInvoiceView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChildWindow\View\AddReceiptView.xaml.cs">
+      <DependentUpon>AddReceiptView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChildWindow\View\UpdateIngoingInvoiceView.xaml.cs">
       <DependentUpon>UpdateIngoingInvoiceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ChildWindow\View\UpdateOutgoingInvoiceView.xaml.cs">
       <DependentUpon>UpdateOutgoingInvoiceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChildWindow\View\UpdateReceiptView.xaml.cs">
+      <DependentUpon>UpdateReceiptView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Helpers\ChildWindowAddManager.cs" />
@@ -193,11 +203,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ChildWindow\View\AddReceiptView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ChildWindow\View\UpdateIngoingInvoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChildWindow\View\UpdateOutgoingInvoiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChildWindow\View\UpdateReceiptView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
