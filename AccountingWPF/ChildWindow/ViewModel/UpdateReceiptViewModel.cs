@@ -44,6 +44,17 @@ namespace AccountingWPF.ChildWindow.ViewModel
                 RaisePropertyChanged("User");
             }
         }
+
+        private Vat _vat;
+        public Vat _Vat
+        {
+            get { return _vat; }
+            set
+            {
+                _vat = value;
+                RaisePropertyChanged("Vat");
+            }
+        }
         private DateTime date;
         public DateTime Date
         {
@@ -135,12 +146,13 @@ namespace AccountingWPF.ChildWindow.ViewModel
         {
             this.Id = selected.Id;
             this._User = selected.User;
+            this._Vat = selected.Vat;
             this.FK_UserId = selected.FK_UserId;
             this.Date = selected.Date;
             this.AmountCash = selected.AmountCash;
             this.AmountTransferAccount = selected.AmountTransferAccount;
             this.AmountNonCashBenefit = selected.AmountNonCashBenefit;
-
+            
             this.FK_VatId = selected.FK_VAT;
             this.JournalEntryNumber = selected.JournalEntryNum;
             this.Total = selected.Total;
@@ -162,7 +174,7 @@ namespace AccountingWPF.ChildWindow.ViewModel
             {
                 var _Receipt = new Receipt()
                 {
-
+                    Id = this.Id,
                     User = UserManager.CurrentUser,
                     Date = this.Date,
                     AmountCash = this.AmountCash,
