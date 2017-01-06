@@ -95,18 +95,25 @@
     </Compile>
     <Compile Include="BaseLib\UserManager.cs" />
     <Compile Include="BindingModels\LoginBindingModel.cs" />
+    <Compile Include="ChildWindow\ChildWindowAddExpenditureView.cs" />
     <Compile Include="ChildWindow\ChildWindowAddIngoingInvoiceView.cs" />
     <Compile Include="ChildWindow\ChildWindowAddOutgoingInvoiceView.cs" />
     <Compile Include="ChildWindow\ChildWindowAddReceiptView.cs" />
+    <Compile Include="ChildWindow\ChildWindowUpdateExpenditureView.cs" />
     <Compile Include="ChildWindow\ChildWindowUpdateIngoingInvoiceView.cs" />
     <Compile Include="ChildWindow\ChildWindowUpdateOutgoingInvoiceView.cs" />
     <Compile Include="ChildWindow\ChildWindowUpdateReceiptView.cs" />
+    <Compile Include="ChildWindow\ViewModel\AddExpenditureViewModel.cs" />
     <Compile Include="ChildWindow\ViewModel\AddIngoingInvoiceViewModel.cs" />
     <Compile Include="ChildWindow\ViewModel\AddOutgoingInvoiceViewModel.cs" />
     <Compile Include="ChildWindow\ViewModel\AddReceiptViewModel.cs" />
+    <Compile Include="ChildWindow\ViewModel\UpdateExpenditureViewModel.cs" />
     <Compile Include="ChildWindow\ViewModel\UpdateIngoingInvoiceViewModel.cs" />
     <Compile Include="ChildWindow\ViewModel\UpdateOutgoingInvoiceViewModel.cs" />
     <Compile Include="ChildWindow\ViewModel\UpdateReceiptViewModel.cs" />
+    <Compile Include="ChildWindow\View\AddExpenditureView.xaml.cs">
+      <DependentUpon>AddExpenditureView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChildWindow\View\AddIngoingInvoiceView.xaml.cs">
       <DependentUpon>AddIngoingInvoiceView.xaml</DependentUpon>
     </Compile>
@@ -115,6 +122,9 @@
     </Compile>
     <Compile Include="ChildWindow\View\AddReceiptView.xaml.cs">
       <DependentUpon>AddReceiptView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChildWindow\View\UpdateExpenditureView.xaml.cs">
+      <DependentUpon>UpdateExpenditureView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ChildWindow\View\UpdateIngoingInvoiceView.xaml.cs">
       <DependentUpon>UpdateIngoingInvoiceView.xaml</DependentUpon>
@@ -195,6 +205,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ChildWindow\View\AddExpenditureView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ChildWindow\View\AddIngoingInvoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -204,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChildWindow\View\AddReceiptView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChildWindow\View\UpdateExpenditureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

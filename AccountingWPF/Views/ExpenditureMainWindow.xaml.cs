@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AccountingWPF.ViewModels;
+using AccountingWPF.Helpers;
 
 namespace AccountingWPF.Views
 {
@@ -25,7 +26,11 @@ namespace AccountingWPF.Views
 		public ExpenditureMainWindow()
 		{
 			InitializeComponent();
-           
+
+
+            childWindowAdd.DataContext = ChildWindowAddManager.Instance;
+            childWindowUpdate.DataContext = ChildWindowUpdateManager.Instance;
+
             expenditureVM = new ExpenditureViewModel();
 			this.DataContext = expenditureVM;
 			this.dg_cbx_VAT.ItemsSource = expenditureVM.vats;
