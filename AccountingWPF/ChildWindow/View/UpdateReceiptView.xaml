@@ -51,7 +51,9 @@
         <TextBox Grid.Row ="6" Grid.Column="1" Height="23" Margin="30,9,-30,8" Name="JournalNumTextBox" VerticalAlignment="Center" Text="{Binding JournalEntryNumber,  UpdateSourceTrigger=PropertyChanged}" />
 
 
-        <Button Grid.Row="7" Width="150" HorizontalAlignment="Left" Content="OK" Command="{Binding OkCommand}" Margin="26,17,0,44" RenderTransformOrigin="0.507,1.39"/>
+        <Button Grid.Row="7" Grid.Column="0" Width="150" HorizontalAlignment="Left" Content="OK" Command="{Binding OkCommand}" Margin="26,17,0,44" RenderTransformOrigin="0.507,1.39"/>
+        <Button Grid.Row="7" Grid.Column="1" Content="Cancel" Command="{Binding CancelCommand}" Margin="26,17,-66,44" RenderTransformOrigin="0.507,1.39"/>
+
 
     </Grid>
 </UserControl>

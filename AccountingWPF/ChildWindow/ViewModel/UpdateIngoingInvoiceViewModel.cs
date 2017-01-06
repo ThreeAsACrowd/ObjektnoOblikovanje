@@ -14,34 +14,7 @@ namespace AccountingWPF.ChildWindow.ViewModel
 {
     public class UpdateIngoingInvoiceViewModel : NotificationObject
     {
-        #region Events
-
-        public event Action<IngoingInvoice> Closed;
-        #endregion
-
-        #region Command Properties
-
-        private DelegateCommand okCommand;
-        public DelegateCommand OkCommand
-        {
-            get { return okCommand; }
-        }
-
-        #endregion
-
-        public UpdateIngoingInvoiceViewModel(IngoingInvoice selected)
-        {
-            this.Id = selected.Id;
-            this._User = selected.User;
-            this.FK_UserId = selected.FK_UserId;
-            this.Date = selected.Date;
-            this.SupplierInfo = selected.SupplierInfo;
-            this.Amount = selected.Amount;
-            this.InvoiceClassNumber = selected.InvoiceClassNumber;
-            okCommand = new DelegateCommand(SaveIngoingInvoice);
-                        
-        }
-
+        #region Properties
         public int Id { get; set; }
 
         public int FK_UserId { get; set; }
@@ -104,6 +77,50 @@ namespace AccountingWPF.ChildWindow.ViewModel
             }
         }
 
+        #endregion
+
+        #region Events
+
+        public event Action<IngoingInvoice> Closed;
+        #endregion
+
+        #region Command Properties
+
+        private DelegateCommand okCommand;
+        public DelegateCommand OkCommand
+        {
+            get { return okCommand; }
+        }
+
+        private DelegateCommand cancelCommand;
+        public DelegateCommand CancelCommand
+        {
+            get { return cancelCommand; }
+        }
+
+        #endregion
+
+        public UpdateIngoingInvoiceViewModel(IngoingInvoice selected)
+        {
+            this.Id = selected.Id;
+            this._User = selected.User;
+            this.FK_UserId = selected.FK_UserId;
+            this.Date = selected.Date;
+            this.SupplierInfo = selected.SupplierInfo;
+            this.Amount = selected.Amount;
+            this.InvoiceClassNumber = selected.InvoiceClassNumber;
+            okCommand = new DelegateCommand(SaveIngoingInvoice);
+            cancelCommand = new DelegateCommand(CancelUpdateIngoingInvoice);
+                        
+        }
+
+        private void CancelUpdateIngoingInvoice()
+        {
+            //todo
+        }
+
+      
+
         public void SaveIngoingInvoice()
         {
 
@@ -126,6 +143,5 @@ namespace AccountingWPF.ChildWindow.ViewModel
                 
             }
         }
-
     }
 }

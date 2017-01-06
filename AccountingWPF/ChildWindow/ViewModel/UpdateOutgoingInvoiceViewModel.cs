@@ -8,40 +8,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace AccountingWPF.ChildWindow.ViewModel
 {
     public class UpdateOutgoingInvoiceViewModel : NotificationObject
     {
-        #region Events
-
-        public event Action<OutgoingInvoice> Closed;
-        #endregion
-
-        #region Command Properties
-
-        private DelegateCommand okCommand;
-        public DelegateCommand OkCommand
-        {
-            get { return okCommand; }
-        }
-
-        #endregion
-
-        public UpdateOutgoingInvoiceViewModel(OutgoingInvoice selected)
-        {
-            this.Id = selected.Id;
-            this._User = selected.User;
-            this.FK_UserId = selected.FK_UserId;
-            this.Date = selected.Date;
-            this.CustomerInfo = selected.CustomerInfo;
-            this.Amount = selected.Amount;
-            this.InvoiceClassNumber = selected.InvoiceClassNumber;
-            okCommand = new DelegateCommand(SaveOutgoingInvoice);
-
-        }
-
+        #region Properties
         public int Id { get; set; }
 
         public int FK_UserId { get; set; }
@@ -103,6 +78,50 @@ namespace AccountingWPF.ChildWindow.ViewModel
                 RaisePropertyChanged("Amount");
             }
         }
+        #endregion
+
+        #region Events
+
+        public event Action<OutgoingInvoice> Closed;
+        #endregion
+
+        #region Command Properties
+
+        private DelegateCommand okCommand;
+        public DelegateCommand OkCommand
+        {
+            get { return okCommand; }
+        }
+
+        private DelegateCommand cancelCommand;
+        public DelegateCommand CancelCommand
+        {
+            get { return cancelCommand; }
+        }
+
+        #endregion
+
+        public UpdateOutgoingInvoiceViewModel(OutgoingInvoice selected)
+        {
+            this.Id = selected.Id;
+            this._User = selected.User;
+            this.FK_UserId = selected.FK_UserId;
+            this.Date = selected.Date;
+            this.CustomerInfo = selected.CustomerInfo;
+            this.Amount = selected.Amount;
+            this.InvoiceClassNumber = selected.InvoiceClassNumber;
+            okCommand = new DelegateCommand(SaveOutgoingInvoice);
+            cancelCommand = new DelegateCommand(CancelUpdateOutgoingInvoice);
+
+        }
+
+        private void CancelUpdateOutgoingInvoice()
+        {
+           
+
+        }
+
+       
 
         public void SaveOutgoingInvoice()
         {

@@ -23,6 +23,7 @@ namespace AccountingWPF.ChildWindow.View
         public UpdateOutgoingInvoiceView()
         {
             InitializeComponent();
+
         }
     }
 }

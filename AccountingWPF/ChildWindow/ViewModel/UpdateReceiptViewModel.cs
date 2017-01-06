@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace AccountingWPF.ChildWindow.ViewModel
@@ -140,6 +141,12 @@ namespace AccountingWPF.ChildWindow.ViewModel
             get { return okCommand; }
         }
 
+        private DelegateCommand cancelCommand;
+        public DelegateCommand CancelCommand
+        {
+            get { return cancelCommand; }
+        }
+
         #endregion
 
         public UpdateReceiptViewModel(Receipt selected)
@@ -157,6 +164,7 @@ namespace AccountingWPF.ChildWindow.ViewModel
             this.JournalEntryNumber = selected.JournalEntryNum;
             this.Total = selected.Total;
             okCommand = new DelegateCommand(SaveReceipt);
+            cancelCommand = new DelegateCommand(CancelUpdateReceipt);
 
             Init();
 
@@ -190,6 +198,11 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
                 Closed(_Receipt);
             }
+        }
+
+        public void CancelUpdateReceipt()
+        {
+            MessageBox.Show("Hello.");
         }
 
         public void Init()

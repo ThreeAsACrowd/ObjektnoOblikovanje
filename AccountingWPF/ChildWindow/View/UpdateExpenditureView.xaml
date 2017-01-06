@@ -56,6 +56,7 @@
 
 
         <Button Grid.Row="8" Width="150" HorizontalAlignment="Left" Content="OK" Command="{Binding OkCommand}" Margin="26,13,0,10" RenderTransformOrigin="0.507,1.39"/>
+        <Button Grid.Row="8" Grid.Column="1" Content="Cancel" Command="{Binding CancelCommand}" Margin="28,13,-68,14" RenderTransformOrigin="0.507,1.39"/>
 
     </Grid>
 </UserControl>
