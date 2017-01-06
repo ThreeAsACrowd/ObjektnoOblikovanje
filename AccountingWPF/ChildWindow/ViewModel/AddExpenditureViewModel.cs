@@ -191,6 +191,7 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
             IList<Vat> vats = vatRepo.getAll();
             this.Vats = new List<Vat>(vats);
+            this.Date = DateTime.Now;
 
         }
         #endregion

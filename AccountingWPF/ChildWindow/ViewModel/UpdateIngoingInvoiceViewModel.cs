@@ -39,7 +39,7 @@ namespace AccountingWPF.ChildWindow.ViewModel
             this.Amount = selected.Amount;
             this.InvoiceClassNumber = selected.InvoiceClassNumber;
             okCommand = new DelegateCommand(SaveIngoingInvoice);
-            
+                        
         }
 
         public int Id { get; set; }

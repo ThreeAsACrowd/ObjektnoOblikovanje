@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Date" Height="28" HorizontalAlignment="Left" Name="DateLabel" VerticalAlignment="Top" Width="75" Margin="10,3,0,0" />
-        <wpfTool:DateTimePicker Grid.Row ="0" Grid.Column="1" Height="23" Margin="10,8,-68,9" Name="DatePicker" VerticalAlignment="Center" DefaultValue="{x:Static sys:DateTime.Now}" FormatString="d.M.yyyy-HH:mm" Value="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <wpfTool:DateTimePicker Grid.Row ="0" Grid.Column="1" Height="23" Margin="10,8,-68,9" Name="DatePicker" VerticalAlignment="Center" FormatString="d.M.yyyy-HH:mm" Value="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <Label Grid.Row="1" Grid.Column="0" Content="AmountCash" Height="28" HorizontalAlignment="Left" Name="amountCashLabel" VerticalAlignment="Top" Width="122" Margin="10,4,0,0" />
         <TextBox Grid.Row ="1" Grid.Column="1" Height="23" Margin="30,6,-30,11" Name="AmountCashTextBox" VerticalAlignment="Center" Text="{Binding AmountCash,  UpdateSourceTrigger=PropertyChanged}" />

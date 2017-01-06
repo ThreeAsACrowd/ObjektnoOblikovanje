@@ -125,7 +125,7 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
         public void Init() 
         {
-            //MessageBox.Show("Hello");
+            this.Date = DateTime.Now;
         }
 
     }
