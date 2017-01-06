@@ -1,29 +1,37 @@
-﻿using System.Collections.Generic;
-
-using AccountingWPF.BaseLib;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DataRepository.Models;
+using AccountingWPF.BaseLib;
 using DataRepository.Repositories;
-using System.Diagnostics;
-using AccountingWPF.Commands;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
+using AccountingWPF.Commands;
+using System.Diagnostics;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Data;
+using Microsoft.Practices.Prism.Commands;
+using AccountingWPF.ChildWindow.View;
+using Microsoft.Practices.Prism.ViewModel;
+using AccountingWPF.ChildWindow;
+using System.ComponentModel.DataAnnotations;
+using DataRepository.nHibernateDb;
 
 namespace AccountingWPF.ViewModels
 {
-    public class ReceiptViewModel
+    public class ReceiptViewModel: NotificationObject
     {
-        public IList<Receipt> receipts { get; set; }
+        #region Properties
+
+        public ObservableCollection<Receipt> receipts { get; set; }
+        
         public IList<Vat> vats { get; set; }
         private IMonetaryFlowRepository<Receipt> receiptRepo { get; set; }
         private VatRepository vatRepo { get; set; }
 
-         public Receipt selectedItem { get; set; }
-
-        public ICommand AddNewReceiptCommand
-        {
-            get;
-            private set;
-        }
+        public Receipt selectedItem { get; set; }
 
         public ICommand DeleteReceiptCommand
         {
@@ -31,16 +39,70 @@ namespace AccountingWPF.ViewModels
             private set;
         }
 
-        public ICommand UpdateReceiptCommand
+        private DelegateCommand showChildWindowAddCommand;
+        public DelegateCommand ShowChildWindowAddCommand
         {
-            get;
-            private set;
+            get { return showChildWindowAddCommand; }
         }
+
+        private DelegateCommand showChildWindowUpdateCommand;
+        public DelegateCommand ShowChildWindowUpdateCommand
+        {
+            get { return showChildWindowUpdateCommand; }
+        }
+
+        #endregion
+        
+
+        private void ShowChildWindowAdd()
+        {
+            var childWindow = new ChildWindowAddReceiptView();
+            childWindow.Closed += (r =>
+            {
+                this.receiptRepo.Create(r);
+                this.receipts.Add(r);
+
+            });
+
+            childWindow.Show();
+
+        }
+
+        private void ShowChildWindowUpdate()
+        {
+            var childWindow = new ChildWindowUpdateReceiptView();
+            
+
+            childWindow.Closed += (r =>
+            {
+                this.receiptRepo.Update(r);
+
+                var item = this.receipts.First(i => i.Id == r.Id);
+                if (item != null)
+                {
+                    item.AmountCash = r.AmountCash;
+                    item.AmountNonCashBenefit = r.AmountNonCashBenefit;
+                    item.AmountTransferAccount = r.AmountTransferAccount;
+                    item.Date = r.Date;
+                    item.FK_VAT = r.FK_VAT;
+                    item.Vat = r.Vat;
+                    item.JournalEntryNum = r.JournalEntryNum;
+                }
+
+                CollectionViewSource.GetDefaultView(this.receipts).Refresh();
+
+            });
+
+            childWindow.Show(this.selectedItem);
+
+
+        } 
+
 
         public ReceiptViewModel()
         {
             IList<Receipt> receiptsList;
-            receiptRepo = new ReceiptRepository<Receipt>();
+            this.receiptRepo = new ReceiptRepository<Receipt>(SessionManager.SessionFactory);
 			vatRepo = new VatRepository();
 
             receiptsList = receiptRepo.getByUserId(UserManager.CurrentUser.Id);
@@ -48,21 +110,13 @@ namespace AccountingWPF.ViewModels
 
 			vats = vatRepo.getAll();
 
-            AddNewReceiptCommand = new Command(this.AddNewReceipt, this.CanExecuteAdd);
+           
             DeleteReceiptCommand = new Command(this.DeleteReceipt, this.CanExecuteDelete);
-            UpdateReceiptCommand = new Command(this.UpdateReceipt, this.CanExecuteUpdate);
+            showChildWindowAddCommand = new DelegateCommand(ShowChildWindowAdd);
+            showChildWindowUpdateCommand = new DelegateCommand(ShowChildWindowUpdate);
+
 
         }
-
-
-        public bool CanExecuteAdd
-        {
-            get
-            {
-                return true;
-            }
-        }
-
         public bool CanExecuteDelete
         {
             get
@@ -71,19 +125,6 @@ namespace AccountingWPF.ViewModels
             }
         }
 
-        public bool CanExecuteUpdate
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        internal void AddNewReceipt()
-        {
-            
-            Debug.Assert(false, "Add new receipt.");
-        }
 
         internal void DeleteReceipt()
         {
@@ -94,19 +135,6 @@ namespace AccountingWPF.ViewModels
                 this.receipts.Remove(this.selectedItem);
 
             }
-            else
-            {
-                //TODO!
-                return;
-            }
-
         }
-
-        internal void UpdateReceipt()
-        {
-            //TODO IMPLEMENTATION
-            Debug.Assert(false, "Update receipt.");
-        }
-
     }
 }

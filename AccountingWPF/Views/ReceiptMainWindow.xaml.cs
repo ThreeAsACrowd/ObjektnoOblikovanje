@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AccountingWPF.ViewModels;
+using AccountingWPF.Helpers;
 
 namespace AccountingWPF.Views
 {
@@ -25,6 +26,9 @@ namespace AccountingWPF.Views
 		public ReceiptMainWindow()
 		{
 			InitializeComponent();
+
+            childWindowAdd.DataContext = ChildWindowAddManager.Instance;
+            childWindowUpdate.DataContext = ChildWindowUpdateManager.Instance;
 
             receiptsVM = new ReceiptViewModel();
             this.DataContext = receiptsVM;

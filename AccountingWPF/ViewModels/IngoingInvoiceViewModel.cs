@@ -24,7 +24,7 @@ namespace AccountingWPF.ViewModels
     {
         public ObservableCollection<IngoingInvoice> ingoingInvoices { get; set; }
         public IInvoiceRepository<IngoingInvoice> IngoingInvoicesRepo { get; set; }
-
+        
         public IngoingInvoice selectedItem { get; set; }
 
         private DelegateCommand showChildWindowAddCommand;
@@ -60,7 +60,7 @@ namespace AccountingWPF.ViewModels
             childWindow.Closed += (r =>
             {
                 this.IngoingInvoicesRepo.Update(r);
-
+                
                 var item = this.ingoingInvoices.First(i => i.Id == r.Id);
                 if (item != null)
                 {
@@ -120,10 +120,8 @@ namespace AccountingWPF.ViewModels
             }
             else
             {
-                //TODO!
                 return;
-            }          
-            
+            }                      
         }
     }
 }
