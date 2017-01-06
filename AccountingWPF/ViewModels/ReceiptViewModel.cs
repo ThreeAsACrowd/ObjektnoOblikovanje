@@ -93,7 +93,14 @@ namespace AccountingWPF.ViewModels
 
             });
 
-            childWindow.Show(this.selectedItem);
+            if (this.selectedItem != null)
+            {
+                childWindow.Show(this.selectedItem);
+            }
+            else
+            {
+                MessageBox.Show("Please select item for edit.");
+            }
 
 
         } 

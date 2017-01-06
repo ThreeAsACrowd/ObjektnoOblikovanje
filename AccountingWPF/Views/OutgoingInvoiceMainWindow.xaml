@@ -19,17 +19,17 @@
                 </Style>
             </Grid.Resources>
             <DataGrid AutoGenerateColumns="False"
-                  CanUserDeleteRows ="True"
                   Margin="10,53,14,71" 
                   Name="dataGridOutgoingInvoices" 
                   AlternatingRowBackground="AliceBlue"  
                   HeadersVisibility="All"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
                   ScrollViewer.CanContentScroll="True" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   ItemsSource="{Binding OutgoingInvoices, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   SelectedItem="{Binding selectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  CanUserAddRows="True"
                       >
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Date}" Header="Date" />
