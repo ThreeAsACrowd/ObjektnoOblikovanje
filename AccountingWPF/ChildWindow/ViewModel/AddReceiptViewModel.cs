@@ -9,30 +9,33 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.ViewModel;
 using System.Windows;
 using AccountingWPF.BaseLib;
+using System.Windows.Threading;
+using AccountingWPF.Notification;
 
 
 namespace AccountingWPF.ChildWindow.ViewModel
 {
-    public class AddReceiptViewModel : NotificationObject
+    public class AddReceiptViewModel : PropertyChangedNotification
     {
         #region Properties
         public List<Vat> Vats { get; set; }
-      
+
         public int Id { get; set; }
 
         public int FK_UserId { get; set; }
 
-        private int fK_VATId;
         public int FK_VatId
         {
-            get { return fK_VATId; }
+            get
+            {
+                return GetValue(() => FK_VatId);
+            }
 
             set
             {
-                fK_VATId = value;
-                RaisePropertyChanged("FK_VatId");
-            }
+                SetValue(() => FK_VatId, value);
 
+            }
         }
 
         private User _user;
@@ -42,9 +45,9 @@ namespace AccountingWPF.ChildWindow.ViewModel
             set
             {
                 _user = value;
-                RaisePropertyChanged("User");
             }
         }
+
         private DateTime date;
         public DateTime Date
         {
@@ -52,66 +55,83 @@ namespace AccountingWPF.ChildWindow.ViewModel
             set
             {
                 date = value;
-                RaisePropertyChanged("Date");
             }
         }
 
-        private string amountCash;
+
         [RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
         public string AmountCash
         {
-            get { return amountCash; }
+            get
+            {
+                return GetValue(() => AmountCash);
+            }
+
             set
             {
-                amountCash = value;
-                RaisePropertyChanged("AmountCash");
+                SetValue(() => AmountCash, value);
+
             }
         }
 
-        private string amountNonCashBenefit;
+
         [RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
         public string AmountNonCashBenefit
         {
-            get { return amountNonCashBenefit; }
+            get
+            {
+                return GetValue(() => AmountNonCashBenefit);
+            }
+
             set
             {
-                amountNonCashBenefit = value;
-                RaisePropertyChanged("AmountNonCashBenefit");
+                SetValue(() => AmountNonCashBenefit, value);
+
             }
         }
 
-        private string amountTransferAccount;
+
         [RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
         public string AmountTransferAccount
         {
-            get { return amountTransferAccount; }
+            get
+            {
+                return GetValue(() => AmountTransferAccount);
+            }
+
             set
             {
-                amountTransferAccount = value;
-                RaisePropertyChanged("AmountTransferAccount");
+                SetValue(() => AmountTransferAccount, value);
+
             }
         }
-        private string journalEntryNumber;
+        [Required(ErrorMessage = "Must not be empty.")]
         public string JournalEntryNumber
         {
-            get { return journalEntryNumber; }
+            get
+            {
+                return GetValue(() => JournalEntryNumber);
+            }
+
             set
             {
-                journalEntryNumber = value;
-                RaisePropertyChanged("JournalEntryNumber");
+                SetValue(() => JournalEntryNumber, value);
+
             }
         }
 
-
-        private string total;
         [RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
         public string Total
         {
-            get { return total; }
+            get
+            {
+                return GetValue(() => Total);
+            }
+
             set
             {
-                total = value;
-                RaisePropertyChanged("Total");
+                SetValue(() => Total, value);
+
             }
         }
 
@@ -130,12 +150,18 @@ namespace AccountingWPF.ChildWindow.ViewModel
             get { return okCommand; }
         }
 
+        private DelegateCommand cancelCommand;
+        public DelegateCommand CancelCommand
+        {
+            get { return cancelCommand; }
+        }
         #endregion
 
         #region Constructor
         public AddReceiptViewModel()
         {
             okCommand = new DelegateCommand(SaveReceipt);
+            cancelCommand = new DelegateCommand(CancelAddReceipt);
 
             Init();
 
@@ -164,13 +190,22 @@ namespace AccountingWPF.ChildWindow.ViewModel
                     Vat = v,
                     FK_VAT = this.FK_VatId,
                     JournalEntryNum = this.JournalEntryNumber,
-                    Total = this.Total
-
+                    Total = this.Total,
                 };
 
                 Closed(_Receipt);
             }
         }
+        public void CancelAddReceipt()
+        {
+            Receipt rec = null;
+            if (Closed != null)
+            {
+
+                Closed(rec);
+            }
+        }
+
 
         public void Init()
         {
@@ -182,6 +217,6 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
         }
         #endregion
-        
+
     }
 }

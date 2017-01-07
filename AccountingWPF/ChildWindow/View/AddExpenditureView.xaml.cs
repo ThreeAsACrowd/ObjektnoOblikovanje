@@ -26,7 +26,7 @@ namespace AccountingWPF.ChildWindow.View
             InitializeComponent();
         }
 
-        public static int cnt =0;
+        public static int cnt = 0;
         private void Validation_Error(object sender, ValidationErrorEventArgs e)
         {
 
