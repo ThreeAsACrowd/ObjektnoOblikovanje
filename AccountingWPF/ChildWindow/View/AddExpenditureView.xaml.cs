@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccountingWPF.ChildWindow.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,25 @@ namespace AccountingWPF.ChildWindow.View
         {
             InitializeComponent();
         }
+
+        public static int cnt =0;
+        private void Validation_Error(object sender, ValidationErrorEventArgs e)
+        {
+
+            if (e.Action == ValidationErrorEventAction.Added) 
+            {
+                buttonOk.IsEnabled = false;
+                cnt++;
+
+            }
+            if (e.Action == ValidationErrorEventAction.Removed) 
+            {
+                cnt--;
+                if (cnt==0)
+                {
+                    buttonOk.IsEnabled = true;
+                }
+            }
+        } 
     }
 }

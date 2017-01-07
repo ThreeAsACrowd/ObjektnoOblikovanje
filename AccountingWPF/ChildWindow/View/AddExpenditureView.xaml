@@ -7,7 +7,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d"
              Width="406" Height="397">
-    <Grid Background="#FFB0D1EC" Margin="10,10,0,10" HorizontalAlignment="Left" Width="386">
+    <Grid Background="#FFB0D1EC" Margin="10,10,-10,-42" HorizontalAlignment="Left" Width="406">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="185"/>
             <ColumnDefinition Width="109"/>
@@ -28,34 +28,49 @@
         <wpfTool:DateTimePicker Grid.Row ="0" Grid.Column="1" Height="23" Margin="10,8,-68,9" Name="DatePicker" VerticalAlignment="Center"  FormatString="d.M.yyyy-HH:mm" Value="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <Label Grid.Row="1" Grid.Column="0" Content="AmountCash" Height="28" HorizontalAlignment="Left" Name="amountCashLabel" VerticalAlignment="Top" Width="122" Margin="10,4,0,0" />
-        <TextBox Grid.Row ="1" Grid.Column="1" Height="23" Margin="30,6,-30,11" Name="AmountCashTextBox" VerticalAlignment="Center" Text="{Binding AmountCash,  UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Row ="1" Grid.Column="1" Height="23" Margin="30,6,-30,11" Name="AmountCashTextBox" VerticalAlignment="Center" Text="{Binding AmountCash,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Validation.Error="Validation_Error" />
+        <Label Grid.Row="1" Grid.Column="1" Content="{Binding (Validation.Errors)[0].ErrorContent, ElementName=AmountCashTextBox}" Height="28" HorizontalAlignment="Left" Name="amountCashvalidationLabel" VerticalAlignment="Top" Width="146" Margin="19,22,-55,0" Grid.RowSpan="2" />
+
 
         <Label Grid.Row="2" Grid.Column="0" Content="AmountTransferAccount" Height="28" HorizontalAlignment="Left" Name="amountTransferAccountLabel" VerticalAlignment="Top" Width="153" Margin="10,5,0,0" />
-        <TextBox Grid.Row ="2" Grid.Column="1" Height="23" Margin="30,7,-30,10" Name="AmounttransferAccountTextBox" VerticalAlignment="Center" Text="{Binding AmountTransferAccount,  UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Row ="2" Grid.Column="1" Height="23" Margin="30,7,-30,10" Name="AmounttransferAccountTextBox" VerticalAlignment="Center" Text="{Binding AmountTransferAccount,  UpdateSourceTrigger=PropertyChanged , ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Validation.Error="Validation_Error" />
+        <Label Grid.Row="2" Grid.Column="1" Content="{Binding (Validation.Errors)[0].ErrorContent, ElementName=AmountTransferAccountTextBox}" Height="28" HorizontalAlignment="Left" Name="AmountTransferAccountvalidationLabel" VerticalAlignment="Top" Width="146" Margin="19,22,-55,0" Grid.RowSpan="2" />
+
+
 
         <Label Grid.Row="3" Grid.Column="0" Content="AmountNonCashBenefit" Height="28" HorizontalAlignment="Left" Name="amountNonCashBenefitLabel" VerticalAlignment="Top" Width="153" Margin="10,6,0,0" />
-        <TextBox Grid.Row ="3" Grid.Column="1" Height="23" Margin="30,8,-30,9" Name="AmountNonCashBenefitTextBox" VerticalAlignment="Center" Text="{Binding AmountNonCashBenefit,  UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Row ="3" Grid.Column="1" Height="23" Margin="30,8,-30,9" Name="AmountNonCashBenefitTextBox" VerticalAlignment="Center" Text="{Binding AmountNonCashBenefit,  UpdateSourceTrigger=PropertyChanged , ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Validation.Error="Validation_Error" />
+        <Label Grid.Row="3" Grid.Column="1" Content="{Binding (Validation.Errors)[0].ErrorContent, ElementName=AmountNonCashTextBox}" Height="28" HorizontalAlignment="Left" Name="AmountNonCashvalidationLabel" VerticalAlignment="Top" Width="146" Margin="19,22,-55,0" Grid.RowSpan="2" />
+
+
 
         <Label Grid.Row="4" Grid.Column="0" Content="VAT" Height="28" HorizontalAlignment="Left" Name="VATLabel" VerticalAlignment="Top" Width="153" Margin="10,7,0,0" />
         <ComboBox Grid.Row ="4" Grid.Column="1" Height="22" Margin="30,12,-30,10" Name="VATComboBox" VerticalAlignment="Center" 
                                 SelectedValue="{Binding Path=FK_VatId,
                                                 Mode = TwoWay, 
-                                                UpdateSourceTrigger=PropertyChanged}" 
-                              ItemsSource="{Binding Path=Vats}"
+                                                UpdateSourceTrigger=PropertyChanged}"
+                             ItemsSource="{Binding Path=Vats}"
                               SelectedValuePath="Id"
                                 DisplayMemberPath="Name"/>
+        
 
         <Label Grid.Row="5" Grid.Column="0" Content="Total" Height="28" HorizontalAlignment="Left" Name="totalLabel" VerticalAlignment="Top" Width="81" Margin="10,7,0,0" />
-        <TextBox Grid.Row ="5" Grid.Column="1" Height="24" Margin="30,6,-30,5" Name="TotalTextBox" VerticalAlignment="Center" Text="{Binding Total,  UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Row ="5" Grid.Column="1" Height="24" Margin="30,6,-30,5" Name="TotalTextBox" VerticalAlignment="Center" Text="{Binding Total,  UpdateSourceTrigger=PropertyChanged , ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Validation.Error="Validation_Error" />
+        <Label Grid.Row="5" Grid.Column="1" Content="{Binding (Validation.Errors)[0].ErrorContent, ElementName=TotalTextBox}" Height="28" HorizontalAlignment="Left" Name="TotalvalidationLabel" VerticalAlignment="Top" Width="146" Margin="19,22,-55,0" Grid.RowSpan="2" />
 
         <Label Grid.Row="6" Grid.Column="0" Content="Journal Entry Number" Height="28" HorizontalAlignment="Left" Name="journalENumLabel" VerticalAlignment="Top" Width="81" Margin="10,7,0,0" />
-        <TextBox Grid.Row ="6" Grid.Column="1" Height="23" Margin="30,7,-30,6" Name="JournalNumTextBox" VerticalAlignment="Center" Text="{Binding JournalEntryNumber,  UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Row ="6" Grid.Column="1" Height="23" Margin="30,7,-30,6" Name="JournalNumTextBox" VerticalAlignment="Center" Text="{Binding JournalEntryNumber,  UpdateSourceTrigger=PropertyChanged , ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Validation.Error="Validation_Error" />
+        <Label Grid.Row="6" Grid.Column="1" Content="{Binding (Validation.Errors)[0].ErrorContent, ElementName=JournalNumTextBox}" Height="28" HorizontalAlignment="Left" Name="JournalNumvalidationLabel" VerticalAlignment="Top" Width="146" Margin="19,22,-55,0" Grid.RowSpan="2" />
+
+
 
         <Label Grid.Row="7" Grid.Column="0" Content="Article 22" Height="28" HorizontalAlignment="Left" Name="articleLabel" VerticalAlignment="Top" Width="81" Margin="10,7,0,0" />
-        <TextBox Grid.Row ="7" Grid.Column="1" Height="23" Margin="30,7,-30,6" Name="articleTextBox" VerticalAlignment="Center" Text="{Binding Article22,  UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Grid.Row ="7" Grid.Column="1" Height="23" Margin="30,7,-30,6" Name="articleTextBox" VerticalAlignment="Center" Text="{Binding Article22,  UpdateSourceTrigger=PropertyChanged , ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Validation.Error="Validation_Error" />
+        <Label Grid.Row="7" Grid.Column="1" Content="{Binding (Validation.Errors)[0].ErrorContent, ElementName=articleTextBox}" Height="28" HorizontalAlignment="Left" Name="articlevalidationLabel" VerticalAlignment="Top" Width="146" Margin="19,22,-55,0" Grid.RowSpan="2" />
 
 
-        <Button Grid.Row="8" Width="150" HorizontalAlignment="Left" Content="OK" Command="{Binding OkCommand}" Margin="26,12.119,0,10" RenderTransformOrigin="0.507,1.39"/>
+        <Button Grid.Row="8" Grid.Column="0" Name ="buttonOk" IsEnabled = "False"  Width="150" HorizontalAlignment="Left" Content="OK" Command="{Binding OkCommand}" Margin="26,12,0,14" RenderTransformOrigin="0.507,1.39"/>
+        <Button Grid.Row="8" Grid.Column="1" Content="Cancel" Command="{Binding CancelCommand}" Margin="28,13,-68,14" RenderTransformOrigin="0.507,1.39"/>
 
     </Grid>
 </UserControl>

@@ -59,8 +59,11 @@ namespace AccountingWPF.ViewModels
             var childWindow = new ChildWindowAddExpenditureView();
             childWindow.Closed += (r =>
             {
-                this.expenditureRepo.Create(r);
-                this.expenditures.Add(r);
+                if (r != null)
+                {
+                    this.expenditureRepo.Create(r);
+                    this.expenditures.Add(r);
+                }
 
             });
 
@@ -75,23 +78,26 @@ namespace AccountingWPF.ViewModels
 
             childWindow.Closed += (r =>
             {
-                this.expenditureRepo.Update(r);
-
-                var item = this.expenditures.First(i => i.Id == r.Id);
-                if (item != null)
+                if (r != null)
                 {
-                    item.AmountCash = r.AmountCash;
-                    item.AmountNonCashBenefit = r.AmountNonCashBenefit;
-                    item.AmountTransferAccount = r.AmountTransferAccount;
-                    item.Date = r.Date;
-                    item.FK_VAT = r.FK_VAT;
-                    item.Vat = r.Vat;
-                    item.Total = r.Total;
-                    item.JournalEntryNum = r.JournalEntryNum;
-                    item.Article22 = r.Article22;
-                }
+                    this.expenditureRepo.Update(r);
 
-                CollectionViewSource.GetDefaultView(this.expenditures).Refresh();
+                    var item = this.expenditures.First(i => i.Id == r.Id);
+                    if (item != null)
+                    {
+                        item.AmountCash = r.AmountCash;
+                        item.AmountNonCashBenefit = r.AmountNonCashBenefit;
+                        item.AmountTransferAccount = r.AmountTransferAccount;
+                        item.Date = r.Date;
+                        item.FK_VAT = r.FK_VAT;
+                        item.Vat = r.Vat;
+                        item.Total = r.Total;
+                        item.JournalEntryNum = r.JournalEntryNum;
+                        item.Article22 = r.Article22;
+                    }
+
+                    CollectionViewSource.GetDefaultView(this.expenditures).Refresh();
+                }                
 
             });
 
