@@ -24,16 +24,23 @@
         <Label Grid.Row="0" Grid.Column="0" Content="Date" Height="28" HorizontalAlignment="Left" Name="DateLabel" VerticalAlignment="Top" Width="75" Margin="10,3,0,0" />
         <wpfTool:DateTimePicker Grid.Row ="0" Grid.Column="1" Height="23" Margin="10,8,-68,10" Name="DatePicker" VerticalAlignment="Center"  FormatString="d.M.yyyy-HH:mm" Value="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Label Grid.Row="1" Grid.Column="0" Content="Invoice class number" Height="28" HorizontalAlignment="Left" Name="InvoiceClassLabel" VerticalAlignment="Top" Width="75" Margin="10,3,0,0" />
-        <TextBox Grid.Row ="1" Grid.Column="1" Height="23" Margin="30,5,-30,13" Name="InvoiceClassNumberTextBox" VerticalAlignment="Center" Text= "{Binding InvoiceClassNumber, UpdateSourceTrigger=PropertyChanged }"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Amount" Height="28" HorizontalAlignment="Left" Name="amountLabel" VerticalAlignment="Top" Width="81" Margin="10,3,0,0" />
+        <TextBox Grid.Row ="1" Grid.Column="1" Height="23" Margin="30,5,-30,13" Name="AmountTextBox" VerticalAlignment="Center" Text="{Binding Amount,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Validation.Error="Validation_Error"/>
+        <Label Grid.Row="1" Grid.Column="1" Content="{Binding (Validation.Errors)[0].ErrorContent, ElementName=AmountTextBox}" Height="28" HorizontalAlignment="Left" Name="AmountvalidationLabel" VerticalAlignment="Top" Width="146" Margin="19,22,-55,0" Grid.RowSpan="2" />
 
-        <Label Grid.Row="2" Grid.Column="0" Content="Customer info" Height="28" HorizontalAlignment="Left" Name="SupplierInfoLabel" VerticalAlignment="Top" Width="81" Margin="10,3,0,0" />
-        <TextBox Grid.Row ="2" Grid.Column="1" Height="23" Margin="30,5,-30,13" Name="CustomerInfoTextBox" VerticalAlignment="Center" Text="{Binding CustomerInfo, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Label Grid.Row="3" Grid.Column="0" Content="Amount" Height="28" HorizontalAlignment="Left" Name="amountLabel" VerticalAlignment="Top" Width="81" Margin="10,3,0,0" />
-        <TextBox Grid.Row ="3" Grid.Column="1" Height="23" Margin="30,5,-30,13" Name="AmountTextBox" VerticalAlignment="Center" Text="{Binding Amount,  UpdateSourceTrigger=PropertyChanged}" />
-        <Button Grid.Row="4" Width="150" HorizontalAlignment="Left" Content="OK" Command="{Binding OkCommand}" Grid.ColumnSpan="2" Margin="64,41,-12,-41"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Invoice class number" Height="28" HorizontalAlignment="Left" Name="InvoiceClassLabel" VerticalAlignment="Top" Width="75" Margin="10,3,0,0" />
+        <TextBox Grid.Row ="2" Grid.Column="1" Height="23" Margin="30,5,-30,13" Name="InvoiceClassNumberTextBox" VerticalAlignment="Center" Text= "{Binding InvoiceClassNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Validation.Error="Validation_Error"/>
+        <Label Grid.Row="2" Grid.Column="1" Content="{Binding (Validation.Errors)[0].ErrorContent, ElementName=InvoiceClassNumberTextBox}" Height="28" HorizontalAlignment="Left" Name="invoicevalidationLabel" VerticalAlignment="Top" Width="146" Margin="19,22,-55,0" Grid.RowSpan="2" />
 
+
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Customer info" Height="28" HorizontalAlignment="Left" Name="CustomerInfoLabel" VerticalAlignment="Top" Width="81" Margin="10,3,0,0" />
+        <TextBox Grid.Row ="3" Grid.Column="1" Height="23" Margin="30,5,-30,13" Name="CustomerInfoTextBox" VerticalAlignment="Center" Text="{Binding CustomerInfo, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Validation.Error="Validation_Error"/>
+        <Label Grid.Row="3" Grid.Column="1" Content="{Binding (Validation.Errors)[0].ErrorContent, ElementName=CustomerInfoTextBox}" Height="28" HorizontalAlignment="Left" Name="suppliervalidationLabel" VerticalAlignment="Top" Width="146" Margin="19,22,-55,0" Grid.RowSpan="2" />
+
+        <Button Grid.Row="4" Grid.Column="0" Name ="buttonOk" IsEnabled = "False"  Width="130" HorizontalAlignment="Left" Content="OK" Command="{Binding OkCommand}" Margin="19,14,0,-23" RenderTransformOrigin="0.507,1.39" Grid.ColumnSpan="2"/>
+        <Button Grid.Row="4" Grid.Column="1" Content="Cancel" Command="{Binding CancelCommand}" Margin="69,13,-109,-23" RenderTransformOrigin="0.507,1.39"/>
     </Grid>
 </UserControl>
 

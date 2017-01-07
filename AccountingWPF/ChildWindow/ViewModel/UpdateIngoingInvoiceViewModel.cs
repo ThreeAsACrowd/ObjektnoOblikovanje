@@ -15,11 +15,11 @@ namespace AccountingWPF.ChildWindow.ViewModel
     public class UpdateIngoingInvoiceViewModel : NotificationObject
     {
         #region Properties
-        private IngoingInvoice invoice;
-        public IngoingInvoice Invoice 
+        private IngoingInvoice invoice_c;
+        public IngoingInvoice Invoice_c 
         {
-            get { return invoice; }
-            set { invoice = value; }
+            get { return invoice_c; }
+            set { invoice_c = value; }
         }
 
         public int Id { get; set; }
@@ -109,7 +109,7 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
         public UpdateIngoingInvoiceViewModel(IngoingInvoice selected)
         {
-            this.Invoice = selected;
+            this.invoice_c = selected;
 
             this.Id = selected.Id;
             this._User = selected.User;
@@ -127,7 +127,7 @@ namespace AccountingWPF.ChildWindow.ViewModel
         {
             if (Closed != null)
             {
-                Closed(this.invoice);
+                Closed(invoice_c);
             }
         }
 

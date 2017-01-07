@@ -28,7 +28,7 @@
                   ScrollViewer.CanContentScroll="True" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  ItemsSource="{Binding OutgoingInvoices, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding outgoingInvoices, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   SelectedItem="{Binding selectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       >
                 <DataGrid.Columns>

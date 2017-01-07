@@ -22,7 +22,7 @@ namespace AccountingWPF.ViewModels
 {
     public class OutgoingInvoiceViewModel : NotificationObject
     {
-        public ObservableCollection<OutgoingInvoice> OutgoingInvoices { get; set; }
+        public ObservableCollection<OutgoingInvoice> outgoingInvoices { get; set; }
         public IInvoiceRepository<OutgoingInvoice> OutgoingInvoicesRepo { get; set; }
 
         public OutgoingInvoice selectedItem { get; set; }
@@ -44,8 +44,11 @@ namespace AccountingWPF.ViewModels
             var childWindow = new ChildWindowAddOutgoingInvoiceView();
             childWindow.Closed += (r =>
             {
-                this.OutgoingInvoicesRepo.Create(r);
-                this.OutgoingInvoices.Add(r);
+                if (r != null)
+                {
+                    this.OutgoingInvoicesRepo.Create(r);
+                    this.outgoingInvoices.Add(r);
+                }
 
             });
 
@@ -59,18 +62,20 @@ namespace AccountingWPF.ViewModels
 
             childWindow.Closed += (r =>
             {
-                this.OutgoingInvoicesRepo.Update(r);
-
-                var item = this.OutgoingInvoices.First(i => i.Id == r.Id);
-                if (item != null)
+                if (r != null)
                 {
-                    item.Amount = r.Amount;
-                    item.Date = r.Date;
-                    item.InvoiceClassNumber = r.InvoiceClassNumber;
-                    item.CustomerInfo = r.CustomerInfo;
-                }
-                CollectionViewSource.GetDefaultView(this.OutgoingInvoices).Refresh();
+                    this.OutgoingInvoicesRepo.Update(r);
 
+                    var item = this.outgoingInvoices.First(i => i.Id == r.Id);
+                    if (item != null)
+                    {
+                        item.Amount = r.Amount;
+                        item.Date = r.Date;
+                        item.InvoiceClassNumber = r.InvoiceClassNumber;
+                        item.CustomerInfo = r.CustomerInfo;
+                    }
+                    CollectionViewSource.GetDefaultView(this.outgoingInvoices).Refresh();
+                }
             });
 
             if (this.selectedItem != null)
@@ -81,6 +86,7 @@ namespace AccountingWPF.ViewModels
             {
                 MessageBox.Show("Please select item for edit.");
             }
+
 
         }
 
@@ -93,12 +99,12 @@ namespace AccountingWPF.ViewModels
 
         public OutgoingInvoiceViewModel()
         {
-            IList<OutgoingInvoice> OutgoingInvoicesList;
+            IList<OutgoingInvoice> outgoingInvoicesList;
 
             OutgoingInvoicesRepo = new OutgoingInvoiceRepository<OutgoingInvoice>();
-            OutgoingInvoicesList = OutgoingInvoicesRepo.getByUserId(UserManager.CurrentUser.Id);
+            outgoingInvoicesList = OutgoingInvoicesRepo.getByUserId(UserManager.CurrentUser.Id);
 
-            this.OutgoingInvoices = new ObservableCollection<OutgoingInvoice>(OutgoingInvoicesList);
+            this.outgoingInvoices = new ObservableCollection<OutgoingInvoice>(outgoingInvoicesList);
 
             DeleteOutgoingInvoiceCommand = new Command(this.DeleteOutgoingInvoice, this.CanExecuteDelete);
 
@@ -122,15 +128,13 @@ namespace AccountingWPF.ViewModels
             {
 
                 this.OutgoingInvoicesRepo.Delete(this.selectedItem.Id);
-                this.OutgoingInvoices.Remove(this.selectedItem);
+                this.outgoingInvoices.Remove(this.selectedItem);
 
             }
             else
             {
-                //TODO!
                 return;
             }
-
         }
     }
 }
