@@ -16,6 +16,17 @@ namespace AccountingWPF.ChildWindow.ViewModel
     public class UpdateReceiptViewModel : NotificationObject
     {
         #region Properties
+
+        private Receipt receipt_c;
+        public Receipt Receipt_c
+        {
+            get { return receipt_c; }
+            set
+            {
+                receipt_c = value;
+            }
+        }
+
         public List<Vat> Vats { get; set; }
 
         public int Id { get; set; }
@@ -151,6 +162,8 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
         public UpdateReceiptViewModel(Receipt selected)
         {
+            this.Receipt_c = selected;
+
             this.Id = selected.Id;
             this._User = selected.User;
             this._Vat = selected.Vat;
@@ -202,7 +215,10 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
         public void CancelUpdateReceipt()
         {
-            MessageBox.Show("Hello.");
+            if (Closed != null)
+            {
+                Closed(Receipt_c);
+            }
         }
 
         public void Init()

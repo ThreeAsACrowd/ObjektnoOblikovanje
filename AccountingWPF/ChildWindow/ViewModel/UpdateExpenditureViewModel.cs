@@ -16,6 +16,17 @@ namespace AccountingWPF.ChildWindow.ViewModel
     public class UpdateExpenditureViewModel : NotificationObject
     {
         #region Properties
+
+        private Expenditure expenditure;
+        public Expenditure Expenditure
+        {
+            get { return expenditure; }
+            set
+            {
+                expenditure = value;
+            }
+        }
+
         public List<Vat> Vats { get; set; }
 
         public int Id { get; set; }
@@ -162,6 +173,8 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
         public UpdateExpenditureViewModel(Expenditure selected)
         {
+            this.Expenditure = selected;
+
             this.Id = selected.Id;
             this._User = selected.User;
             this._Vat = selected.Vat;
@@ -185,7 +198,10 @@ namespace AccountingWPF.ChildWindow.ViewModel
 
         private void CancelUpdateExpenditure()
         {
-            MessageBox.Show("cancel");
+            if (Closed != null)
+            {
+                Closed(Expenditure);
+            }
         }
 
 

@@ -86,6 +86,7 @@ namespace AccountingWPF.ViewModels
                     item.Date = r.Date;
                     item.FK_VAT = r.FK_VAT;
                     item.Vat = r.Vat;
+                    item.Total = r.Total;
                     item.JournalEntryNum = r.JournalEntryNum;
                     item.Article22 = r.Article22;
                 }
