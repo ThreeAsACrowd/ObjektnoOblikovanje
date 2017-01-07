@@ -9,13 +9,87 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.ViewModel;
 using System.Windows;
 using AccountingWPF.BaseLib;
+using AccountingWPF.Notification;
 
 
 namespace AccountingWPF.ChildWindow.ViewModel
 {
-    public class AddIngoingInvoiceViewModel : NotificationObject
+    public class AddIngoingInvoiceViewModel : PropertyChangedNotification
     {
-        
+        #region Properties
+        public int Id { get; set; }
+
+        public int FK_UserId { get; set; }
+
+        private User _user;
+        public User _User
+        {
+            get { return _user; }
+            set
+            {
+                _user = value;
+
+            }
+        }
+        private DateTime date;
+        public DateTime Date
+        {
+            get { return date; }
+            set
+            {
+                date = value;
+
+            }
+        }
+
+        [Required(ErrorMessage = "Must not be empty.")]
+        public string InvoiceClassNumber
+        {
+            get
+            {
+                return GetValue(() => InvoiceClassNumber);
+            }
+
+            set
+            {
+                SetValue(() => InvoiceClassNumber, value);
+
+            }
+        }
+
+        [Required(ErrorMessage = "Must not be empty.")]
+        public string SupplierInfo
+        {
+            get
+            {
+                return GetValue(() => SupplierInfo);
+            }
+
+            set
+            {
+                SetValue(() => SupplierInfo, value);
+
+            }
+        }
+
+
+
+        [RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
+        public string Amount
+        {
+            get
+            {
+                return GetValue(() => Amount);
+            }
+
+            set
+            {
+                SetValue(() => Amount, value);
+
+            }
+        }
+        #endregion
+
         #region Events
 
         public event Action<IngoingInvoice> Closed;
@@ -29,77 +103,34 @@ namespace AccountingWPF.ChildWindow.ViewModel
             get { return okCommand; }
         }
 
+        private DelegateCommand cancelCommand;
+        public DelegateCommand CancelCommand
+        {
+            get { return cancelCommand; }
+        }
         #endregion
+
+        #region Constructor
 
         public AddIngoingInvoiceViewModel()
         {
             okCommand = new DelegateCommand(SaveIngoingInvoice);
-
+            cancelCommand = new DelegateCommand(CancelAddExpenditure);
             Init();
 
         }
+        #endregion
 
-        public int Id { get; set; }
-
-        public int FK_UserId { get; set; }
-
-        private User _user;
-        public User _User
+        public void CancelAddExpenditure()
         {
-            get { return _user; }
-            set
+            IngoingInvoice inv = null;
+            if (Closed != null)
             {
-                _user = value;
-                RaisePropertyChanged("User");
+
+                Closed(inv);
             }
         }
-        private DateTime date;
-        public DateTime Date
-        {
-            get { return date; }
-            set
-            {
-                date = value;
-                RaisePropertyChanged("Date");
-            }
-        }
-
-        private string invoiceClassNumber;
-
-        public string InvoiceClassNumber
-        {
-            get { return invoiceClassNumber; }
-            set
-            {
-                invoiceClassNumber = value;
-                RaisePropertyChanged("InvoiceClassNumber");
-            }
-        }
-
-        private string supplierInfo;
-
-        public string SupplierInfo
-        {
-            get { return supplierInfo; }
-            set
-            {
-                supplierInfo = value;
-                RaisePropertyChanged("SupplierInfo");
-            }
-        }
-
-
-        private string amount;
-        [RegularExpression(@"[0-9]{1,8}\,[0-9]{1,2}", ErrorMessage = "Value must be a decimal number")]
-        public string Amount
-        {
-            get { return amount; }
-            set
-            {
-                amount = value;
-                RaisePropertyChanged("Amount");
-            }
-        }
+       
 
         public void SaveIngoingInvoice() 
         {

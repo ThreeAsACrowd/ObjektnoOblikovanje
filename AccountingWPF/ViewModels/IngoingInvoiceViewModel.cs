@@ -44,8 +44,11 @@ namespace AccountingWPF.ViewModels
             var childWindow = new ChildWindowAddIngoingInvoiceView();
             childWindow.Closed += (r =>
             {
-                this.IngoingInvoicesRepo.Create(r);
-                this.ingoingInvoices.Add(r);
+                if (r != null)
+                {
+                    this.IngoingInvoicesRepo.Create(r);
+                    this.ingoingInvoices.Add(r);
+                }
 
             });
                           
@@ -59,18 +62,20 @@ namespace AccountingWPF.ViewModels
 
             childWindow.Closed += (r =>
             {
-                this.IngoingInvoicesRepo.Update(r);
-                
-                var item = this.ingoingInvoices.First(i => i.Id == r.Id);
-                if (item != null)
+                if (r != null)
                 {
-                    item.Amount = r.Amount;
-                    item.Date = r.Date;
-                    item.InvoiceClassNumber = r.InvoiceClassNumber;
-                    item.SupplierInfo = r.SupplierInfo;
+                    this.IngoingInvoicesRepo.Update(r);
+
+                    var item = this.ingoingInvoices.First(i => i.Id == r.Id);
+                    if (item != null)
+                    {
+                        item.Amount = r.Amount;
+                        item.Date = r.Date;
+                        item.InvoiceClassNumber = r.InvoiceClassNumber;
+                        item.SupplierInfo = r.SupplierInfo;
+                    }
+                    CollectionViewSource.GetDefaultView(this.ingoingInvoices).Refresh();
                 }
-                CollectionViewSource.GetDefaultView(this.ingoingInvoices).Refresh();
-               
             });
 
             if (this.selectedItem != null)
