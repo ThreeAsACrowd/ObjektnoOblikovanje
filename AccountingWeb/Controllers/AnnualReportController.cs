@@ -39,7 +39,7 @@ namespace AccountingWeb.Controllers
 			IList<Expenditure> expenditures = expenditureRepository.getByUserId(UserManager.CurrentUser.Id);
 			IList<Receipt> receipts = receiptRepository.getByUserId(UserManager.CurrentUser.Id);
 
-			byte[] fileBytes = reportBuilder.Create(UserManager.CurrentUser, reportBM.SelectedYear, expenditures, receipts);
+			byte[] fileBytes = reportBuilder.CreateAnnualReport(UserManager.CurrentUser, reportBM.SelectedYear, expenditures, receipts);
 			return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, "Annual_Report_" + UserManager.CurrentUser.AssociationName + "_" + reportBM.SelectedYear.ToString() + ".html");
 		}
     }

@@ -44,7 +44,7 @@ namespace AccountingWeb.Controllers
 			monetaryFlow.AddRange(expenditures);
 			monetaryFlow.AddRange(receipts);
 
-			byte[] fileBytes = reportBuilder.CreateReportByYear(UserManager.CurrentUser, monetaryFlow);
+			byte[] fileBytes = reportBuilder.CreateMonetaryFlowReport(UserManager.CurrentUser, monetaryFlow);
 			return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, "Monetary_Flow_Report_" + UserManager.CurrentUser.AssociationName + "_" + reportBM.SelectedYear.ToString() + ".html");
         }
     }
