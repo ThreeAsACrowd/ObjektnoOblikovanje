@@ -198,14 +198,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\nHibernate\ExpenditureMap.cs" />
-    <Compile Include="Models\nHibernate\IngoingInvoiceMap.cs" />
-    <Compile Include="Models\nHibernate\InvoiceMap.cs" />
-    <Compile Include="Models\nHibernate\MonetaryFlowMap.cs" />
-    <Compile Include="Models\nHibernate\OutgoingInvoiceMapcs.cs" />
-    <Compile Include="Models\nHibernate\ReceiptMap.cs" />
-    <Compile Include="Models\nHibernate\UserMap.cs" />
-    <Compile Include="Models\nHibernate\VatMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\UserManager.cs" />
     <Compile Include="Startup.cs" />

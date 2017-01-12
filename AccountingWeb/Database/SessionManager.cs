@@ -27,7 +27,8 @@ namespace AccountingWeb.Database
 
                     sessionFactory = Fluently.Configure()
                     .Database(SQLiteConfiguration.Standard.ConnectionString(conn))
-                     .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                    // .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DataRepository.Models.Invoice>())
                     //  .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetAssembly(typeof(DataRepository.nHibernateDb.SessionManager))))
                     // .Mappings(m => m.AutoMappings.Add(CreateMappings()))
                     // .ExposeConfiguration(BuildSchema)
