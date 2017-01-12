@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="ReceiptMainWindow" Height="500" Width="850">
+    <Border>
     <Grid RenderTransformOrigin="0.5,0.5">
         <Grid.RenderTransform>
             <TransformGroup>
@@ -20,7 +21,9 @@
                   Margin="10,53,14,71" 
                   Name="dataGridReceipts" 
                   AlternatingRowBackground="AliceBlue"  
-                  HeadersVisibility="All" CanUserAddRows="True"
+                  HeadersVisibility="All"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
                   ScrollViewer.CanContentScroll="True" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -42,9 +45,17 @@
                 <DataGridTextColumn Binding="{Binding Total}" Header="Total" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name ="Add_new_receipt_button" Command ="{Binding AddNewReceiptCommand}" Content="Add new receipt" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22" />
-        <Button Name ="Delete_receipt_button" Command ="{Binding DeleteReceiptCommand}" Content="Delete receipt" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22" />
-        <Button Name ="Edit_receipt_button" Command ="{Binding UpdateReceiptCommand}" Content="Edit receipt" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22" />
-       
-    </Grid>
+            <Button Name ="Add_new_Receipt_button"  Command ="{Binding ShowChildWindowAddCommand}" Content="Add new receipt" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="22"/>
+            <Button Name ="Delete_Receipt_button"  Command ="{Binding DeleteReceiptCommand}" Content="Delete receipt" HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" Width="130" Height="22" />
+            <Button Name ="Update_Receipt_button" Command ="{Binding ShowChildWindowUpdateCommand}" Content="Update receipt" HorizontalAlignment="Left" Margin="327,10,0,0" VerticalAlignment="Top" Width="130" Height="22"  />
+
+            <Border x:Name="childWindowAdd" Visibility="{Binding WindowVisibility}" Background="#88000000" >
+                <ContentControl Content="{Binding XmlContent}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"></ContentControl>
+            </Border>
+            <Border x:Name="childWindowUpdate" Visibility="{Binding WindowVisibility}" Background="#83000000" >
+                <ContentControl Content="{Binding XmlContent}" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"></ContentControl>
+            </Border>
+
+        </Grid>
+    </Border>
 </Window>

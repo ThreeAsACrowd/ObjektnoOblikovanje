@@ -6,33 +6,91 @@ using System.Threading.Tasks;
 using DataRepository.Models;
 using AccountingWPF.BaseLib;
 using DataRepository.Repositories;
-using System.Diagnostics;
 using System.Windows.Input;
-using System.Collections.ObjectModel;
 using AccountingWPF.Commands;
+using System.Diagnostics;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Data;
+using Microsoft.Practices.Prism.Commands;
+using AccountingWPF.ChildWindow.View;
+using Microsoft.Practices.Prism.ViewModel;
+using AccountingWPF.ChildWindow;
+using System.ComponentModel.DataAnnotations;
 
 namespace AccountingWPF.ViewModels
 {
-    public class OutgoingInvoiceViewModel
+    public class OutgoingInvoiceViewModel : NotificationObject
     {
         public ObservableCollection<OutgoingInvoice> outgoingInvoices { get; set; }
-        private IInvoiceRepository<OutgoingInvoice> OutgoingInvoicesRepo { get; set; }
+        public IInvoiceRepository<OutgoingInvoice> OutgoingInvoicesRepo { get; set; }
 
         public OutgoingInvoice selectedItem { get; set; }
 
-        public ICommand AddNewOutgoingInvoiceCommand
+        private DelegateCommand showChildWindowAddCommand;
+        public DelegateCommand ShowChildWindowAddCommand
         {
-            get;
-            private set;
+            get { return showChildWindowAddCommand; }
+        }
+
+        private DelegateCommand showChildWindowUpdateCommand;
+        public DelegateCommand ShowChildWindowUpdateCommand
+        {
+            get { return showChildWindowUpdateCommand; }
+        }
+
+        private void ShowChildWindowAdd()
+        {
+            var childWindow = new ChildWindowAddOutgoingInvoiceView();
+            childWindow.Closed += (r =>
+            {
+                if (r != null)
+                {
+                    this.OutgoingInvoicesRepo.Create(r);
+                    this.outgoingInvoices.Add(r);
+                }
+
+            });
+
+            childWindow.Show();
+
+        }
+
+        private void ShowChildWindowUpdate()
+        {
+            var childWindow = new ChildWindowUpdateOutgoingInvoiceView();
+
+            childWindow.Closed += (r =>
+            {
+                if (r != null)
+                {
+                    this.OutgoingInvoicesRepo.Update(r);
+
+                    var item = this.outgoingInvoices.First(i => i.Id == r.Id);
+                    if (item != null)
+                    {
+                        item.Amount = r.Amount;
+                        item.Date = r.Date;
+                        item.InvoiceClassNumber = r.InvoiceClassNumber;
+                        item.CustomerInfo = r.CustomerInfo;
+                    }
+                    CollectionViewSource.GetDefaultView(this.outgoingInvoices).Refresh();
+                }
+            });
+
+            if (this.selectedItem != null)
+            {
+                childWindow.Show(this.selectedItem);
+            }
+            else
+            {
+                MessageBox.Show("Please select item for edit.");
+            }
+
+
         }
 
         public ICommand DeleteOutgoingInvoiceCommand
-        {
-            get;
-            private set;
-        }
-
-        public ICommand UpdateOutgoingInvoiceCommand
         {
             get;
             private set;
@@ -42,25 +100,18 @@ namespace AccountingWPF.ViewModels
         public OutgoingInvoiceViewModel()
         {
             IList<OutgoingInvoice> outgoingInvoicesList;
+
             OutgoingInvoicesRepo = new OutgoingInvoiceRepository<OutgoingInvoice>();
             outgoingInvoicesList = OutgoingInvoicesRepo.getByUserId(UserManager.CurrentUser.Id);
 
             this.outgoingInvoices = new ObservableCollection<OutgoingInvoice>(outgoingInvoicesList);
 
-            AddNewOutgoingInvoiceCommand = new Command(this.AddNewInvoice, this.CanExecuteAdd);
             DeleteOutgoingInvoiceCommand = new Command(this.DeleteOutgoingInvoice, this.CanExecuteDelete);
-            UpdateOutgoingInvoiceCommand = new Command(this.UpdateOutgoingInvoice, this.CanExecuteUpdate);
+
+            showChildWindowAddCommand = new DelegateCommand(ShowChildWindowAdd);
+            showChildWindowUpdateCommand = new DelegateCommand(ShowChildWindowUpdate);
         }
 
-
-
-        public bool CanExecuteAdd
-        {
-            get
-            {
-                return true;
-            }
-        }
 
         public bool CanExecuteDelete
         {
@@ -70,19 +121,6 @@ namespace AccountingWPF.ViewModels
             }
         }
 
-        public bool CanExecuteUpdate
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        internal void AddNewInvoice()
-        {
-            //TODO IMPLEMENTATION
-            Debug.Assert(false, "Add new invoice.");
-        }
 
         internal void DeleteOutgoingInvoice()
         {
@@ -95,17 +133,8 @@ namespace AccountingWPF.ViewModels
             }
             else
             {
-                //TODO!
                 return;
             }
-
         }
-
-        internal void UpdateOutgoingInvoice()
-        {
-            //TODO IMPLEMENTATION
-            Debug.Assert(false, "Update invoice.");
-        }
-
     }
 }

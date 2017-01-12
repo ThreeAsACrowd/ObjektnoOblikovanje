@@ -48,7 +48,8 @@
             @(++counter)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Date)
+            @*@Html.DisplayFor(modelItem => item.Date)*@
+            @String.Format("{0:d}", item.Date)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.JournalEntryNum)
@@ -76,10 +77,11 @@
             @Ajax.ActionLink("Delete", "Delete", new { id = item.Id },
             new AjaxOptions()
             {
-                HttpMethod = "Post",
+                HttpMethod = "Delete",
 
                 Confirm = "Do you really want to remove this item?",
-                OnComplete = "function() { $(this).parent().parent().remove();}"
+                //OnComplete = "function() { $(this).parent().parent().remove();}"
+                OnComplete = "location.reload()"
 
             })
         </td>

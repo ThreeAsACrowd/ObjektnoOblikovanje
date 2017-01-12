@@ -46,12 +46,11 @@ namespace AccountingWeb.Controllers
 		{
 			try
 			{
-				// TODO: Add insert logic here
 				if (ModelState.IsValid)
 				{
-					//TODO: get the required VAT by fk and change it
-					//and user too
 					receiptBM.Receipt.FK_UserId = UserManager.CurrentUser.Id;
+					receiptBM.Receipt.User = UserManager.CurrentUser;
+					receiptBM.Receipt.Vat = vatRepository.GetById(receiptBM.Receipt.FK_VAT);
 					receiptRepository.Create(receiptBM.Receipt);
 				}
 
@@ -85,8 +84,9 @@ namespace AccountingWeb.Controllers
 				IEnumerable<ModelError> errors = ModelState.Values.SelectMany(x => x.Errors);
 				if (ModelState.IsValid)
 				{
-					//TODO: get the required VAT by fk and change it
-					//and user too
+					receiptBM.Receipt.Vat = vatRepository.GetById(receiptBM.Receipt.FK_VAT);
+					receiptBM.Receipt.FK_UserId = UserManager.CurrentUser.Id;
+					receiptBM.Receipt.User = UserManager.CurrentUser;
 					receiptRepository.Update(receiptBM.Receipt);
 				}
 
@@ -104,7 +104,6 @@ namespace AccountingWeb.Controllers
 		{
 			try
 			{
-				// TODO: Add delete logic here
 				receiptRepository.Delete(id);
 
 				return RedirectToAction("Index");

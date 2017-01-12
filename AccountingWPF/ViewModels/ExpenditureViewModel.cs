@@ -4,29 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataRepository.Models;
-using DataRepository.Repositories;
 using AccountingWPF.BaseLib;
-using System.Diagnostics;
+using DataRepository.Repositories;
 using System.Windows.Input;
-using System.Collections.ObjectModel;
 using AccountingWPF.Commands;
+using System.Diagnostics;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Data;
+using Microsoft.Practices.Prism.Commands;
+using AccountingWPF.ChildWindow.View;
+using Microsoft.Practices.Prism.ViewModel;
+using AccountingWPF.ChildWindow;
+using System.ComponentModel.DataAnnotations;
+using DataRepository.nHibernateDb;
 
 namespace AccountingWPF.ViewModels
 {
-    public class ExpenditureViewModel
+    public class ExpenditureViewModel : NotificationObject
     {
+        #region Properties
+
         public ObservableCollection<Expenditure> expenditures { get; set; }
+
         public IList<Vat> vats { get; set; }
         private IMonetaryFlowRepository<Expenditure> expenditureRepo { get; set; }
         private VatRepository vatRepo { get; set; }
 
         public Expenditure selectedItem { get; set; }
-
-        public ICommand AddNewExpenditureCommand
-        {
-            get;
-            private set;
-        }
 
         public ICommand DeleteExpenditureCommand
         {
@@ -34,38 +39,98 @@ namespace AccountingWPF.ViewModels
             private set;
         }
 
-        public ICommand UpdateExpenditureCommand
+        private DelegateCommand showChildWindowAddCommand;
+        public DelegateCommand ShowChildWindowAddCommand
         {
-            get;
-            private set;
+            get { return showChildWindowAddCommand; }
         }
+
+        private DelegateCommand showChildWindowUpdateCommand;
+        public DelegateCommand ShowChildWindowUpdateCommand
+        {
+            get { return showChildWindowUpdateCommand; }
+        }
+
+        #endregion
+
+
+        private void ShowChildWindowAdd()
+        {
+            var childWindow = new ChildWindowAddExpenditureView();
+            childWindow.Closed += (r =>
+            {
+                if (r != null)
+                {
+                    this.expenditureRepo.Create(r);
+                    this.expenditures.Add(r);
+                }
+
+            });
+
+            childWindow.Show();
+
+        }
+
+        private void ShowChildWindowUpdate()
+        {
+            var childWindow = new ChildWindowUpdateExpenditureView();
+
+
+            childWindow.Closed += (r =>
+            {
+                if (r != null)
+                {
+                    this.expenditureRepo.Update(r);
+
+                    var item = this.expenditures.First(i => i.Id == r.Id);
+                    if (item != null)
+                    {
+                        item.AmountCash = r.AmountCash;
+                        item.AmountNonCashBenefit = r.AmountNonCashBenefit;
+                        item.AmountTransferAccount = r.AmountTransferAccount;
+                        item.Date = r.Date;
+                        item.FK_VAT = r.FK_VAT;
+                        item.Vat = r.Vat;
+                        item.Total = r.Total;
+                        item.JournalEntryNum = r.JournalEntryNum;
+                        item.Article22 = r.Article22;
+                    }
+
+                    CollectionViewSource.GetDefaultView(this.expenditures).Refresh();
+                }                
+
+            });
+
+            if (this.selectedItem!= null)
+            {
+                childWindow.Show(this.selectedItem);
+            }
+            else
+            {
+                MessageBox.Show("Please select item for edit.");
+            }
+            
+        }
+
 
         public ExpenditureViewModel()
         {
             IList<Expenditure> expendituresList;
-            expenditureRepo = new ExpenditureRepository<Expenditure>();
-			vatRepo = new VatRepository();
+            this.expenditureRepo = new ExpenditureRepository<Expenditure>(SessionManager.SessionFactory);
+            vatRepo = new VatRepository();
 
             expendituresList = expenditureRepo.getByUserId(UserManager.CurrentUser.Id);
             this.expenditures = new ObservableCollection<Expenditure>(expendituresList);
 
-			vats = vatRepo.getAll();
+            vats = vatRepo.getAll();
 
-            AddNewExpenditureCommand = new Command(this.AddNewExpenditure, this.CanExecuteAdd);
+
             DeleteExpenditureCommand = new Command(this.DeleteExpenditure, this.CanExecuteDelete);
-            UpdateExpenditureCommand = new Command(this.UpdateExpenditure, this.CanExecuteUpdate);
+            showChildWindowAddCommand = new DelegateCommand(ShowChildWindowAdd);
+            showChildWindowUpdateCommand = new DelegateCommand(ShowChildWindowUpdate);
+
 
         }
-
-
-        public bool CanExecuteAdd
-        {
-            get
-            {
-                return true;
-            }
-        }
-
         public bool CanExecuteDelete
         {
             get
@@ -74,19 +139,6 @@ namespace AccountingWPF.ViewModels
             }
         }
 
-        public bool CanExecuteUpdate
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        internal void AddNewExpenditure()
-        {
-            //TODO IMPLEMENTATION
-            Debug.Assert(false, "Add new expenditure.");
-        }
 
         internal void DeleteExpenditure()
         {
@@ -97,18 +149,6 @@ namespace AccountingWPF.ViewModels
                 this.expenditures.Remove(this.selectedItem);
 
             }
-            else
-            {
-                //TODO!
-                return;
-            }
-
-        }
-
-        internal void UpdateExpenditure()
-        {
-            //TODO IMPLEMENTATION
-            Debug.Assert(false, "Update invoice.");
         }
     }
 }

@@ -36,7 +36,8 @@
             @(++counter)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Date)
+            @*@Html.DisplayFor(modelItem => item.Date)*@
+            @String.Format("{0:d}", item.Date)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.InvoiceClassNumber)
@@ -55,7 +56,8 @@
                 HttpMethod = "Post",
 
                 Confirm = "Do you really want to remove this item?",
-                OnComplete = "function() { $(this).parent().parent().remove();}"
+                //OnComplete = "function() { $(this).parent().parent().remove();}"
+                OnComplete = "location.reload()"
 
             })
         </td>

@@ -11,7 +11,7 @@ namespace Reporting
     public class HtmlReport : AbstractReport
     {
 
-        public override byte[] Create(User user, int reportYear, IList<Expenditure> expenditures, IList<Receipt> receipts)
+        public override byte[] CreateAnnualReport(User user, int reportYear, IList<Expenditure> expenditures, IList<Receipt> receipts)
         {
             string associatonName = user.AssociationName;
             string address = user.Address;
@@ -97,7 +97,7 @@ namespace Reporting
             return fileBytes;
         }
 
-        public override byte[] CreateReportByYear(User user, List<MonetaryFlow> monetaryFlow)
+        public override byte[] CreateMonetaryFlowReport(User user, List<MonetaryFlow> monetaryFlow)
         {
 
             monetaryFlow = monetaryFlow.OrderByDescending(x => x.Date).ToList();

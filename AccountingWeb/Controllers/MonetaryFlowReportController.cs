@@ -3,95 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Reporting;
+using DataRepository.Repositories;
+using DataRepository.Models;
+using AccountingWeb.BindingModels;
+using AccountingWeb.Security;
 
 namespace AccountingWeb.Controllers
 {
     public class MonetaryFlowReportController : Controller
     {
+		private IMonetaryFlowRepository<Expenditure> expenditureRepository = new ExpenditureRepository<Expenditure>(AccountingWeb.Database.SessionManager.SessionFactory);
+		private IMonetaryFlowRepository<Receipt> receiptRepository = new ReceiptRepository<Receipt>(AccountingWeb.Database.SessionManager.SessionFactory);
+		private AbstractReport reportBuilder = new HtmlReport();
         //
         // GET: /MonetaryFlow/
         public ActionResult Index()
         {
-            return View();
+			ReportBindingModel reportBM = new ReportBindingModel();
+			reportBM.ActiveYears.AddRange(expenditureRepository.getAvailableYearsByUserId(UserManager.CurrentUser.Id));
+			reportBM.ActiveYears.AddRange(receiptRepository.getAvailableYearsByUserId(UserManager.CurrentUser.Id));
+
+			reportBM.ActiveYears = reportBM.ActiveYears.Distinct().ToList();
+
+			reportBM.SelectedYear = reportBM.ActiveYears.First();
+
+            return View(reportBM);
         }
 
         //
-        // GET: /MonetaryFlow/Details/5
-        public ActionResult Details(int id)
+        // GET: /MonetaryFlow/GenerateReport
+        public FileResult GenerateReport(ReportBindingModel reportBM)
         {
-            return View();
-        }
+			//the reason why this form of reporting isn't optimal
+			IList<Expenditure> expenditures = expenditureRepository.getByUserId(UserManager.CurrentUser.Id);
+			IList<Receipt> receipts = receiptRepository.getByUserId(UserManager.CurrentUser.Id);
 
-        //
-        // GET: /MonetaryFlow/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+			List<MonetaryFlow> monetaryFlow = new List<MonetaryFlow>();
 
-        //
-        // POST: /MonetaryFlow/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
+			monetaryFlow.AddRange(expenditures);
+			monetaryFlow.AddRange(receipts);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /MonetaryFlow/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /MonetaryFlow/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /MonetaryFlow/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /MonetaryFlow/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+			byte[] fileBytes = reportBuilder.CreateMonetaryFlowReport(UserManager.CurrentUser, monetaryFlow);
+			return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, "Monetary_Flow_Report_" + UserManager.CurrentUser.AssociationName + "_" + reportBM.SelectedYear.ToString() + ".html");
         }
     }
 }

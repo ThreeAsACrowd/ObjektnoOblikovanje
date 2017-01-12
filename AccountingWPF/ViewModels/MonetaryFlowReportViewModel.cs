@@ -41,7 +41,7 @@ namespace AccountingWPF.ViewModels
 
             using (System.IO.BinaryWriter writer = new System.IO.BinaryWriter(System.IO.File.Open(filepath, System.IO.FileMode.OpenOrCreate)))
             {
-                writer.Write(htmlReport.CreateReportByYear(UserManager.CurrentUser, monetaryFlow));
+                writer.Write(htmlReport.CreateMonetaryFlowReport(UserManager.CurrentUser, monetaryFlow));
 				writer.Flush();
             }
 

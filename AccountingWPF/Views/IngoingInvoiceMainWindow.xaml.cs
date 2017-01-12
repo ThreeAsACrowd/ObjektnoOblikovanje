@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using AccountingWPF.ViewModels;
 
 using DataRepository.Models;
+using AccountingWPF.Helpers;
 
 namespace AccountingWPF.Views
 {
@@ -28,6 +29,8 @@ namespace AccountingWPF.Views
 		{
 			InitializeComponent();
 
+            childWindowAdd.DataContext = ChildWindowAddManager.Instance;
+            childWindowUpdate.DataContext = ChildWindowUpdateManager.Instance;
             ingoingInvoiceVM = new IngoingInvoiceViewModel();
             this.DataContext = ingoingInvoiceVM;
 
