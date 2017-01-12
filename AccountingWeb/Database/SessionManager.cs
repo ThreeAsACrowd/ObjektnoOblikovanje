@@ -27,26 +27,13 @@ namespace AccountingWeb.Database
 
                     sessionFactory = Fluently.Configure()
                     .Database(SQLiteConfiguration.Standard.ConnectionString(conn))
-                    // .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
                      .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DataRepository.Models.Invoice>())
-                    //  .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetAssembly(typeof(DataRepository.nHibernateDb.SessionManager))))
-                    // .Mappings(m => m.AutoMappings.Add(CreateMappings()))
                     // .ExposeConfiguration(BuildSchema)
                     .BuildSessionFactory();
                 }
                 return sessionFactory;
             }
         }
-
-        // Returns our mappings
-        private static AutoPersistenceModel CreateMappings()
-        {
-            return AutoMap
-                .Assembly(System.Reflection.Assembly.GetAssembly(typeof(DataRepository.App)))
-                .Where(t => t.Namespace == "DataRepository.Models")
-                .Conventions.Setup(c => c.Add(DefaultCascade.SaveUpdate()));
-        }
-
 
         private static void BuildSchema(Configuration config)
         {
