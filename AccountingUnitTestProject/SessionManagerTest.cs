@@ -21,7 +21,7 @@ public static class SessionManagerTest
 
                 sessionFactory = Fluently.Configure()
                .Database(SQLiteConfiguration.Standard.ShowSql().UsingFile("accountingDBtest.db"))
-               .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DataRepository.Models.Invoice>())
                .ExposeConfiguration(BuildSchema)
                .BuildSessionFactory();
             }
