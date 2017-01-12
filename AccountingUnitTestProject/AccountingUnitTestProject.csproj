@@ -70,9 +70,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="SessionManagerTest.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="UserRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

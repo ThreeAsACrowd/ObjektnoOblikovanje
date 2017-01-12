@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
@@ -32,10 +26,7 @@ public static class SessionManagerTest
 
     private static void BuildSchema(Configuration config)
     {
-        if (!File.Exists("accountingDBtest.db"))
-        {
-            new SchemaExport(config).Create(false, true);
-        }
+        new SchemaExport(config).Create(false, true);
     }
 
     public static ISession OpenSession()

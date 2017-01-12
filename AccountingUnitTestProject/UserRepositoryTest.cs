@@ -6,13 +6,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AccountingUnitTestProject
 {
     [TestClass]
-    public class UnitTest1
+    public class UserRepositoryTest
     {
+
+
+
         [TestMethod]
-        public void TestMethod1()
+        public void CreateAndGetUser()
         {
             User user = new User();
-            user.Id = 1;
             user.Username = "mirko";
             user.Password = "pass";
             user.Address = "unska 3";
@@ -30,6 +32,28 @@ namespace AccountingUnitTestProject
             Assert.AreEqual(user.OIB, testUser.OIB);
             Assert.AreEqual(user.Email, testUser.Email);
 
+        }
+
+        [TestMethod]
+        public void DeleteUser()
+        {
+            User user = new User();
+            user.Username = "mirko";
+            user.Password = "pass";
+            user.Address = "unska 3";
+            user.Email = "mirko@gmail.com";
+            user.OIB = "2313131441";
+
+            IUserRepository userRepo = new UserRepository(SessionManagerTest.SessionFactory);
+            userRepo.Create(user);
+
+            User testUser = userRepo.GetUserByCredentials(new UserCredentials(user.Username, user.Password));
+
+            userRepo.DeleteUser(testUser);
+
+            User deletedUser = userRepo.GetUserByCredentials(new UserCredentials(user.Username, user.Password));
+
+            Assert.IsNull(deletedUser);
         }
     }
 }
