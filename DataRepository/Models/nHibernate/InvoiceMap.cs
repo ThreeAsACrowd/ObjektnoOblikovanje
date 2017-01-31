@@ -7,7 +7,6 @@ namespace DataRepository.Models.nHibernateModels
     {
         public InvoiceMap()
         {
-
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Date);
             Map(x => x.Amount);
@@ -16,6 +15,5 @@ namespace DataRepository.Models.nHibernateModels
             Map(x => x.FK_UserId).Formula("[FK_UserId]");
             UseUnionSubclassForInheritanceMapping();
         }
-
     }
 }

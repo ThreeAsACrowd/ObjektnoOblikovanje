@@ -18,6 +18,5 @@ namespace DataRepository.Models.nHibernateModels
             Map(x => x.OIB).Nullable();
 
         }
-
     }
 }

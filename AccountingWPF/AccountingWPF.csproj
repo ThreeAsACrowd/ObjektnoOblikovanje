@@ -143,11 +143,14 @@
     <Compile Include="ViewModels\AnnualReportViewModel.cs" />
     <Compile Include="ViewModels\ExpenditureViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\TestiranjeProzora\HomeWindowFactory.cs" />
     <Compile Include="ViewModels\IngoingInvoiceViewModel.cs" />
+    <Compile Include="ViewModels\TestiranjeProzora\IWindowFactory.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MonetaryFlowReportViewModel.cs" />
     <Compile Include="ViewModels\OutgoingInvoiceViewModel.cs" />
     <Compile Include="ViewModels\ReceiptViewModel.cs" />
+    <Compile Include="ViewModels\TestiranjeProzora\ViewModel.cs" />
     <Compile Include="Views\AnnualReportWindow.xaml.cs">
       <DependentUpon>AnnualReportWindow.xaml</DependentUpon>
     </Compile>
