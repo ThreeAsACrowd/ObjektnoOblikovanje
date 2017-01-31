@@ -13,6 +13,5 @@ namespace DataRepository.Models.nHibernateModels
         {
             Map(x => x.Article22);
         }
-
     }
 }

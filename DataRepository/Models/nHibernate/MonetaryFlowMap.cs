@@ -9,7 +9,6 @@ namespace DataRepository.Models.nHibernateModels
 {
     public class MonetaryFlowMap : ClassMap<MonetaryFlow>
     {
-
         public MonetaryFlowMap()
         {
             Id(x => x.Id).GeneratedBy.Increment();
@@ -26,6 +25,5 @@ namespace DataRepository.Models.nHibernateModels
 
             UseUnionSubclassForInheritanceMapping();
         }
-
     }
 }
